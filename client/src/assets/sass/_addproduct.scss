@@ -1,0 +1,41 @@
+.add-main{
+    display: flex;
+        .add-main-left{
+            margin-left: 25px;
+                .add-main-left-h1{
+                    font-size: 36px;
+                    margin-bottom: 5px;
+                }
+                .add-main-left-hr{
+                  @extend %hr;
+                  width: 55%;
+                  margin-bottom: 15px;
+
+                }
+                .add-main-left-label{
+                    font-size: 24px;
+                    
+                }
+                .add-main-left-textbox{
+                    padding: 10px 90px;
+                    margin-top: 5px;
+                    margin-bottom: 10px;
+                }
+                .add-main-left-button{
+                    @extend %button;
+                    padding: 10px 128px;
+                    font-size: 30px;
+                }
+        }
+
+        .add-main-right{
+            background-color: $light-grey;
+            border-radius: 20px;
+           margin-left: 35px;
+          
+                .add-main-right-lists{
+                    padding: 25px;
+                }
+               
+        }
+}

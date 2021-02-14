@@ -1,0 +1,27 @@
+.dashuser-priority-list{
+   background-color: $light-grey;
+   border-radius: 10px;
+   margin-right: 10px;
+      .dashuser-priority-list-p{
+         font-size: 18px;
+         color:$black;
+         padding: 10px 30px;
+      }
+          .dashuser-priority-list-circle-hot 
+         .dashuser-priority-list-circle-warm 
+         .dashuser-priority-list-circle-cold {
+             height: 36px;
+              width: 36px;
+              border-radius: 50%;
+           }
+         .dashuser-priority-list-circle-hot {
+             background-color: $dark-green;
+            }
+          .dashuser-priority-list-circle-warm {
+              background-color: $dark-red;
+            }
+         .dashuser-priority-list-circle-cold {
+              background-color: $dark-yellow;
+    
+        }
+ }

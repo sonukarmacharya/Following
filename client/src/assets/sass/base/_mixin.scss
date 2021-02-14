@@ -1,0 +1,59 @@
+// @include css('50px','50px',"'header header','main main'");
+// defining column - '50px'(single) and '1fr 1fr 50px'(multiple)
+// defining row - '50px'(single) and '1fr 1fr 50px'(multiple)
+// defining area name - "'header header' 'main main'" 
+// not putting double quotation inside with single quotation won't work
+@mixin css-grid($columns,$rows,$area) {
+    display:grid; 
+    grid-template-columns:#{$columns};
+    grid-template-rows:#{$rows};
+    grid-template-areas:#{$area};
+}
+
+// Use this only for single properties or multiple properties however, if duration and ease is only single: use this 
+// @include animate(background-color,100ms,ease-in); 
+// @include animate(background-color width,100ms,ease-in); 
+@mixin animate($properties, $duration: $animation-speed, $easing: ease-in-out) {
+	$list:();
+	  	@each $prop in $properties{
+            $str: #{$prop} #{$duration} #{$easing};
+            $list: join($list, #{$str}, comma);
+      }
+    transition: $list;
+}
+// Use this only for multiple properties along with multiple duration and ease
+// @include animate("background-color 100ms ease-in, width 200ms ease-in"); 
+@mixin animates($properties) {
+	$list:();
+	  	
+	  	  @each $prop,$dur,$ease in $properties {
+            $str: #{$prop} #{$dur} #{$ease};
+            $list: join($list, #{$str}, comma);
+      }
+	  
+    transition: $list;
+}
+
+// @include insert_icon_into_element("$icon-search"); 
+
+@mixin icon_into_element($name,$bottom-margin){
+  position: relative;
+  &::after{
+    font-family: $icomoon-font-family;
+    content:$name;
+    position: absolute;
+    /* this is so when you click on the chevron, your click actually goes on the dropdown menu */
+    pointer-events: none;
+    top:5px;
+    right:6px;
+    bottom:$bottom-margin;
+  }
+}
+
+@mixin placeholder {
+	&::-webkit-input-placeholder {@content}
+	&::-moz-placeholder {opacity: 1; @content}
+	&:-moz-placeholder {@content}
+	&:-ms-input-placeholder {@content}
+	&.placeholder {@content}
+}

@@ -1,0 +1,105 @@
+// Typography
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6,
+.subtitle,
+.subtitle2,
+.button,
+.caption,
+.overline,
+.h {
+	font-family: $fonts_family_heading;
+}
+
+h1, .h1 {
+	font-size: $font_size_h1;
+	font-weight:300;
+	letter-spacing:-0.09375rem;
+}
+
+h2, .h2 {
+	font-size: $font_size_h2;
+	font-weight:300;
+	letter-spacing:-0.03125rem;
+}
+
+h3, .h3 {
+	font-size: $font_size_h3;
+	font-weight:400;
+	letter-spacing:0rem;
+}
+
+h4, .h4 {
+	font-size: $font_size_h4;
+	font-weight:400;
+	letter-spacing:0.015625rem;
+}
+
+h5, .h5 {
+	font-size: $font_size_h5;
+	font-weight:400;
+	letter-spacing:0rem;
+}
+
+h6, .h6 {
+	font-size: $font_size_h6;
+	font-weight:500;
+	letter-spacing:0.009375rem;
+}
+
+.subtitle{
+	font-size: $font_size_subtitle1;
+	font-weight:400;
+	letter-spacing:0.009375rem;
+}
+
+.subtitle2{
+	font-size: $font_size_subtitle2;
+	font-weight:500;
+	letter-spacing:0.00625rem;
+}
+
+body, .body{
+	font-family: $fonts_family_content;
+	font-size: $font_size_body1;
+	font-weight:400;
+	letter-spacing:0.03125rem;
+}
+.body2{
+	font-family: $fonts_family_content;
+	font-size: $font_size_body2;
+	font-weight:400;
+	letter-spacing:0.015625rem;
+}
+
+button, .button{
+	font-size: $font_size_button;
+	font-weight:500;
+	letter-spacing:0.078125rem;
+	text-transform: capitalize;
+}
+
+.caption{
+	font-size: $font_size_caption;
+	font-weight:400;
+	letter-spacing:0.025rem;
+}
+
+.overline{
+	font-size: $font_size_overline;
+	font-weight:400;
+	letter-spacing:0.09375rem;
+	text-transform: capitalize;
+}
+
+a {
+	text-decoration: none;
+	&:hover,
+	&:focus {
+		text-decoration: none;
+	}
+}

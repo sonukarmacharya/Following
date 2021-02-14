@@ -1,0 +1,53 @@
+%button{
+    background-color: $primary_color;
+   
+    padding: 5px;
+    
+    color: $white;
+    text-align: center;
+    &:hover{
+        background-color: $light-grey;
+        color: $black;
+      }
+}
+
+%logo{
+  position: absolute;
+  height:80px;
+  width:80px;
+  padding: 15px;
+  left: 35px;
+}
+
+%user-icon{
+  background: $light_grey;
+  padding: 10px;
+  border-radius: 50%;
+  position: absolute;
+  font-size: 30px;
+}
+
+%back{
+  position: relative;
+  font-size: 34px;
+  top:10px;
+  left:92%;
+  color: $black;
+  text-decoration-line: none;
+}
+
+%hr{
+  border: 1px solid $black;
+
+}
+
+%sort-icon {
+      background: $primary_color;
+      color: $white;
+      padding: 5px;
+      
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  

@@ -1,0 +1,15 @@
+.sort{
+    margin-left: 20%;
+    .sort-one{
+        position: relative;
+        
+            .sort-label{
+                padding:15px 0px;
+            }
+            .sort-icon{
+                background-color: $primary-color;
+                color: $white;
+                padding: 10px;
+            }
+    }
+}

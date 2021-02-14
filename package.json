@@ -1,0 +1,35 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "server": "nodemon app.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently -n 'server,client' -c'yellow,blue' \"npm run server \" \"npm run client \""
+  },
+  "author": "Sonu",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "express-validator": "^6.6.1",
+    "joi": "^17.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7",
+    "rc-scrollbars": "^1.0.3",
+    "read-excel-file": "^4.1.0",
+    "xlsx": "^0.16.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

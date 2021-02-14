@@ -1,0 +1,33 @@
+.head__custom-nav .navbar-brand img {
+  width: 40px;
+  height: 40px; 
+}
+.head__custom-nav .navbar-brand span {
+  font-weight: 700;
+  font-size: 22px;
+  margin-left: 10px; 
+}
+.head__custom-nav button {
+  padding: 0;
+ }
+  .head__custom-nav button span img {
+    width: 30px; 
+  }
+.head__custom-nav #navbarNav .navbar-nav .nav-item .nav-link {
+  color: #fff;
+  font-weight: 400;
+  padding: 8px 15px;
+  white-space: nowrap;
+  transition: 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  &:hover {
+    color: lightcoral;
+   }
+ }
+ .header-list-active{
+   border: 1px solid $white;
+   border-radius: 20%;
+ }
+ .welcome{
+   position: relative;
+   right: 600px;
+ }

@@ -1,0 +1,19 @@
+.cust-prior-circle-hot,
+      .cust-prior-circle-cold,
+      .cust-prior-circle-warm {
+        height: 36px;
+        width: 36px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+    .reviewhistory-iconedit{
+      color:$edit_color;
+    }
+    .reviewhistory-icondelete{
+      color:$delete_color;
+    }
+.pop-image{
+  position: absolute;
+  left:358px;
+  top:180px;
+}

@@ -1,0 +1,36 @@
+.btn-primary, nav,.bg{
+    background: #023047 ; 
+  }
+  .text-primary{
+    color: $primary-color;
+  }
+  .pad-top{
+    padding-top:40px;
+  }
+  .back{
+    @extend %back;
+  }
+  
+  hr{
+    color: $white;
+  }
+  .img-container{
+   width: 65px;
+   border-radius: 50%;
+  
+  }
+  a{
+    text-decoration: none; 
+  }
+ hr{
+   background-color: $white;
+ }
+ .icon{
+  border-radius: 50%;
+  background-color: $light_grey;
+  padding: 20px;
+ }
+ .table-tr{
+   cursor: pointer;
+ }
+ 

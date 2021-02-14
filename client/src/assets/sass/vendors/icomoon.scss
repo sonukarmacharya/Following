@@ -1,0 +1,192 @@
+$icomoon-font-family: "icomoon" !default;
+$icomoon-font-path: "fonts" !default;
+
+$icon-help: "\e90a";
+$icon-add: "\e907";
+$icon-login: "\e900";
+$icon-home: "\e904";
+$icon-edit: "\e905";
+$icon-profile: "\e971";
+$icon-customers: "\e972";
+$icon-search: "\e986";
+$icon-delete: "\e9ac";
+$icon-cancel: "\ea0d";
+$icon-menu-cancel: "\ea0f";
+$icon-up: "\ea41";
+$icon-right: "\ea42";
+$icon-down: "\ea43";
+$icon-left: "\ea44";
+$icon-a-z: "\ea48";
+$icon-z-a: "\ea49";
+$icon-1-9: "\ea4a";
+$icon-9-1: "\ea4b";
+$icon-inquiry: "\ea56";
+$icon-review: "\e908";
+$icon-products-detail: "\e903";
+$icon-status: "\e902";
+$icon-check: "\e901";
+$icon-calendar: "\e909";
+$icon-product: "\e906";
+@font-face {
+  font-family: "#{$icomoon-font-family}";
+  src: url("#{$icomoon-font-path}/#{$icomoon-font-family}.eot?6efpvg");
+  src: url("#{$icomoon-font-path}/#{$icomoon-font-family}.eot?6efpvg#iefix")
+      format("embedded-opentype"),
+    url("#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?6efpvg")
+      format("truetype"),
+    url("#{$icomoon-font-path}/#{$icomoon-font-family}.woff?6efpvg")
+      format("woff"),
+    url("#{$icomoon-font-path}/#{$icomoon-font-family}.svg?6efpvg##{$icomoon-font-family}")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "#{$icomoon-font-family}" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-help {
+  &:before {
+    content: $icon-help;
+  }
+}
+.icon-add {
+  &:before {
+    content: $icon-add;
+  }
+}
+.icon-login {
+  &:before {
+    content: $icon-login;
+  }
+}
+.icon-home {
+  &:before {
+    content: $icon-home;
+  }
+}
+.icon-edit {
+  &:before {
+    content: $icon-edit;
+  }
+}
+.icon-profile {
+  &:before {
+    content: $icon-profile;
+  }
+}
+.icon-customers {
+  &:before {
+    content: $icon-customers;
+  }
+}
+.icon-search {
+  &:before {
+    content: $icon-search;
+  }
+}
+.icon-delete {
+  &:before {
+    content: $icon-delete;
+  }
+}
+.icon-cancel {
+  &:before {
+    content: $icon-cancel;
+  }
+}
+.icon-menu-cancel {
+  &:before {
+    content: $icon-menu-cancel;
+  }
+}
+.icon-up {
+  &:before {
+    content: $icon-up;
+  }
+}
+.icon-right {
+  &:before {
+    content: $icon-right;
+  }
+}
+.icon-down {
+  &:before {
+    content: $icon-down;
+  }
+}
+.icon-left {
+  &:before {
+    content: $icon-left;
+  }
+}
+.icon-a-z {
+  &:before {
+    content: $icon-a-z;
+  }
+}
+.icon-z-a {
+  &:before {
+    content: $icon-z-a;
+  }
+}
+.icon-1-9 {
+  &:before {
+    content: $icon-1-9;
+  }
+}
+.icon-9-1 {
+  &:before {
+    content: $icon-9-1;
+  }
+}
+.icon-inquiry {
+  &:before {
+    content: $icon-inquiry;
+  }
+}
+.icon-review {
+  &:before {
+    content: $icon-review;
+  }
+}
+.icon-products-detail {
+  &:before {
+    content: $icon-products-detail;
+  }
+}
+.icon-status {
+  &:before {
+    content: $icon-status;
+  }
+}
+.icon-check {
+  &:before {
+    content: $icon-check;
+  }
+}
+.icon-calendar {
+  &:before {
+    content: $icon-calendar;
+  }
+}
+.icon-product {
+  &:before {
+    content: $icon-product;
+  }
+}
+
