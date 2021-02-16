@@ -12,7 +12,7 @@ dbcon.connect((err) => {
   else console.log("Connected to db");
 });
 
-dbcon.query(`CREATE DATABASE IF NOT EXISTS customerfollowup`, (err, result) => {
+dbcon.query(`CREATE DATABASE IF NOT EXISTS customersfollow`, (err, result) => {
   if (err) console.log(err);
   console.log("Database created");
   const db = require("./db_connection");
@@ -26,9 +26,9 @@ dbcon.query(`CREATE DATABASE IF NOT EXISTS customerfollowup`, (err, result) => {
           console.log(result);
           if (result == "") {
             console.log("no result");
-            db.query(`INSERT INTO admin (A_ID,A_Username) VALUES (0,'excel')`);
+            db.query(`INSERT INTO admin (A_Username) VALUES ('excel')`);
             db.query(
-              `INSERT INTO admin (A_ID,A_Username,A_Password) VALUES (1,'admin','password')`
+              `INSERT INTO admin (A_Username,A_Password) VALUES ('admin','password')`
             );
           } else {
             console.log("rsult");
@@ -41,7 +41,7 @@ dbcon.query(`CREATE DATABASE IF NOT EXISTS customerfollowup`, (err, result) => {
     `CREATE TABLE IF NOT EXISTS company(Co_ID INT PRIMARY KEY AUTO_INCREMENT,Co_Name VARCHAR(30),Co_District VARCHAR(20),Co_Landline VARCHAR(10),Co_Address VARCHAR(30) )`
   );
   db.query(
-    `CREATE TABLE IF NOT EXISTS salesperson(S_ID INT PRIMARY KEY AUTO_INCREMENT,S_Image VARCHAR(225),S_Username VARCHAR(30),S_Address VARCHAR(30),S_Email VARCHAR(30), A_ID INT REFERENCES admin(ID))`,
+    `CREATE TABLE IF NOT EXISTS salesperson(S_ID INT PRIMARY KEY AUTO_INCREMENT,S_Image VARCHAR(225),S_Username VARCHAR(30),S_Password VARCHAR(15),S_Address VARCHAR(30),S_Email VARCHAR(30), A_ID INT REFERENCES admin(ID))`,
     (err, result) => {
       db.query(
         `SELECT * FROM salesperson WHERE S_Username='excel'`,
@@ -71,7 +71,7 @@ dbcon.query(`CREATE DATABASE IF NOT EXISTS customerfollowup`, (err, result) => {
     `CREATE TABLE IF NOT EXISTS project(Prj_ID INT PRIMARY KEY AUTO_INCREMENT,Prj_Name VARCHAR(30),Prj_Amt INT,Co_ID INT REFERENCES company(ID),A_ID INT REFERENCES admin(ID))`
   );
   db.query(
-    `CREATE TABLE IF NOT EXISTS review9(R_ID INT PRIMARY KEY AUTO_INCREMENT,R_Review text,Co_ID INT REFERENCES company(ID),S_ID INT REFERENCES salesperson(ID),INquiry_via VARCHAR(20),Date date,Si_ID INT REFERENCES sectorwise_industry(ID))`
+    `CREATE TABLE IF NOT EXISTS review(R_ID INT PRIMARY KEY AUTO_INCREMENT,R_Review text,Co_ID INT REFERENCES company(ID),S_ID INT REFERENCES salesperson(ID),INquiry_via VARCHAR(20),Date date,Si_ID INT REFERENCES sectorwise_industry(ID))`
   );
   db.query(
     `CREATE TABLE IF NOT EXISTS admin_assign_customers(Ac_ID INT PRIMARY KEY AUTO_INCREMENT,Co_ID INT REFERENCES company(ID),Prj_ID INT REFERENCES project(ID),S_ID INT REFERENCES salesperson(ID),A_ID INT REFERENCES admin(ID),Date date)`
