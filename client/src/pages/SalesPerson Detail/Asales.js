@@ -4,8 +4,6 @@ import Welcome from "../../layouts/Welcome";
 import { Link, useParams } from "react-router-dom";
 import "../../assets/sass/app.css";
 import axios from "axios";
-import Modal from "react-modal";
-Modal.setAppElement("#root");
 
 const Asales = () => {
   const id = useParams();
@@ -31,7 +29,7 @@ const Asales = () => {
     //const sales = await axios(`/auth/DisplaysalespersonId/${id.id}`);
     const asgcomp = await axios(`/auth/gettask/${id.id}`);
     const asgpro = await axios(`/auth/DisplayTaskProject/${id.id}`);
-    console.log("ss",comp.data.data);
+    console.log("ss", comp.data.data);
     setCompany(comp.data.data);
     //setSalesPerson(sales.data.data);
     setAsgCompany(asgcomp.data.data);
@@ -143,33 +141,6 @@ const Asales = () => {
                     />
                   </form>
                 </div>
-                {/* {salesPerson ? (
-                  salesPerson.map((dt) => (
-                    <div className="bg-light p-5 ">
-                      <h3 className="salesD-below-h1 text-primary">
-                        {dt.S_Username}
-                      </h3>
-                      <hr className="salesD-below-hr-below" />
-                      <div className="salesD-main-left-best">
-                        <h1 className="salesD-below-h1">Address</h1>
-                        <p className="salesD-below-p">{dt.S_Address}</p>
-                        <h1 className="salesD-below-h1">Email ID</h1>
-                        <p className="salesD-below-p">{dt.S_Email}</p>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="salesD-main-left-below">
-                    <h1 className="salesD-below-h1"></h1>
-                    <hr className="salesD-below-hr-below" />
-                    <div className="salesD-main-left-best">
-                      <h1 className="salesD-below-h1">Address</h1>
-                      <p className="salesD-below-p"></p>
-                      <h1 className="salesD-below-h1">Email ID</h1>
-                      <p className="salesD-below-p"></p>
-                    </div>
-                  </div>
-                )} */}
               </div>
               <div className="col-md-6 col-12 pl-5">
                 <h1 className="salesD-h1">Task Details</h1>
@@ -198,40 +169,10 @@ const Asales = () => {
                               <td>
                                 <i
                                   className="reviewhistory-icondelete icon-delete"
-                                  onClick={() => setmodalIsOpen(true)}
-                                ></i>
-                                <Modal
-                                  className=""
-                                  isOpen={modalIsOpen}
-                                  style={{
-                                    overlay: {},
-                                    content: {
-                                      top: "100px",
-                                      left: "400px",
-                                      width: "300px",
-                                      height: "200px",
-                                    },
+                                  onClick={() => {
+                                    handleDelete(t.Co_ID, t.Prj_ID);
                                   }}
-                                >
-                                  Are you sure you want to delete??
-                                  <br />
-                                  <button
-                                    className="btn btn-primary"
-                                    onClick={() => {
-                                      console.log(">>", t.Co_ID, t.Prj_Name);
-                                      handleDelete(t.Co_ID, t.Prj_ID);
-                                      setmodalIsOpen(false);
-                                    }}
-                                  >
-                                    ok
-                                  </button>
-                                  <button
-                                    className="btn btn-primary"
-                                    onClick={() => setmodalIsOpen(false)}
-                                  >
-                                    cancel
-                                  </button>
-                                </Modal>
+                                ></i>
                               </td>
                             </tr>
                           ))

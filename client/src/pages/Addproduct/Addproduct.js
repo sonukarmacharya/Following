@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import HeaderUser from "../../layouts/HeaderUser";
 import { Link, useParams } from "react-router-dom";
-import { Scrollbars } from 'rc-scrollbars';
+import { Scrollbars } from "rc-scrollbars";
 import axios from "axios";
 import "../../assets/sass/app.css";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
-
 
 export default function Addproduct() {
   const id = useParams();
@@ -23,14 +22,13 @@ export default function Addproduct() {
   const [modalIsOpen, setmodalIsOpen] = useState(false);
 
   useEffect(async () => {
-    const siid=id.siid
-    const coid=id.cid
+    const siid = id.siid;
+    const coid = id.cid;
     const prod = await axios(`/auth/Displayproduct`);
-    const ph= await axios(`/auth/getmasterproduct/${coid}/${siid}`)
+    const ph = await axios(`/auth/getmasterproduct/${coid}/${siid}`);
     console.log("p>>", ph.data.data);
     setProduct(prod.data.data);
-    setHistory(ph.data.data)
-    
+    setHistory(ph.data.data);
   }, []);
 
   let handleChange = (e) => {
@@ -40,9 +38,10 @@ export default function Addproduct() {
       axios
         .get(`/auth/DisplayproductByID/${idp}`)
         .then((data) => setqty(data.data.data));
-        setdataform({
-          ...dataform,[e.target.name]: e.target.value
-        })
+      setdataform({
+        ...dataform,
+        [e.target.name]: e.target.value,
+      });
     } else if ([e.target.name] == "quantity") {
       setqt([e.target.value]);
       qty.map((q) => {
@@ -65,6 +64,7 @@ export default function Addproduct() {
     console.log(dataform, price);
     axios.post(`/auth/postmasterproduct`, dataform).then((data) => {
       alert("inserted successfully");
+      window.location.reload();
       setdataform();
     });
   };
@@ -156,71 +156,78 @@ export default function Addproduct() {
               <div className="p-4">
                 <h1 className="add-main-right-lists-h1">Purchase history</h1>
                 <div className="add-main-right-lists-table">
-                    <Scrollbars style={{height: 400 }}>
-                  <table className="table table-hover">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Delete</th>
-                      </tr>
-                     </thead>
-                    <tbody>
-                      {history &&
-                        history.map((history) => (
-                          <tr>
-                            <td className="table-body-cell">
-                              {history.P_Name}
-                            </td>
-                            <td className="table-body-cell">
-                              {history.P_Model}
-                            </td>
-                            <td className="table-body-cell">
-                              {history.Quantity}
-                            </td>
-                            <td className="table-body-cell">
-                              {history.Price}
-                            </td>
-                           <td>
-                           <i
-                              className="reviewhistory-icondelete icon-delete"
-                              onClick={() => setmodalIsOpen(true)}
-                            ></i>
-                            <Modal
-                              isOpen={modalIsOpen}
-                              style={{
-                                content: {
-                                  top: "100px",
-                                  left: "400px",
-                                  width: "300px",
-                                  height: "200px",
-                                },
-                              }}
-                            >
-                              Are you sure you want to delete??
-                              <br />
-                              <button
-                                onClick={() => {
-                                  console.log(history.Mp_ID)
-                                axios.delete(`/auth/DeletePurchase/${history.Mp_ID}`);
-                                window.location.reload()
-                                  setmodalIsOpen(false);
-                                }}
-                              >
-                                ok
-                              </button>
-                              <button onClick={() => setmodalIsOpen(false)}>
-                                cancel
-                              </button>
-                            </Modal>
-                           </td>
-                          </tr>
-                        ))}
-                    </tbody>
-                  </table>
-                        </Scrollbars>
+                  <Scrollbars style={{ height: 400 }}>
+                    <table className="table table-hover">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">Product Name</th>
+                          <th scope="col">Model</th>
+                          <th scope="col">Quantity</th>
+                          <th scope="col">Price</th>
+                          <th scope="col">Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {history &&
+                          history.map((history) => (
+                            <tr>
+                              <td className="table-body-cell">
+                                {history.P_Name}
+                              </td>
+                              <td className="table-body-cell">
+                                {history.P_Model}
+                              </td>
+                              <td className="table-body-cell">
+                                {history.Quantity}
+                              </td>
+                              <td className="table-body-cell">
+                                {history.Price}
+                              </td>
+                              <td>
+                                <i
+                                  className="reviewhistory-icondelete icon-delete"
+                                  onClick={() => {
+                                    axios.delete(
+                                      `/auth/DeletePurchase/${history.Mp_ID}`
+                                    );
+                                    window.location.reload();
+                                  }}
+                                ></i>
+                                <Modal
+                                  isOpen={modalIsOpen}
+                                  style={{
+                                    content: {
+                                      top: "100px",
+                                      left: "400px",
+                                      width: "300px",
+                                      height: "200px",
+                                    },
+                                  }}
+                                >
+                                  Are you sure you want to delete??
+                                  <br />
+                                  <button
+                                    onClick={() => {
+                                      console.log(history.Mp_ID);
+                                      axios.delete(
+                                        `/auth/DeletePurchase/${history.Mp_ID}`
+                                      );
+                                      window.location.reload();
+                                      setmodalIsOpen(false);
+                                    }}
+                                  >
+                                    ok
+                                  </button>
+                                  <button onClick={() => setmodalIsOpen(false)}>
+                                    cancel
+                                  </button>
+                                </Modal>
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </Scrollbars>
                 </div>
               </div>
             </div>

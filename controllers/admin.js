@@ -45,11 +45,10 @@ module.exports = {
                 status: 400,
                 message: "Empty",
               });
-            }
-            else{
-                const S = [];
-                
-            result.forEach((element) => {
+            } else {
+              const S = [];
+
+              result.forEach((element) => {
                 S.push(element.Co_ID);
                 console.log(S);
               });
@@ -57,7 +56,7 @@ module.exports = {
                 `SELECT company.Co_ID,company.Co_Name,company.Co_Landline,master_db.Prj_Name,master_db.Prj_Amt
                  FROM company INNER JOIN master_db ON company.Co_ID=master_db.Co_ID WHERE company.Co_ID IN (${S})`,
                 (err, result) => {
-                  console.log(result)
+                  console.log(result);
                   if (err) {
                     res.json({
                       status: 400,
@@ -74,7 +73,6 @@ module.exports = {
                 }
               );
             }
-
           }
         }
       );
@@ -106,11 +104,10 @@ module.exports = {
                 status: 400,
                 message: "Empty",
               });
-            }
-            else{
-                const S = [];
-                
-            result.forEach((element) => {
+            } else {
+              const S = [];
+
+              result.forEach((element) => {
                 S.push(element.Prj_ID);
                 console.log(S);
               });
@@ -133,7 +130,6 @@ module.exports = {
                 }
               );
             }
-
           }
         }
       );
@@ -264,97 +260,102 @@ module.exports = {
     }
   },
 
-  getTodayTask:(req,res,next) =>{
-    const body = req.params
+  getTodayTask: (req, res, next) => {
+    const body = req.params;
     let dateObj = new Date();
     let date = dateObj.toISOString().split("T")[0];
-    console.log(body.id,date)
+    console.log(body.id, date);
     try {
-      db.query(`SELECT COUNT(*) as total FROM admin_assign_customers WHERE S_ID='${body.id}' AND Date='${date}'`,(err,result)=>{
-        console.log(result)
-        if(err){
-          res.json({
-            status:400,
-            message:"Error",
-            error:err
-          })
+      db.query(
+        `SELECT COUNT(*) as total FROM admin_assign_customers WHERE S_ID='${body.id}' AND Date='${date}'`,
+        (err, result) => {
+          console.log(result);
+          if (err) {
+            res.json({
+              status: 400,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "success",
+              data: result,
+            });
+          }
         }
-        else{
-          res.json({
-            status:200,
-            message:"success",
-            data:result
-          })
-        }
-      })
-      
+      );
     } catch (error) {
       res.json({
-        status:400,
-        message:"Error",
-        error:error
-      })
+        status: 400,
+        message: "Error",
+        error: error,
+      });
     }
   },
 
-  getTask:(req,res,next)=>{
-      try {
-          db.query(`SELECT company.Co_ID,company.Co_Name,company.Co_Landline,project.Prj_ID,
+  getTask: (req, res, next) => {
+    try {
+      db.query(
+        `SELECT company.Co_ID,company.Co_Name,company.Co_Landline,project.Prj_ID,
           project.Prj_Name,project.Prj_Amt,master_db.Si_ID FROM admin_assign_customers
           INNER JOIN company ON company.Co_ID=admin_assign_customers.Co_ID
           INNER JOIN project ON project.Prj_ID=admin_assign_customers.Prj_ID
           INNER JOIN master_db ON master_db.Co_ID=admin_assign_customers.Co_ID AND
-          master_db.Prj_Name=project.Prj_Name WHERE admin_assign_customers.S_ID='${req.params.id}'`,(err,result)=>{
-              if(err){
-                  res.json({
-                      status:400,
-                      message:"Error",
-                      error:err
-                  })
-              }
-              else{
-                  res.json({
-                      status:200,
-                      message:"Success",
-                      data:result
-                  })
-              }
-          })
-      } catch (error) {
-        res.json({
-            status:400,
-            message:"Error",
-            error:error
-        })
-      }
+          master_db.Prj_Name=project.Prj_Name WHERE admin_assign_customers.S_ID='${req.params.id}'`,
+        (err, result) => {
+          if (err) {
+            res.json({
+              status: 400,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "Success",
+              data: result,
+            });
+          }
+        }
+      );
+    } catch (error) {
+      res.json({
+        status: 400,
+        message: "Error",
+        error: error,
+      });
+    }
   },
 
-  deleteAsgTask:(req,res,next)=>{
-      console.log(req.params.coid,req.params.prjid,req.params.sid)
-      try {
-          db.query(`DELETE FROM admin_assign_customers WHERE Co_ID='${req.params.coid}' AND
-          Prj_ID='${req.params.prjid}' AND S_ID='${req.params.sid}'`,(err,result)=>{
-              if(err){
-                  res.json({
-                      status:400,
-                      message:"Error",
-                      error:err
-                  })
-              }
-              else{
-                  res.json({
-                      status:200,
-                      message:"Success",
-                      data:result
-                  })
-              }
-          })
-      } catch (error) {
-        res.json({
-            status:400,
-            message:"Error",
-            error:error
-        })
-      }
-  }
+  deleteAsgTask: (req, res, next) => {
+    console.log(req.params.coid, req.params.prjid, req.params.sid);
+    try {
+      db.query(
+        `DELETE FROM admin_assign_customers WHERE Co_ID='${req.params.coid}' AND
+          Prj_ID='${req.params.prjid}' AND S_ID='${req.params.sid}'`,
+        (err, result) => {
+          if (err) {
+            res.json({
+              status: 400,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "Success",
+              data: result,
+            });
+          }
+        }
+      );
+    } catch (error) {
+      res.json({
+        status: 400,
+        message: "Error",
+        error: error,
+      });
+    }
+  },
 };

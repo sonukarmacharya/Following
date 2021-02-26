@@ -469,7 +469,7 @@ a:hover, a:focus {
 }
 
 .dashuser-priority-list .dashuser-priority-list-circle-cold {
-  background-color: #F2BB30;
+  background-color: #f2bb30;
 }
 
 .cust-prior-circle-hot,
@@ -482,11 +482,11 @@ a:hover, a:focus {
 }
 
 .reviewhistory-iconedit {
-  color: #079C00;
+  color: #079c00;
 }
 
 .reviewhistory-icondelete {
-  color: #EE6969;
+  color: #ee6969;
 }
 
 .pop-image {

@@ -22,7 +22,7 @@ module.exports = {
               `INSERT INTO project (Prj_Name,Prj_Amt,Co_ID,A_ID) VALUES ('${data.prjname}','${data.prjamount}','${data.coid}','${data.aid}')`,
               (err, result) => {
                 if (err) {
-                  console.log(err)
+                  console.log(err);
                   res.json({
                     status: 400,
                     message: "error inserted",
@@ -230,151 +230,159 @@ module.exports = {
     }
   },
 
-  getProject:(req,res,next)=>{
+  getProject: (req, res, next) => {
     try {
-      const data = req.params
-      const id1 = data.sid
-      const id2 = data.coid
-      db.query(`SELECT * FROM master_db WHERE Si_ID='${id1}' AND Co_ID='${id2}'`,(err,result)=>{
-        
-        if(err){
-          res.json({
-            status:400,
-            message:"Error",
-            error:err
-          })
+      const data = req.params;
+      const id1 = data.sid;
+      const id2 = data.coid;
+      db.query(
+        `SELECT * FROM master_db WHERE Si_ID='${id1}' AND Co_ID='${id2}'`,
+        (err, result) => {
+          if (err) {
+            res.json({
+              status: 400,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "Success",
+              data: result,
+            });
+          }
         }
-        else{
-          res.json({
-            status:200,
-            message:"Success",
-            data:result
-          })
-        }
-      })    } catch (error) {
-        res.json({
-          status:400,
-          message:"Error",
-          error:err
-        })
-      
-    }
-  },
-
-  getProjectCount:(req,res,next)=>{
-    try {
-      db.query(`SELECT COUNT(*) AS total FROM master_db WHERE Co_ID='${req.params.coid}' AND Si_ID='${req.params.siid}'`,(err,result)=>{
-        if(err){
-          res.json({
-            status:400,
-            message:"Error",
-            error:err
-          })
-        }
-        else{
-          res.json({
-            status:200,
-            message:"Success",
-            data:result
-          })
-        }
-      })
-      
+      );
     } catch (error) {
       res.json({
-        status:400,
-        message:"Error",
-        error:error
-      })
+        status: 400,
+        message: "Error",
+        error: err,
+      });
     }
   },
 
-  postMasterProuct:(req,res,next)=>{
-    const body=req.body
-    console.log("p>",body)
+  getProjectCount: (req, res, next) => {
     try {
-      db.query(`INSERT INTO master_product(P_ID,Co_ID,Si_ID,Quantity,Price,S_ID) VALUES ('${body.pid}','${body.coid}','${body.siid}','${body.quantity}','${body.price}','${body.sid}')`,(err,result)=>{
-        if(err){
-          res.json({
-          status:400,
-          message:"Error",
-          error:err
-        })
-      }
-      else{
-        res.json({
-          status:200,
-          message:"Success",
-          data:result
-        })
-      }
-      })
+      db.query(
+        `SELECT COUNT(*) AS total FROM master_db WHERE Co_ID='${req.params.coid}' AND Si_ID='${req.params.siid}'`,
+        (err, result) => {
+          if (err) {
+            res.json({
+              status: 400,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "Success",
+              data: result,
+            });
+          }
+        }
+      );
     } catch (error) {
       res.json({
-        status:400,
-        message:"Error",
-        error:error
-      })
+        status: 400,
+        message: "Error",
+        error: error,
+      });
     }
   },
 
-  getPurchaseHistory:(req,res,next)=>{
-    console.log(req.params.coid,req.params.siid)
+  postMasterProuct: (req, res, next) => {
+    const body = req.body;
+    console.log("p>", body);
+    let dateObj = new Date();
+    let date = dateObj.toISOString().split("T")[0];
     try {
-      db.query(`SELECT master_product.Mp_ID,product.P_ID,product.P_Name,product.P_Model,master_product.Quantity,master_product.Price FROM master_product
+      db.query(
+        `INSERT INTO master_product(P_ID,Co_ID,Si_ID,Quantity,Price,S_ID,Date) VALUES ('${body.pid}','${body.coid}','${body.siid}','${body.quantity}','${body.price}','${body.sid}','${date}')`,
+        (err, result) => {
+          if (err) {
+            res.json({
+              status: 400,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "Success",
+              data: result,
+            });
+          }
+        }
+      );
+    } catch (error) {
+      res.json({
+        status: 400,
+        message: "Error",
+        error: error,
+      });
+    }
+  },
+
+  getPurchaseHistory: (req, res, next) => {
+    console.log(req.params.coid, req.params.siid);
+    try {
+      db.query(
+        `SELECT master_product.Mp_ID,product.P_ID,product.P_Name,product.P_Model,master_product.Quantity,master_product.Price FROM master_product
        INNER JOIN product ON product.P_ID=master_product.P_ID
-      WHERE master_product.Co_ID='${req.params.coid}' AND master_product.Si_ID='${req.params.siid}'`,(err,result)=>{
-        if(err){
-          res.json({
-            status:400,
-            message:"Error",
-            error:err
-          })
+      WHERE master_product.Co_ID='${req.params.coid}' AND master_product.Si_ID='${req.params.siid}'`,
+        (err, result) => {
+          if (err) {
+            res.json({
+              status: 400,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "Success",
+              data: result,
+            });
+          }
         }
-        else{
-          res.json({
-            status:200,
-            message:"Success",
-            data:result
-          })
-        }
-      })
+      );
     } catch (error) {
       res.json({
-        status:400,
-        message:"Error",
-        error:error
-      })
-      
+        status: 400,
+        message: "Error",
+        error: error,
+      });
     }
   },
 
-  deletePurchaseHistory:(req,res,next)=>{
-    console.log(req.params.id)
+  deletePurchaseHistory: (req, res, next) => {
+    console.log(req.params.id);
     try {
-      db.query(`DELETE FROM master_product WHERE Mp_ID='${req.params.id}'`,(err,result)=>{
-        if(err){
-          res.json({
-            status:400,
-            message:"Error",
-            error:err
-          })
+      db.query(
+        `DELETE FROM master_product WHERE Mp_ID='${req.params.id}'`,
+        (err, result) => {
+          if (err) {
+            res.json({
+              status: 400,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "Success",
+              data: result,
+            });
+          }
         }
-        else{
-          res.json({
-            status:200,
-            message:"Success",
-            data:result
-          })
-        }
-      })
+      );
     } catch (error) {
       res.json({
-        status:400,
-        message:"Error",
-        error:error
-      })
+        status: 400,
+        message: "Error",
+        error: error,
+      });
     }
-  }
-  
+  },
 };

@@ -86,7 +86,7 @@ dbcon.query(`CREATE DATABASE IF NOT EXISTS customersfollow`, (err, result) => {
     `CREATE TABLE IF NOT EXISTS master_db(M_ID INT PRIMARY KEY AUTO_INCREMENT,M_Date date,Si_ID INT REFERENCES sectorwise_industry(ID),Co_ID INT REFERENCES company(ID),Prj_Name VARCHAR(30),Prj_Amt INT)`
   );
   db.query(
-    `CREATE TABLE IF NOT EXISTS master_product(Mp_ID INT PRIMARY KEY AUTO_INCREMENT,Si_ID INT REFERENCES sectorwise_industry(ID),Co_ID INT REFERENCES company(ID),P_ID INT REFERENCES product(ID),S_ID INT REFERENCES salesperson(ID),Price INT,Quantity INT)`
+    `CREATE TABLE IF NOT EXISTS master_product(Mp_ID INT PRIMARY KEY AUTO_INCREMENT,Si_ID INT REFERENCES sectorwise_industry(ID),Co_ID INT REFERENCES company(ID),P_ID INT REFERENCES product(ID),S_ID INT REFERENCES salesperson(ID),Price INT,Quantity INT,Date date)`
   );
   db.query(
     `CREATE TABLE IF NOT EXISTS priority_company(Pc_ID INT PRIMARY KEY AUTO_INCREMENT,Si_ID INT REFERENCES sectorwise_industry(ID),Co_ID INT REFERENCES company(ID),Pr_ID INT REFERENCES priority(ID))`
