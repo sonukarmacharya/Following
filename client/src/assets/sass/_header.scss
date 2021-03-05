@@ -1,33 +1,52 @@
-.head__custom-nav .navbar-brand img {
-  width: 40px;
-  height: 40px; 
-}
-.head__custom-nav .navbar-brand span {
-  font-weight: 700;
-  font-size: 22px;
-  margin-left: 10px; 
-}
-.head__custom-nav button {
-  padding: 0;
- }
-  .head__custom-nav button span img {
-    width: 30px; 
+.header {
+  position: fixed;
+  height: 70px;
+  width: 100%;
+  top: 0;
+  z-index: 1;
+  background: #fff;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.1);
+  .header-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    padding: 0 30px;
+
+    .sidebar-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      i {
+        font-size: 24px;
+        color: $primaryColor;
+      }
+    }
+    .logo {
+      margin-left: 30px;
+    }
+    .search-container {
+      width: 400px;
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      padding: 10px;
+      border-radius: 40px;
+      margin-left: auto;
+      margin-right: 50px;
+      display: flex;
+      align-items: center;
+      i {
+        padding-right: 10px;
+        color: $lightDark;
+      }
+      input {
+        outline: none;
+        width: 100%;
+        border: none;
+      }
+      input:focus {
+        outline: 0 !important;
+      }
+    }
   }
-.head__custom-nav #navbarNav .navbar-nav .nav-item .nav-link {
-  color: #fff;
-  font-weight: 400;
-  padding: 8px 15px;
-  white-space: nowrap;
-  transition: 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  &:hover {
-    color: lightcoral;
-   }
- }
- .header-list-active{
-   border: 1px solid $white;
-   border-radius: 20%;
- }
- .welcome{
-   position: relative;
-   right: 600px;
- }
+}

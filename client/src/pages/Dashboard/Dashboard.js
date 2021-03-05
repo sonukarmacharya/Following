@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../../layouts/Header";
 import Welcome from "../../layouts/Welcome";
 import "../../assets/sass/app.css";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import * as XLSX from "xlsx";
 import axios from "axios";
 
@@ -210,8 +210,106 @@ const Dashboard = () => {
     <div>
       <Header />
       <div>
-        <Welcome />
-        <div className="container custom">
+        {/* <Welcome /> */}
+        <div class="main-content">
+          <div class="path">
+            <span>
+              <b>Dashboard</b>
+            </span>
+          </div>
+          <div class="welcome-container">
+            <h4 class="theme-color">Welcome to our community</h4>
+            <p>Manage product, sales person, customer details</p>
+          </div>
+          <div class="row">
+            <div class="col-md-6 diag-info">
+              <div>
+                {low ? (
+                  <div class="message-danger">
+                    <b class="danger-color">Product Quality Low</b>
+                    <small>Please, wait product detail page for more job</small>
+                  </div>
+                ) : null}
+              </div>
+              <div class="pie-container img-container">
+                <Doughnut
+                  data={state}
+                  options={{
+                    legend: {
+                      display: true,
+                      position: "right",
+                    },
+                  }}
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class=" form-container">
+                <h4 class="form-title">Category Option</h4>
+                <form action="">
+                  {/* <!-- select category  --> */}
+                  <div class="form-group">
+                    <small>Select category</small>
+                    <select class="form-control">
+                      <option>Product</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+
+                  {/* <!-- radio btn  --> */}
+                  <div class="radio-btn text-center">
+                    <div class="form-check form-check-inline">
+                      <input type="radio" name="#" id="#" value="option1" />
+                      <small class="form-check-label">Add yourself</small>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input type="radio" name="#" id="#" value="option2" />
+                      <small class="form-check-label">Upload file</small>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <small>Product name*</small>
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      class="form-control"
+                      placeholder="Enter product name"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <small>Price*</small>
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      class="form-control"
+                      placeholder="Enter price"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <small>Quantity*</small>
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      class="form-control"
+                      placeholder="Enter quantity"
+                    />
+                  </div>
+                  <button type="submit" class="common-btn float-right">
+                    Submit
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div className="container custom">
           <div className="row">
             <div className="col-md-6 col-12">
               {low ? (
@@ -572,7 +670,7 @@ const Dashboard = () => {
               )}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -1,18 +1,17 @@
- @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap');
-
-@import "./default_style";
 @import "./colors";
-@import "./helper";
-@import "./sort";
-@import "./vendors/icomoon.scss";
-@import "./general";
-@import "./base/typography";
-@import "./search";
+@import "./default_style";
+// @import "./helper";
+// @import "./sort";
+// @import "./vendors/icomoon.scss";
+// @import "./general";
+// @import "./base/typography";
+// @import "./search";
 @import "./login";
 @import "./header";
+@import "./sidebar";
 
 @import "./dash";
 
-@import "./customer";
+// @import "./customer";
 
 // @import "./addproduct"

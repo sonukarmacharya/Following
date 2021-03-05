@@ -1,0 +1,42 @@
+.sidebar {
+  position: fixed;
+  top: 70px;
+  width: 250px;
+  height: 100%;
+  background: $primaryColor;
+  transition: 0.3s;
+  z-index: 1;
+  .sidebar-menu {
+    overflow: hidden;
+    .menu-item {
+      overflow: hidden;
+      .menu-btn {
+        display: block;
+        color: #fff;
+        position: relative;
+        padding: 15px 30px;
+        display: flex;
+        align-items: center;
+      }
+      img {
+        margin-right: 20px;
+        min-height: 30px;
+        min-width: 30px;
+      }
+      span {
+        font-size: 14px;
+      }
+    }
+  }
+  hr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  small {
+    padding: 30px;
+    color: #fff;
+  }
+}
+.side-image {
+  position: absolute;
+  bottom: 100px;
+}
