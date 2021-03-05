@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import axios from "axios";
 import "../assets/sass/app.css";
 import logo from "../assets/images/logo.png";
 import { useHistory } from "react-router-dom";
 import auth from "../pages/auth";
 import Sidebar from "./SideBar";
 
-const Header = () => {
+const Header = (props) => {
   const { pathname } = useLocation();
   const history = useHistory();
+  const [username, setusername] = useState("");
+  const [image, setimage] = useState();
+
+  useEffect(async () => {
+    const Id = localStorage.getItem("user");
+    let user = await axios.get(`/auth/admin/${Id}`);
+    console.log(Id);
+    setimage(user.data.data[0].A_Image);
+    setusername(user.data.data[0].A_Username);
+  }, []);
+
   return (
     <div>
       <Sidebar />
@@ -21,13 +33,19 @@ const Header = () => {
             <img src={logo} alt="" />
             <span class="logo-title">Construction Pvt Ltd</span>
           </div>
-          <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="search" name="" id="" placeholder="Search products" />
-          </div>
+
           <div class="profile">
-            <i class="fas fa-user"></i>
-            <span>Sujata khadka</span>
+            {/* <i class="fas fa-user"></i>
+            <span>Sujata khadka</span> */}
+            {!image ? (
+              <i className="fas fa-user"></i>
+            ) : (
+              <img
+                className="img-container"
+                src="http://localhost:5000/Admin/image-1606199832232.jpg"
+              />
+            )}
+            <span>{username}</span>
           </div>
         </div>
       </header>

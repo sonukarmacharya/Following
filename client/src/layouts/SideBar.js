@@ -1,5 +1,6 @@
 import React from "react";
 import "../assets/sass/app.css";
+import { NavLink, useLocation } from "react-router-dom";
 import dash from "../assets/images/dashboard.png";
 import product from "../assets/images/product.png";
 import sp from "../assets/images/sales person.png";
@@ -7,34 +8,59 @@ import cust from "../assets/images/customer.png";
 import report from "../assets/images/report.png";
 import logout from "../assets/images/logout.png";
 import sideImage from "../assets/images/side-image.png";
+import auth from "../pages/auth";
+import { useHistory } from "react-router-dom";
 
 export default function SideBar() {
+  const { pathname } = useLocation();
+  const history = useHistory();
   return (
     <div className="sidebar">
       <ul className="sidebar-menu pad-top">
         <li className="menu-item">
-          <a href="" className="menu-btn active">
+          <NavLink
+            activeClassName="active"
+            className="menu-btn"
+            to="/dashboard"
+          >
             <img src={dash} alt="" />
-            <span>Dashboard</span>
-          </a>
+            Dashboards
+          </NavLink>
         </li>
         <li className="menu-item">
-          <a href="" className="menu-btn">
+          <NavLink activeClassName="active" className="menu-btn" to="/products">
             <img src={product} alt="" />
-            <span>Product Details</span>
-          </a>
+            Product Details
+          </NavLink>
         </li>
         <li className="menu-item">
-          <a href="" className="menu-btn">
+          <NavLink
+            exact
+            activeClassName="active"
+            className="menu-btn"
+            to="/salesperson"
+            isActive={() =>
+              ["/salesperson", "/asalesperson/:id"].includes(pathname)
+            }
+          >
             <img src={sp} alt="" />
-            <span>Sales Person Details</span>
-          </a>
+            SalesPerson Detail
+          </NavLink>
         </li>
         <li className="menu-item">
-          <a href="" className="menu-btn">
+          <NavLink
+            activeClassName="active"
+            className="menu-btn"
+            to="/customers"
+            isActive={() =>
+              ["/customers", "/acustomer/:id", "/customersUser"].includes(
+                pathname
+              )
+            }
+          >
             <img src={cust} alt="" />
-            <span>Customer Details</span>
-          </a>
+            Customer Details
+          </NavLink>
         </li>
         <li className="menu-item">
           <a href="" className="menu-btn">
@@ -45,10 +71,18 @@ export default function SideBar() {
         <hr />
 
         <li class="menu-item">
-          <a href="" class="menu-btn">
+          <NavLink
+            className="menu-btn"
+            to="/"
+            onClick={() => {
+              auth.logout(() => {
+                history.push("/");
+              });
+            }}
+          >
             <img src={logout} alt="" />
-            <span>Logout</span>
-          </a>
+            logout
+          </NavLink>
         </li>
       </ul>
       <img src={sideImage} alt="" class="side-image" />

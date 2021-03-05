@@ -31,7 +31,7 @@ const Dashboard = () => {
     ],
     datasets: [
       {
-        backgroundColor: ["#E33F53", "#C3E33F", "#FFB703"],
+        backgroundColor: ["#222FB9", "#09105F", "#D3D6EE"],
 
         data: [
           countProduct,
@@ -210,9 +210,10 @@ const Dashboard = () => {
     <div>
       <Header />
       <div>
-        {/* <Welcome /> */}
         <div class="main-content">
-          <div class="path">
+          <Welcome />
+
+          {/* <div class="path">
             <span>
               <b>Dashboard</b>
             </span>
@@ -220,7 +221,7 @@ const Dashboard = () => {
           <div class="welcome-container">
             <h4 class="theme-color">Welcome to our community</h4>
             <p>Manage product, sales person, customer details</p>
-          </div>
+          </div> */}
           <div class="row">
             <div class="col-md-6 diag-info">
               <div>
@@ -250,60 +251,346 @@ const Dashboard = () => {
                   {/* <!-- select category  --> */}
                   <div class="form-group">
                     <small>Select category</small>
-                    <select class="form-control">
-                      <option>Product</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                    <select
+                      name="category"
+                      id="category"
+                      className="form-control"
+                      onChange={(e) => setDropdown(e.target.value)}
+                    >
+                      <option value="product">Product</option>
+                      <option value="salesperson">Salesperson</option>
+                      <option value="priority">Priority</option>
+                      <option value="company">Company</option>
+                      <option value="project">Project</option>
                     </select>
                   </div>
 
                   {/* <!-- radio btn  --> */}
                   <div class="radio-btn text-center">
                     <div class="form-check form-check-inline">
-                      <input type="radio" name="#" id="#" value="option1" />
+                      <input
+                        type="radio"
+                        id="choice1-1"
+                        name="choice1"
+                        value="add"
+                        onClick={() => {
+                          setVisible("true");
+                          setCheck("checked");
+                        }}
+                        checked={check}
+                      />
                       <small class="form-check-label">Add yourself</small>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input type="radio" name="#" id="#" value="option2" />
+                      <input
+                        type="radio"
+                        id="choice1-2"
+                        name="choice1"
+                        value="sub"
+                        onClick={() => {
+                          setVisible("false");
+                          setCheck("");
+                        }}
+                      />
                       <small class="form-check-label">Upload file</small>
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <small>Product name*</small>
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      class="form-control"
-                      placeholder="Enter product name"
-                    />
+                    {visible == "true" ? (
+                      dropdown == "product" ? (
+                        <div>
+                          <small>Model</small>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="model"
+                            onChange={handelChange}
+                          />
+                          {error.empty ? <p>{error.empty}</p> : null}
+                          <small>Product name</small>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="name"
+                            onChange={handelChange}
+                          />
+                          {error.empty ? <p>{error.empty}</p> : null}
+                          <small>Quantity</small>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="quantity"
+                            onChange={handelChange}
+                          />
+                          {error.empty ? <p>{error.empty}</p> : null}
+                          <small>Price</small>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="price"
+                            onChange={handelChange}
+                          />
+                          {error.empty ? <p>{error.empty}</p> : null}
+                          <button
+                            type="submit"
+                            class="common-btn float-right"
+                            onClick={handleSubmit}
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      ) : dropdown == "priority" ? (
+                        <div>
+                          <small>Priority Name</small>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="name"
+                            onChange={handelChange}
+                          />
+                          {error.empty ? <p>{error.empty}</p> : null}
+                          <small>Priority Color</small>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="color"
+                            onChange={handelChange}
+                          />
+                          {error.empty ? <p>{error.empty}</p> : null}
+                          <small>Priority Dyas</small>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="days"
+                            onChange={handelChange}
+                          />
+                          {error.empty ? <p>{error.empty}</p> : null}
+                          <button
+                            type="submit"
+                            class="common-btn float-right"
+                            onClick={handleSubmit}
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      ) : dropdown == "company" ? (
+                        <div>
+                          <small>Company name</small>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="name"
+                            onChange={handelChange}
+                          />
+
+                          {error.empty ? <p>{error.empty}</p> : null}
+                          <small>District</small>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="district"
+                            onChange={handelChange}
+                          />
+
+                          {error.empty ? <p>{error.empty}</p> : null}
+                          <small>Industry</small>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="iname"
+                            onChange={handelChange}
+                          />
+
+                          {error.empty ? <p>{error.empty}</p> : null}
+                          <small>Address</small>
+
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="address"
+                            onChange={handelChange}
+                          />
+
+                          {error.empty ? <p>{error.empty}</p> : null}
+                          <small>Landline</small>
+
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="landline"
+                            onChange={handelChange}
+                          />
+
+                          {error.empty ? <p>{error.empty}</p> : null}
+
+                          <button
+                            type="submit"
+                            class="common-btn float-right"
+                            onClick={handleSubmit}
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      ) : dropdown == "salesperson" ? (
+                        <div>
+                          <small>salesperson username</small>
+
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="username"
+                            onChange={handelChange}
+                          />
+
+                          {error.name || error.empty ? (
+                            <p>
+                              {error.name}
+                              {error.empty}
+                            </p>
+                          ) : null}
+                          <small>password</small>
+
+                          <input
+                            type="password"
+                            className="form-control"
+                            name="password"
+                            onChange={handelChange}
+                          />
+
+                          {error.password || error.empty ? (
+                            <p>
+                              {error.password} {error.empty}
+                            </p>
+                          ) : null}
+                          <small>Address</small>
+
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="address"
+                            onChange={handelChange}
+                          />
+
+                          {error.empty ? <p>{error.empty}</p> : null}
+                          <small>Email</small>
+
+                          <input
+                            type="email"
+                            className="form-control"
+                            name="email"
+                            onChange={handelChange}
+                          />
+
+                          {error.email || error.empty ? (
+                            <p>
+                              {error.email}
+                              {error.empty}
+                            </p>
+                          ) : null}
+                          <small>Image</small>
+
+                          <input
+                            type="file"
+                            className="pt-4"
+                            name="image"
+                            onChange={handelImage}
+                          />
+                          {error.image || error.image ? (
+                            <p>
+                              {error.image}
+                              {error.empty}
+                            </p>
+                          ) : null}
+                          <button
+                            type="submit"
+                            class="common-btn float-right"
+                            onClick={handleSubmit}
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      ) : dropdown == "project" ? (
+                        <div>
+                          <form>
+                            <small>Company name</small>
+                            <select
+                              className="form-control"
+                              name="coid"
+                              onChange={handelChange}
+                            >
+                              <option value="" name="coid"></option>
+                              {company
+                                ? company.map((m) => (
+                                    <option value={m.Co_ID} name="coid">
+                                      {m.Co_Name}
+                                    </option>
+                                  ))
+                                : null}
+                            </select>
+                            <small>Industry</small>
+                            <select
+                              className="form-control"
+                              name="sid"
+                              onChange={handelChange}
+                            >
+                              <option value="" name="coid"></option>
+                              {ind
+                                ? ind.map((i) => (
+                                    <option value={i.Si_ID} name="coid">
+                                      {i.Si_Name}
+                                    </option>
+                                  ))
+                                : null}
+                            </select>
+                            <small>Project name</small>
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="prjname"
+                              onChange={handelChange}
+                            />
+                            <small>Project Amount</small>
+                            <input
+                              type="text"
+                              className="form-control"
+                              name="prjamount"
+                              onChange={handelChange}
+                            />
+                          </form>
+                          <button
+                            type="submit"
+                            class="common-btn float-right"
+                            onClick={handleSubmit}
+                          >
+                            Submit
+                          </button>
+                          {/* <input
+                            type="submit"
+                            value="SUBMIT"
+                            className="common-btn float-right"
+                            onClick={handleSubmit}
+                          /> */}
+                        </div>
+                      ) : null
+                    ) : (
+                      <div>
+                        <input
+                          type="file"
+                          name="file"
+                          onChange={handleUpload}
+                          className="pt-4 ml-5"
+                        />
+                        <button
+                          type="submit"
+                          class="common-btn float-right"
+                          onClick={handleSubmit}
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    )}
                   </div>
-                  <div class="form-group">
-                    <small>Price*</small>
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      class="form-control"
-                      placeholder="Enter price"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <small>Quantity*</small>
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      class="form-control"
-                      placeholder="Enter quantity"
-                    />
-                  </div>
-                  <button type="submit" class="common-btn float-right">
-                    Submit
-                  </button>
                 </form>
               </div>
             </div>
@@ -336,7 +623,7 @@ const Dashboard = () => {
             </div>
             <div className="col-md-6 col-12">
               <div class="form group pb-4">
-                <label>Select Catagory</label>
+                <small>Select Catagory</small>
                 <select
                   name="category"
                   id="category"
@@ -351,7 +638,7 @@ const Dashboard = () => {
                 </select>
               </div>
               <div className="Dash-radio text-center bg ml-5 mr-5">
-                <label className="radio-button">
+                <small className="radio-button">
                   <input
                     type="radio"
                     className="radio-button__input"
