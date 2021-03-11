@@ -1,84 +1,82 @@
-import React, {useState,history } from "react";
+import React, { useState, history } from "react";
 import axios from "axios";
 import logo from "../../assets/images/logo.svg";
 import "../../assets/sass/app.css";
-import { useHistory  } from 'react-router-dom'
-import auth from '../auth'
+import { useHistory } from "react-router-dom";
+import auth from "../auth";
 
+const Login = () => {
+  const [formdata, setFormdata] = useState([]);
+  const [Error, setError] = useState("");
+  const history = useHistory();
 
-const Login =()=>{
- const [formdata, setFormdata] = useState([])
- const [Error, setError] = useState('')
- const history = useHistory();
+  let handelChange = (e) => {
+    setFormdata({ ...formdata, [e.target.name]: e.target.value });
+  };
 
- let handelChange = (e) =>{
-  setFormdata({ ...formdata, [e.target.name]: e.target.value });
-  
-}
-
-let handleSubmit =(e)=>{
-  e.preventDefault()
-  axios.post(`http://localhost:5000/auth/login`,formdata)
-  .then((result)=>{
-      if(result.data.message=='admin'){
+  let handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post(`http://localhost:5000/auth/login`, formdata).then((result) => {
+      if (result.data.message == "admin") {
         localStorage.setItem("user", JSON.stringify(result.data.data[0].A_ID));
         auth.login(() => {
-         history.push("/dashboard");
+          history.push("/dashboard");
         });
-      }
-      else if(result.data.message=='salesperson'){
-        console.log('sales')
+      } else if (result.data.message == "salesperson") {
+        console.log("sales");
         localStorage.setItem("user", JSON.stringify(result.data.data[0].S_ID));
         auth.login(() => {
-          history.push("/customersUser")
-         });
+          history.push("/customersUser");
+        });
+      } else {
+        setError(result.data.message);
+        console.log("err");
       }
-      else {
-        setError(result.data.message)
-        console.log("err")
-      }
-  })
-}
+    });
+  };
 
-  return(
-    <div className="mainContainer">
-    <img src={logo} className="login-logo" />
-    <span className="dot" />
+  return (
+    <div>
+      <section class="login-section">
+        <div class="login-container">
+          <div class="login-title">
+            <h2 class="text-center">Welcome</h2>
+            <h4 class="text-center">Customer follow up System</h4>
+          </div>
+          <div class="login-form">
+            <b class="text-center">Login form</b>
+            {Error ? <p>{Error}</p> : null}
+            <form action="" class=" d-flex flex-column" onSubmit={handleSubmit}>
+              <div class="form-group">
+                <label>Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter your username"
+                  name="username"
+                  onChange={handelChange}
+                />
+              </div>
+              <div class="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Enter your password"
+                  onChange={handelChange}
+                  name="password"
+                />
+              </div>
 
-    <div className="login-box">
-      <div className="login-container p-5">
-        <div className="login-heading ">
-          <h1 className="login-welcome">WELCOME</h1>
-          <h2 className="login-companyname">
-            Construction Solution PVT LTD
-          </h2>
+              <button type="submit" class="login-btn pad-top">
+                Login
+              </button>
+            </form>
+          </div>
         </div>
-    
-        {Error? <p>{Error}</p>:null}
-        <form className="form" onSubmit={handleSubmit}>
-          <div className="login-form">
-            <label className="login-label">Username</label>
-            <div className="login-text-box">
-              <i className=" login-inputtext-icon icon-profile"></i>
-
-              <input type="text" className="form-control" name="username" onChange={handelChange} />
-            </div>
-          </div>
-          <div className="login-form">
-            <label>Password</label>
-            <div className="login-text-box">
-              <i className="login-inputtext-icon icon-login"></i>
-              <input type="password" className="form-control custom" name="password" onChange={handelChange} />
-            </div>
-          </div>
-
-          <input type="submit" value="LOGIN" className="btn btn-primary btn-block mt-4"/>
-        </form>
-      </div>
+      </section>
     </div>
-    <span className="dot-bottom" />
-  </div>
-);
-}
+  );
+};
 
 export default Login;

@@ -15,7 +15,6 @@ const Acustomer_Detail = () => {
   const [val, setval] = useState("");
   const [modalIsOpen, setmodalIsOpen] = useState(false);
   const [detail, setDetail] = useState([]);
-  // const [custDept, setCustDept] = useState([]);
   const [history, setHistory] = useState([]);
   const [review, setreview] = useState([]);
   const [editreview, setEditreview] = useState(null);
@@ -33,7 +32,7 @@ const Acustomer_Detail = () => {
 
   useEffect(async () => {
     const company = await axios.get(`/auth/companyId/${id}`);
-   // const custde = await axios.get(`/auth/DisplaymasterCustDept/${id}`);
+    // const custde = await axios.get(`/auth/DisplaymasterCustDept/${id}`);
     const cont = await axios.get(`/auth/Customer/${id}/${ids.siid}`);
     const prj = await axios.get(`/auth/Displaycountproject/${id}/${ids.siid}`);
     const ph = await axios(`/auth/getmasterproduct/${coid}/${siid}`);
@@ -51,13 +50,6 @@ const Acustomer_Detail = () => {
       setreview(data.data.data);
     });
     setDetail(company.data.data);
-    // if (custde.data.data == 0) {
-    //   console.log("zero");
-    //   setCustDept(custde.data.data);
-    // } else {
-    //   console.log("mm", custde);
-    //   setCustDept(custde.data.data);
-    // }
   }, []);
 
   useEffect(() => {
@@ -98,9 +90,212 @@ const Acustomer_Detail = () => {
   };
 
   return (
-    <div className="mainContainer">
+    <div>
       <Header />
-      <div className="body">
+      <div class="main-content">
+        <div class="path">
+          <b> Customer details</b>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-lg-4">
+            <div class="form-container pad-0">
+              <div class="form-title">Details</div>
+              <ul class="details-item-list">
+                <li>
+                  Industry: <span>via</span>
+                </li>
+                <li>
+                  Category: <span>Honda123 Model</span>
+                </li>
+                <li>
+                  Category: <span>Honda123 Model</span>
+                </li>
+                <li>
+                  Category: <span>Honda123 Model</span>
+                </li>
+                <li>
+                  Category: <span>Honda123 Model</span>
+                </li>
+              </ul>
+            </div>
+            <div class="form-container gutter-top-md">
+              <div class="form-title">Add Task</div>
+              <div class="form-group">
+                <small>Company name*</small>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="form-control"
+                  placeholder="Enter task name"
+                />
+              </div>
+              <div class="form-group">
+                <small>Project name*</small>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="form-control"
+                  placeholder="Enter project name"
+                />
+              </div>
+              <div class="form-group">
+                <small>Project name*</small>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="form-control"
+                  placeholder="Enter project name"
+                />
+              </div>
+              <hr />
+              <div class="form-group">
+                <small>Project name*</small>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="form-control"
+                  placeholder="Enter project name"
+                />
+              </div>
+              <div class="form-group">
+                <small>Project name*</small>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="form-control"
+                  placeholder="Enter project name"
+                />
+              </div>
+              <div class="form-group">
+                <small>Project name*</small>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  class="form-control"
+                  placeholder="Enter project name"
+                />
+              </div>
+              <button type="submit" class="common-btn float-right">
+                Add Task
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-12">
+            <div class="table-responsive-md table-container ">
+              <div class="table-top">
+                <div class="search-container">
+                  <i class="fas fa-search"></i>
+                  <input
+                    type="search"
+                    name=""
+                    id=""
+                    placeholder="Search products"
+                  />
+                </div>
+                <div class="sort">
+                  <i class="fas fa-sort-alpha-down"></i>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table table-hover">
+                  <thead class="bg-theme">
+                    <tr>
+                      <th scope="col">Product name</th>
+                      <th scope="col">Model</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>ABC Company</td>
+                      <td>District 1</td>
+                      <td>B2</td>
+                      <td>1234</td>
+                      <td>
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>ABC Company</td>
+                      <td>District 1</td>
+                      <td>B2</td>
+                      <td>1234</td>
+                      <td>
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>ABC Company</td>
+                      <td>District 1</td>
+                      <td>B2</td>
+                      <td>1234</td>
+                      <td>
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash"></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="review-section">
+              <div class="form-title">Review History</div>
+              <div class="review-container row">
+                <div class="col-md-12 col-lg-6 review-card">
+                  <div class="title bg-theme text-center">Sonu Karmachraya</div>
+                  <ul class="item-list">
+                    <li>
+                      Industry: <span>via</span>
+                    </li>
+                    <li>
+                      Category: <span>Honda123 Model</span>
+                    </li>
+                    <li>Good</li>
+                    <li>
+                      10:00 AM<span> 3rd July, 2021</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-edit"></i>
+                      <i class="fas fa-trash"></i>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-6 col-md-12 review-card">
+                  <div class="title bg-theme text-center">Sonu Karmachraya</div>
+                  <ul class="item-list">
+                    <li>
+                      Industry: <span>via</span>
+                    </li>
+                    <li>
+                      Category: <span>Honda123 Model</span>
+                    </li>
+                    <li>Good</li>
+                    <li>
+                      10:00 AM<span> 3rd July, 2021</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-edit"></i>
+                      <i class="fas fa-trash"></i>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="body">
         <Link to="/customers">
           <i className="back icon-left"></i>
         </Link>
@@ -248,7 +443,7 @@ const Acustomer_Detail = () => {
               <Scrollbars style={{ width: 500, height: 1248 }}>
                 <h5 className="custD-mid-top-h1">Purchase history</h5>
                 <div className="">
-                  <table className="table table-hover"  style={{width:300}}>
+                  <table className="table table-hover" style={{ width: 300 }}>
                     <thead className="thead-dark">
                       <tr>
                         <th scope="col">Product Name</th>
@@ -414,7 +609,7 @@ const Acustomer_Detail = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

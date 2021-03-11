@@ -3,19 +3,19 @@
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   overflow-x: hidden;
-  overflow-y: scroll;
 }
 
-input:focus, .form-control {
+input:focus,
+.form-control {
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
   outline: none !important;
 }
 
 .form-control {
-  border: 1px solid rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(0, 0, 0, 0.3) !important;
 }
 
 a {
@@ -25,6 +25,10 @@ a {
 p {
   font-size: 16px;
   color: #565656;
+}
+
+.pad-0 {
+  padding: 0;
 }
 
 h2 {
@@ -37,7 +41,7 @@ h3 {
   font-weight: 500;
 }
 
-h4 {
+.heading-h4 {
   font-size: 24px;
   font-weight: 500;
 }
@@ -47,12 +51,16 @@ h5 {
   font-weight: 400;
 }
 
+ul {
+  margin: 0;
+}
+
 .theme-color {
-  color: #222FB9;
+  color: #222fb9;
 }
 
 .danger-color {
-  color: #F11414;
+  color: #f11414;
 }
 
 .pad-top {
@@ -64,26 +72,32 @@ h5 {
 }
 
 .theme-color {
-  color: #222FB9;
+  color: #222fb9;
+}
+
+.gutter-top-md {
+  margin-top: 30px;
 }
 
 .login-btn {
   padding: 12px 50px;
-  background: #222FB9;
+  background: #222fb9;
   border-radius: 6px;
   margin: auto;
-  color: #F5F6F8;
+  color: #f5f6f8;
   font-weight: 600;
 }
 
 .common-btn {
   padding: 10px 40px;
-  background: #222FB9;
+  background: #222fb9;
   border-radius: 3px;
   margin: auto;
-  color: #F5F6F8;
+  color: #f5f6f8;
   font-weight: 400;
   font-size: 14px;
+  display: block;
+  width: 100%;
 }
 
 .img-container {
@@ -104,19 +118,20 @@ button {
 .form-title {
   font-size: 16px;
   font-weight: 600;
-  color: #222FB9;
+  color: #222fb9;
 }
 
 input::-webkit-input-placeholder {
   font-size: 14px;
 }
 
-::-webkit-scrollbar {
-  display: none;
+.bg-theme {
+  background: #222fb9;
+  color: #f5f6f8;
 }
 
 .login-section {
-  background: #222FB9;
+  background: #222fb9;
   height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -133,12 +148,13 @@ input::-webkit-input-placeholder {
   padding-bottom: 30px;
 }
 
-.login-section .login-container .login-title h2, .login-section .login-container .login-title h4 {
-  color: #F5F6F8;
+.login-section .login-container .login-title h2,
+.login-section .login-container .login-title h4 {
+  color: #f5f6f8;
 }
 
 .login-section .login-container .login-form {
-  background: #F5F6F8;
+  background: #f5f6f8;
   padding: 30px;
   border-radius: 20px;
   display: -webkit-box;
@@ -152,7 +168,7 @@ input::-webkit-input-placeholder {
 }
 
 .login-section .login-container .login-form b {
-  color: #222FB9;
+  color: #222fb9;
   padding-bottom: 20px;
   font-size: 22px;
   font-weight: 600;
@@ -174,16 +190,50 @@ input::-webkit-input-placeholder {
   background: rgba(76, 91, 255, 0.72);
 }
 
+.path {
+  margin-bottom: 30px;
+}
+
 .path span {
   font-weight: 400;
   font-size: 18px;
-  color: #9B97A5;
+  color: #9b97a5;
 }
 
 .path b {
   font-weight: 500px;
   font: size 18px;
   color: #565656;
+}
+
+.search-container {
+  width: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 40px;
+  margin-left: auto;
+  margin-right: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search-container i {
+  padding-right: 10px;
+  color: #565656;
+}
+
+.search-container input {
+  outline: none;
+  width: 100%;
+  border: none;
+}
+
+.search-container input:focus {
+  outline: 0 !important;
 }
 
 .header {
@@ -220,41 +270,11 @@ input::-webkit-input-placeholder {
 
 .header .header-menu .sidebar-btn i {
   font-size: 24px;
-  color: #222FB9;
+  color: #222fb9;
 }
 
 .header .header-menu .logo {
   margin-left: 30px;
-}
-
-.header .header-menu .search-container {
-  width: 400px;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  padding: 10px;
-  border-radius: 40px;
-  margin-left: auto;
-  margin-right: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.header .header-menu .search-container i {
-  padding-right: 10px;
-  color: #565656;
-}
-
-.header .header-menu .search-container input {
-  outline: none;
-  width: 100%;
-  border: none;
-}
-
-.header .header-menu .search-container input:focus {
-  outline: 0 !important;
 }
 
 .sidebar {
@@ -262,7 +282,7 @@ input::-webkit-input-placeholder {
   top: 70px;
   width: 250px;
   height: 100%;
-  background: #222FB9;
+  background: #222fb9;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   z-index: 1;
@@ -311,6 +331,11 @@ input::-webkit-input-placeholder {
 .side-image {
   position: absolute;
   bottom: 100px;
+  left: 30px;
+}
+
+.side-image img {
+  max-width: 150px;
 }
 
 .main-content {
@@ -318,7 +343,7 @@ input::-webkit-input-placeholder {
   margin-top: 70px;
   margin-left: 250px;
   padding: 30px;
-  background: #F5F6F8;
+  background: #f5f6f8;
   background-size: cover;
   height: 100vh;
   -webkit-transition: 0.3s;
@@ -353,10 +378,10 @@ input::-webkit-input-placeholder {
 }
 
 .diag-info {
+  background: #fff;
   padding: 30px;
   margin: 20px 0;
-  -webkit-box-shadow: 4px 10px 10px rgba(0, 0, 0, 0.1);
-          box-shadow: 4px 10px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .diag-info .message-danger {
@@ -382,14 +407,143 @@ input::-webkit-input-placeholder {
 }
 
 .form-container {
-  padding: 30px;
-  margin: 20px 0;
-  -webkit-box-shadow: 4px 10px 10px rgba(0, 0, 0, 0.1);
-          box-shadow: 4px 10px 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 30px 10px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .form-container .form-control {
   background: #f1f1f1;
   margin-top: 5px;
+}
+
+.form-container hr {
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+  background: #fff;
+  padding: 30px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.table-container .table-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.table-container .table-top .sort {
+  padding: 5px 10px;
+  background: #222fb9;
+}
+
+.table-container .table-top .sort i {
+  color: #fff;
+  font-size: 18px;
+}
+
+.table-container .table-wrap {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.table-container .table-wrap table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+
+.table-container .table-wrap table td:last-child,
+.table-container .table-wrap table th:last-child {
+  text-align: center;
+}
+
+.table-container .table-wrap table th {
+  background: #222fb9;
+  z-index: 100;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  /* Don't forget this, required for the stickiness */
+}
+
+.table-container .table-wrap table tr {
+  overflow-y: auto;
+  background: rgba(34, 47, 185, 0.14);
+}
+
+.table-container .table-wrap table td i:first-child {
+  color: #1ac518;
+  margin-right: 10px;
+}
+
+.table-container .table-wrap table td i:last-child {
+  color: #f11414;
+}
+
+.review-section {
+  background: #fff;
+  margin: 30px 0;
+  padding: 30px 60px;
+}
+
+.review-section .review-card {
+  padding: 15px;
+}
+
+.review-section .review-card .title {
+  padding: 10px 0;
+}
+
+.review-section .review-card .item-list {
+  padding: 10px 20px;
+  background: #f5f6f8;
+  margin: 0;
+}
+
+.review-section .review-card .item-list li {
+  padding: 10px 0;
+}
+
+.review-section .review-card .item-list span {
+  margin-left: 20px;
+}
+
+.review-section .review-card .item-list li i:first-child {
+  color: #1ac518;
+}
+
+.review-section .review-card .item-list li i:last-child {
+  margin-left: 20px;
+  color: #f11414;
+}
+
+.overview {
+  background: rgba(34, 47, 185, 0.1);
+  padding: 10px 20px;
+  margin-top: 15px;
+}
+
+.overview .number {
+  color: #222fb9;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.overview .number span {
+  color: #565656;
+  font-size: 14px;
+  display: block;
+}
+
+.details-item-list li {
+  padding: 5px 0;
+}
+
+.details-item-list li span {
+  margin-left: 20px;
 }
 /*# sourceMappingURL=style.css.map */
