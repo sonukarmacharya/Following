@@ -13,6 +13,7 @@
 </head>
 <body>
   <div class="wrapper">
+    <!-- header content  -->
     <header class="header">
       <div class="header-menu">
         <div class="sidebar-btn">
@@ -42,12 +43,12 @@
           </a>
         </li>
         <li class="menu-item">
-          <a href="" class="menu-btn active">
+          <a href="" class="menu-btn">
             <img src="./images/sales person.png" alt=""><span>Sales Person Details</span>
           </a>
         </li>
         <li class="menu-item">
-          <a href="" class="menu-btn">
+          <a href="" class="menu-btn active">
             <img src="./images/customer.png" alt=""><span>Customer Details</span>
           </a>
         </li>
@@ -68,71 +69,80 @@
         <img src="./images/side-image.png" alt="">
       </div>
     </div>
+    <!-- main contennt  -->
     <div class="main-content">
       <div class="path">
-        <span>System ><b>Sales person Details</b></span>
+        <span>System<b> >Customer details</b></span>
       </div>
-      <div class="row white-bg gutter-top-md">
-        <div class="col-md-8 col-lg-3 pad-0">
-            <div class="form-container">
-              <div class="form-title">
-                Add Task
-              </div>
-            <div class="form-group">
-              <small>Company name*</small>
-              <input type="text" name="" id="" class="form-control" placeholder="Enter task name">
-            </div>
-            <div class="form-group">
-              <small>Project name*</small>
-              <input type="text" name="" id="" class="form-control" placeholder="Enter project name">
-            </div>
-            <button type="submit" class="common-btn float-right">Add Task</button>
+      <div class="row">
+        <div class="col-md-8 col-lg-4"> 
+          <div class="form-container pad-0">
+            <div class="form-title mb-4">Add product</div>
+            <ul class="details-item-list">
+              <li>Company Name
+                <select class="form-control" >
+                  <option>ABC Company</option>
+                  <option>Product 2</option>
+                  <option>Product 3</option>
+                  <option>Product 4</option>
+                  <option>Product 5</option>
+                </select>
+              </li>
+              <li>Total Quantity Available<span>via</span></li>
+              <li>Number of Product <span>Honda123 Model</span></li>
+              <li>Quantity
+                <input type="text" name="" id="" class="form-control">
+              </li>
+              <li>Category: <span>Honda123 Model</span></li>        
+            </ul>
           </div>
-        </div>
-        <div class="col-md-9">
-          <div class="table-responsive-md  table-container">
-            <div class="table-top">
-              <div class="search-container">
-                <i class="fas fa-search"></i>
-                <input type="search" name="" id="" placeholder="Search products">
-              </div> 
-              <div class="sort">
-                <i class="fas fa-sort-alpha-down"></i>
-              </div>
-            </div>    
+          <button class="common-btn mt-4">Submit</button>
+      </div>
+        <div class="col-lg-8 col-md-12">
+          <div class="table-responsive-md table-container "> 
+            <div class="form-title">
+              Purchase History
+            </div>   
             <div class="table-wrap">
               <table class="table table-hover">
                 <thead class="bg-theme">
                   <tr>
-                    <th scope="col">Company name</th>
-                    <th scope="col">Contact No</th>
-                    <th scope="col">Project Name</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Product name</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody>   
                   <tr>
-                    <td>Nccs College</td>
-                    <td>9864123456</td>
-                    <td>Project one</td>
-                    <td>10000</td>
-                    <td><i class="fas fa-trash"></i></td>
+                    <td>ABC Company</td>
+                    <td>District 1</td>
+                    <td>B2</td>
+                    <td>1234</td>                    
+                    <td><i class="fas fa-edit"></i><i class="fas fa-trash"></i></td>
                   </tr>
                   <tr>
-                    <td>Nccs College</td>
-                    <td>9864123456</td>
-                    <td>Project one</td>
-                    <td>10000</td>
-                    <td><i class="fas fa-trash"></i></td>
-                  </tr>                  
+                    <td>ABC Company</td>
+                    <td>District 1</td>
+                    <td>B2</td>
+                    <td>1234</td>                    
+                    <td><i class="fas fa-edit"></i><i class="fas fa-trash"></i></td>
+                  </tr>
+                  <tr>
+                    <td>ABC Company</td>
+                    <td>District 1</td>
+                    <td>B2</td>
+                    <td>1234</td>                    
+                    <td><i class="fas fa-edit"></i><i class="fas fa-trash"></i></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
-          
         </div>
       </div>
+      
      
     </div>
   </div>
