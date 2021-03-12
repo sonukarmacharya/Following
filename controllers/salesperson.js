@@ -172,33 +172,35 @@ module.exports = {
     }
   },
 
-  updateSalesperson:(req,res,next)=>{
-    const data = req.body
+  updateSalesperson: (req, res, next) => {
+    const data = req.body;
+    console.log("edit", data, req.params.id);
     try {
-      db.query(`UPDATE salesperson SET S_Username='${data.username}',S_Address='${data.address}',S_Email='${data.email}',A_ID='${data.aid}' 
-      WHERE S_ID='${req.params.id}'`,(err,result)=>{
-        if(err){
-          res.json({
-            status:400,
-            message:"Error",
-            error:err
-          })
+      db.query(
+        `UPDATE salesperson SET S_Username='${data.username}',S_Address='${data.address}',S_Email='${data.email}',A_ID='${data.aid}' 
+      WHERE S_ID='${req.params.id}'`,
+        (err, result) => {
+          if (err) {
+            res.json({
+              status: 400,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "Success",
+              data: result,
+            });
+          }
         }
-        else{
-          res.json({
-            status:200,
-            message:"Success",
-            data:result
-          })
-        }
-      })
+      );
     } catch (error) {
       res.json({
-        status:400,
-        message:"Error",
-        error:error
-      })
-      
+        status: 400,
+        message: "Error",
+        error: error,
+      });
     }
-  }
+  },
 };

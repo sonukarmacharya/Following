@@ -56,8 +56,8 @@ const SalesPerson = () => {
     setEditreview(null);
     console.log("edit", val);
     axios.post(`/auth/updatesalesperson/${id}`, val).then(() => {
-      alert("edited");
-      window.location.reload();
+      // alert("edited");
+      // window.location.reload();
     });
   };
   let handleDelete = (id) => {
@@ -69,9 +69,207 @@ const SalesPerson = () => {
   return (
     <div>
       <Header />
-      <div>
-        <Welcome />
-        <div className="container custom">
+
+      <div class="main-content">
+        <div class="path">
+          <span>Sales person details</span>
+        </div>
+        <div class="table-responsive-md table-container gutter-top-md ">
+          <div class="table-top">
+            <div class="search-container">
+              <i class="fas fa-search"></i>
+              <input
+                type="search"
+                name=""
+                id=""
+                placeholder="Search products"
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+            <div
+              class="sort"
+              onClick={(e) => {
+                setSortState(!sortState);
+              }}
+            >
+              <i class="fas fa-sort-alpha-down"></i>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="table table-hover">
+              <thead class="bg-theme">
+                <tr>
+                  <th scope="col">Sales person name</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {salesperson
+                  ? filteredSales.map((s, key) => (
+                      <tr key={s.S_ID}>
+                        {editreview === key ? (
+                          <>
+                            <td scope="row">
+                              <input
+                                id={s.S_ID}
+                                type="text"
+                                name="username"
+                                onChange={(e) => {
+                                  handleEdit(e, s.S_Username, key);
+                                }}
+                                onKeyPress={(e) => {
+                                  if (e.key === "Enter") {
+                                    console.log("id", s.S_ID);
+                                    handleEnter(s.S_ID);
+                                  }
+                                }}
+                              />
+                            </td>
+                            <td>
+                              <input
+                                id={s.S_ID}
+                                type="text"
+                                name="address"
+                                onChange={(e) => {
+                                  handleEdit(e, s.S_Address, key);
+                                }}
+                                onKeyPress={(e) => {
+                                  if (e.key === "Enter") {
+                                    console.log("id", s.S_ID);
+                                    handleEnter(s.S_ID);
+                                  }
+                                }}
+                              />{" "}
+                            </td>
+                            <td>
+                              <input
+                                id={s.S_ID}
+                                type="text"
+                                name="email"
+                                onChange={(e) => {
+                                  handleEdit(e, s.S_Email, key);
+                                }}
+                                onKeyPress={(e) => {
+                                  if (e.key === "Enter") {
+                                    console.log("id", s.S_ID);
+                                    handleEnter(s.S_ID);
+                                  }
+                                }}
+                              />{" "}
+                            </td>
+                          </>
+                        ) : (
+                          <>
+                            <td scope="row" onClick={() => handleTable(s.S_ID)}>
+                              {s.S_Username}
+                            </td>
+                            <td onClick={() => handleTable(s.S_ID)}>
+                              {s.S_Address}
+                            </td>
+                            <td onClick={() => handleTable(s.S_ID)}>
+                              {s.S_Email}
+                            </td>
+
+                            <td>
+                              <i
+                                class="fas fa-edit"
+                                onClick={(e) => {
+                                  setEditreview(key);
+                                }}
+                              ></i>
+                              <i
+                                class="fas fa-trash"
+                                onClick={() => {
+                                  handleDelete(s.S_ID);
+                                }}
+                              ></i>
+                            </td>
+                            {/* <i
+                                id={s.S_ID}
+                                className="icon-edit"
+                                onClick={(e) => {
+                                  setEditreview(key);
+                                }}
+                              ></i>
+                              <i
+                                className="icon-delete"
+                                onClick={() => {
+                                  setid(s.S_ID);
+                                  setmodalIsOpen(true);
+                                }}
+                              ></i> */}
+                            {/* <Modal
+                                    className=""
+                                    isOpen={modalIsOpen}
+                                    style={{
+                                      overlay: {},
+                                      content: {
+                                        top: "100px",
+                                        left: "400px",
+                                        width: "300px",
+                                        height: "200px",
+                                      },
+                                    }}
+                                  >
+                                    Are you sure you want to delete??
+                                    <br />
+                                    <button
+                                      className="btn btn-primary"
+                                      onClick={() => {
+                                        console.log(s.S_ID);
+                                        handleDelete(id);
+                                        setmodalIsOpen(false);
+                                      }}
+                                    >
+                                      ok
+                                    </button>
+                                    <button
+                                      className="btn btn-primary"
+                                      onClick={() => setmodalIsOpen(false)}
+                                    >
+                                      cancel
+                                    </button>
+                                  </Modal> */}
+                          </>
+                        )}
+                      </tr>
+                    ))
+                  : null}
+                {/* <tr>
+                  <td>Sonu Karmachraya</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>
+                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-trash"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sonu Karmachraya</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>
+                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-trash"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sonu Karmachraya</td>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>
+                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-trash"></i>
+                  </td>
+                </tr> */}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      {/* <div className="container custom">
           <div className="column">
             <div className="d-flex row">
               <div className="top-search col-md-8 pt-4">
@@ -240,8 +438,7 @@ const SalesPerson = () => {
               </Scrollbars>
             </div>
           </div>
-        </div>
-      </div>
+        </div> */}
     </div>
   );
 };
