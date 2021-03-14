@@ -266,82 +266,60 @@ const Acustomer_Detail = () => {
                           </div>
                           <ul class="item-list">
                             <li>inquiry via:{rv.INquiry_via}</li>
-                            <li className="date">{rv.Date}</p>
-                          </ul>
-
-                          <p className="d-flex">
-                            {editreview === key ? (
-                              <input
+                            <li className="date">{rv.Date}</li>
+                            <li className="d-flex">
+                              {editreview === key ? (
+                                <input
+                                  id={rv.R_ID}
+                                  type="text"
+                                  name="body"
+                                  className="reviewhistory-text"
+                                  onChange={(e) => {
+                                    handleEdit(e, rv.R_Review, key);
+                                  }}
+                                  onKeyPress={(e) => {
+                                    if (e.key === "Enter") {
+                                      console.log("id", rv.R_ID);
+                                      handleEnter(rv.R_ID);
+                                    }
+                                  }}
+                                />
+                              ) : (
+                                <li className="reviewhistory-text">
+                                  {rv.R_Review}
+                                </li>
+                              )}
+                              <i
                                 id={rv.R_ID}
-                                type="text"
-                                name="body"
-                                className="reviewhistory-text"
-                                onChange={(e) => {
-                                  handleEdit(e, rv.R_Review, key);
+                                className="reviewhistory-iconedit pl-5 pr-4 icon-edit"
+                                onClick={(e) => {
+                                  setEditreview(key);
                                 }}
-                                onKeyPress={(e) => {
-                                  if (e.key === "Enter") {
-                                    console.log("id", rv.R_ID);
-                                    handleEnter(rv.R_ID);
-                                  }
+                              ></i>
+                              <i
+                                className="reviewhistory-icondelete icon-delete"
+                                onClick={() => setmodalIsOpen(true)}
+                              ></i>
+                            </li>
+                            <li>
+                              <i
+                                class="fas fa-edit"
+                                onClick={(e) => {
+                                  setEditreview(key);
                                 }}
-                              />
-                            ) : (
-                              <p className="reviewhistory-text">
-                                {rv.R_Review}
-                              </p>
-                            )}
-                            <i
-                              id={rv.R_ID}
-                              className="reviewhistory-iconedit pl-5 pr-4 icon-edit"
-                              onClick={(e) => {
-                                setEditreview(key);
-                              }}
-                            ></i>
-                            <i
-                              className="reviewhistory-icondelete icon-delete"
-                              onClick={() => setmodalIsOpen(true)}
-                            ></i>
-                          </p>
+                              ></i>
+                              <i
+                                class="fas fa-trash"
+                                onClick={() => {
+                                  axios.delete(`/auth/reviewdelete/${rv.R_ID}`);
+                                  window.location.reload();
+                                }}
+                              ></i>
+                            </li>
+                          </ul>
                         </>
                       ))
                     : null}
-                  <div class="title bg-theme text-center">Sonu Karmachraya</div>
-                  <ul class="item-list">
-                    <li>
-                      Industry: <span>via</span>
-                    </li>
-                    <li>
-                      Category: <span>Honda123 Model</span>
-                    </li>
-                    <li>Good</li>
-                    <li>
-                      10:00 AM<span> 3rd July, 2021</span>
-                    </li>
-                    <li>
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash"></i>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-lg-6 col-md-12 review-card">
-                  <div class="title bg-theme text-center">Sonu Karmachraya</div>
-                  <ul class="item-list">
-                    <li>
-                      Industry: <span>via</span>
-                    </li>
-                    <li>
-                      Category: <span>Honda123 Model</span>
-                    </li>
-                    <li>Good</li>
-                    <li>
-                      10:00 AM<span> 3rd July, 2021</span>
-                    </li>
-                    <li>
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash"></i>
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
