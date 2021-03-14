@@ -380,7 +380,6 @@ input::-webkit-input-placeholder {
 .diag-info {
   background: #fff;
   padding: 30px;
-  margin: 20px 0;
   border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -540,10 +539,31 @@ input::-webkit-input-placeholder {
 }
 
 .details-item-list li {
-  padding: 5px 0;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .details-item-list li span {
   margin-left: 20px;
+  font-weight: 400;
+}
+
+.report-card {
+  border: 2px solid rgba(34, 47, 185, 0.37);
+  background: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.report-card .number {
+  font-size: 24px;
+  font-weight: 500;
+  color: #222fb9;
+}
+
+.report-row {
+  margin: 0;
 }
 /*# sourceMappingURL=style.css.map */

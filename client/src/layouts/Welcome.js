@@ -22,14 +22,10 @@ const Welcome = (props) => {
         </span>
       </div>
       <div class="welcome-container">
-        <div>
-          <font color="red" size="15px">
-            {username}
-          </font>
-        </div>
-        <br />
-        Welcome to customer follow up
+        <h4 class="theme-color">Welcome {username}</h4>
+        <p>Manage product, sales person, customer details</p>
       </div>
+
       {/* {!image?<i className="icon icon-profile"></i>:<img className="img-container" src='http://localhost:5000/Admin/image-1606199832232.jpg'/>}
         <span>Welcome,{username}</span>
         {props.title?

@@ -70,9 +70,193 @@ const Products = () => {
     (error && <h1>Error</h1>) || (
       <div>
         <Header />
-        <div>
-          <Welcome />
-          <div className="container custom">
+        <div class="main-content">
+          <div class="path">
+            <span>
+              <b>Product Page</b>
+            </span>
+          </div>
+          <div class="row white-bg gutter-top-md">
+            <div class="col-md-8 col-lg-4 pad-0">
+              <div class="table-responsive-md  table-container">
+                <div
+                  class="message-dange p-2"
+                  // style="background: rgba(234, 18, 44, 0.13);"
+                >
+                  <b class="danger-color">Product Quality Low</b>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-hover">
+                    <thead class="bg-theme">
+                      <tr>
+                        <th scope="col">Product name</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {low ? (
+                        low.map((low) => (
+                          <tr className="" key={low.P_ID}>
+                            <td scope="row">{low.P_Name}</td>
+                            <td>{low.P_Model}</td>
+                            <td>{low.P_Quantity}</td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="table-responsive-md  table-container">
+                <div class="table-top">
+                  <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input
+                      type="search"
+                      name=""
+                      id=""
+                      placeholder="Search products"
+                      onChange={(e) => setSearch(e.target.value)}
+                    />
+                  </div>
+                  <div
+                    class="sort"
+                    onClick={(e) => {
+                      setSortState(!sortState);
+                    }}
+                  >
+                    <i class="fas fa-sort-alpha-down"></i>
+                  </div>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-hover">
+                    <thead class="bg-theme">
+                      <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Quality</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {product
+                        ? filteredPro.map((table, key) => (
+                            <tr key={table.P_ID}>
+                              {editreview === key ? (
+                                <>
+                                  <td scope="row">
+                                    <input
+                                      id={table.P_ID}
+                                      type="text"
+                                      name="name"
+                                      className="reviewhistory-h1"
+                                      onChange={(e) => {
+                                        handleEdit(e, table.P_Name, key);
+                                      }}
+                                      onKeyPress={(e) => {
+                                        if (e.key === "Enter") {
+                                          console.log("id", table.P_ID);
+                                          handleEnter(table.P_ID);
+                                        }
+                                      }}
+                                    />
+                                  </td>
+                                  <td>
+                                    <input
+                                      id={table.P_ID}
+                                      type="text"
+                                      name="model"
+                                      className="reviewhistory-h1"
+                                      onChange={(e) => {
+                                        handleEdit(e, table.P_Model, key);
+                                      }}
+                                      onKeyPress={(e) => {
+                                        if (e.key === "Enter") {
+                                          console.log("id", table.P_ID);
+                                          handleEnter(table.P_ID);
+                                        }
+                                      }}
+                                    />
+                                  </td>
+                                  <td>
+                                    <input
+                                      id={table.P_ID}
+                                      type="text"
+                                      name="quantity"
+                                      className="reviewhistory-h1"
+                                      onChange={(e) => {
+                                        handleEdit(e, table.P_Quantity, key);
+                                      }}
+                                      onKeyPress={(e) => {
+                                        if (e.key === "Enter") {
+                                          console.log("id", table.P_ID);
+                                          handleEnter(table.P_ID);
+                                        }
+                                      }}
+                                    />
+                                  </td>
+                                  <td>
+                                    <input
+                                      id={table.P_ID}
+                                      type="text"
+                                      name="price"
+                                      className="reviewhistory-h1"
+                                      onChange={(e) => {
+                                        handleEdit(e, table.P_Price, key);
+                                      }}
+                                      onKeyPress={(e) => {
+                                        if (e.key === "Enter") {
+                                          console.log("id", table.P_ID);
+                                          handleEnter(table.P_ID);
+                                        }
+                                      }}
+                                    />
+                                  </td>
+                                </>
+                              ) : (
+                                <>
+                                  <td>{table.P_Name}</td>
+                                  <td>{table.P_Model}</td>
+                                  <td>{table.P_Quantity}</td>
+                                  <td>{table.P_Price}</td>
+
+                                  <td>
+                                    <i
+                                      class="fas fa-edit"
+                                      onClick={(e) => {
+                                        setEditreview(key);
+                                      }}
+                                    ></i>
+                                    <i
+                                      class="fas fa-trash"
+                                      onClick={() => {
+                                        handleDelete(table.P_ID);
+                                      }}
+                                    ></i>
+                                  </td>
+                                </>
+                              )}
+                            </tr>
+                          ))
+                        : null}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div className="container custom">
             <div className="row">
               <div className="bg-light p-3">
                 <h2 className="text-danger"> Low Quantity Products</h2>
@@ -290,8 +474,7 @@ const Products = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </div> */}
       </div>
     )
   );

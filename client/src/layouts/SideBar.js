@@ -62,12 +62,12 @@ export default function SideBar() {
             Customer Details
           </NavLink>
         </li>
-        <li className="menu-item">
-          <a href="" className="menu-btn">
+        {/* <li className="menu-item">
+          <NavLink className="menu-btn" to="/report">
             <img src={report} alt="" />
-            <span>Report</span>
-          </a>
-        </li>
+            Report
+          </NavLink>
+        </li> */}
         <hr />
 
         <li class="menu-item">

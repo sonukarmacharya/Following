@@ -55,6 +55,9 @@ const Acustomer_Detail = () => {
   useEffect(() => {
     Color.map((Color) => setc(Color.Pr_Color));
   }, [Color]);
+  useEffect(() => {
+    console.log(review);
+  }, [review]);
 
   let handelChange = (e) => {
     setSendForm({
@@ -93,6 +96,260 @@ const Acustomer_Detail = () => {
     <div>
       <Header />
       <div class="main-content">
+        <div class="path">
+          <span>
+            <b>Customer details</b>
+          </span>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-lg-4">
+            <div class="form-container pad-0">
+              <div class="form-title">Details</div>
+              <ul class="details-item-list">
+                <li>
+                  Industry: <span>via</span>
+                </li>
+                <li>
+                  Category: <span>Honda123 Model</span>
+                </li>
+                <li>
+                  Category: <span>Honda123 Model</span>
+                </li>
+                <li>
+                  Category: <span>Honda123 Model</span>
+                </li>
+                <li>
+                  Category: <span>Honda123 Model</span>
+                </li>
+              </ul>
+            </div>
+            <div class="form-container gutter-top-md">
+              <div class="form-title">Industry</div>
+              <div class="form-group">
+                <small>Company name*</small>
+                <select
+                  className="form-control"
+                  name="siid"
+                  onChange={handelChange}
+                >
+                  <option value="" name="siid"></option>
+                  {ind
+                    ? ind.map((i) => (
+                        <option value={i.Si_ID} name="siid">
+                          {i.Si_Name}
+                        </option>
+                      ))
+                    : null}
+                </select>{" "}
+                <br />
+              </div>
+              <div class="form-group">
+                <small>Contact Person Name</small>
+                <input
+                  type="text"
+                  name="iname"
+                  id=""
+                  class="form-control"
+                  onChange={handelChange}
+                />
+              </div>
+              <div class="form-group">
+                <small>Email</small>
+                <input
+                  type="text"
+                  name="iemail"
+                  id=""
+                  class="form-control"
+                  onChange={handelChange}
+                />
+              </div>
+              <hr />
+              <div class="form-group">
+                <small>Number</small>
+                <input
+                  type="text"
+                  name="inumber"
+                  id=""
+                  class="form-control"
+                  onChange={handelChange}
+                />
+              </div>
+              <div class="form-group">
+                <small>Depaartment</small>
+                <input
+                  type="text"
+                  name="depname"
+                  id=""
+                  class="form-control"
+                  onChange={handelChange}
+                />
+              </div>
+              <div class="form-group">
+                <small>Contact Person Name </small>
+                <input
+                  type="text"
+                  name="name"
+                  id=""
+                  class="form-control"
+                  onChange={handelChange}
+                />
+              </div>
+              <button
+                type="submit"
+                class="common-btn float-right"
+                onClick={handleSubmitform}
+              >
+                Add Task
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-12">
+            <div class="table-responsive-md table-container ">
+              <div class="table-top">
+                <div class="search-container">
+                  <i class="fas fa-search"></i>
+                  <input
+                    type="search"
+                    name=""
+                    id=""
+                    placeholder="Search products"
+                  />
+                </div>
+                <div class="sort">
+                  <i class="fas fa-sort-alpha-down"></i>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table table-hover">
+                  <thead class="bg-theme">
+                    <tr>
+                      <th scope="col">Product name</th>
+                      <th scope="col">Model</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {history ? (
+                      history.map((history) => (
+                        <tr>
+                          <td>{history.P_Name}</td>
+                          <td>{history.P_Model}</td>
+                          <td>{history.Quantity}</td>
+                          <td>{history.Price}</td>
+                          <td>
+                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-trash"></i>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr className="table-body">
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="review-section">
+              <div class="form-title">Review History</div>
+              <div class="review-container row">
+                <div class="col-md-12 col-lg-6 review-card">
+                  {review
+                    ? review.map((rv, key) => (
+                        <>
+                          <div class="title bg-theme text-center">
+                            Industry:{rv.Si_Name}
+                          </div>
+                          <ul class="item-list">
+                            <li>inquiry via:{rv.INquiry_via}</li>
+                            <li className="date">{rv.Date}</p>
+                          </ul>
+
+                          <p className="d-flex">
+                            {editreview === key ? (
+                              <input
+                                id={rv.R_ID}
+                                type="text"
+                                name="body"
+                                className="reviewhistory-text"
+                                onChange={(e) => {
+                                  handleEdit(e, rv.R_Review, key);
+                                }}
+                                onKeyPress={(e) => {
+                                  if (e.key === "Enter") {
+                                    console.log("id", rv.R_ID);
+                                    handleEnter(rv.R_ID);
+                                  }
+                                }}
+                              />
+                            ) : (
+                              <p className="reviewhistory-text">
+                                {rv.R_Review}
+                              </p>
+                            )}
+                            <i
+                              id={rv.R_ID}
+                              className="reviewhistory-iconedit pl-5 pr-4 icon-edit"
+                              onClick={(e) => {
+                                setEditreview(key);
+                              }}
+                            ></i>
+                            <i
+                              className="reviewhistory-icondelete icon-delete"
+                              onClick={() => setmodalIsOpen(true)}
+                            ></i>
+                          </p>
+                        </>
+                      ))
+                    : null}
+                  <div class="title bg-theme text-center">Sonu Karmachraya</div>
+                  <ul class="item-list">
+                    <li>
+                      Industry: <span>via</span>
+                    </li>
+                    <li>
+                      Category: <span>Honda123 Model</span>
+                    </li>
+                    <li>Good</li>
+                    <li>
+                      10:00 AM<span> 3rd July, 2021</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-edit"></i>
+                      <i class="fas fa-trash"></i>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-6 col-md-12 review-card">
+                  <div class="title bg-theme text-center">Sonu Karmachraya</div>
+                  <ul class="item-list">
+                    <li>
+                      Industry: <span>via</span>
+                    </li>
+                    <li>
+                      Category: <span>Honda123 Model</span>
+                    </li>
+                    <li>Good</li>
+                    <li>
+                      10:00 AM<span> 3rd July, 2021</span>
+                    </li>
+                    <li>
+                      <i class="fas fa-edit"></i>
+                      <i class="fas fa-trash"></i>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <div class="main-content">
         <div className="body">
           <Link to="/customers">
             <i className="back icon-left"></i>
@@ -408,7 +665,7 @@ const Acustomer_Detail = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

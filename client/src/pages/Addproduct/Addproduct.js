@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import HeaderUser from "../../layouts/HeaderUser";
+import Header from "../../layouts/HeadSales";
 import { Link, useParams } from "react-router-dom";
 import { Scrollbars } from "rc-scrollbars";
 import axios from "axios";
@@ -71,16 +71,100 @@ export default function Addproduct() {
 
   return (
     <div>
-      <HeaderUser />
-      <Link to={`/customersUser`}>
+      <Header />
+      {/* <Link to={`/customersUser`}>
         <i className="back icon-left"></i>
-      </Link>
-      <div className="container custom">
-        <div className="pad-top container custom">
-          {/* {data? data.map((data) => (
+      </Link> */}
+      <div className="container custom" style={{ paddingTop: "90px" }}>
+        <div class="row">
+          <div class="col-md-8 col-lg-4">
+            <div class="form-container pad-0">
+              <div class="form-title mb-4">Add product</div>
+              <ul class="details-item-list">
+                <li>
+                  Company Name
+                  <select class="form-control">
+                    <option>ABC Company</option>
+                    <option>Product 2</option>
+                    <option>Product 3</option>
+                    <option>Product 4</option>
+                    <option>Product 5</option>
+                  </select>
+                </li>
+                <li>
+                  Total Quantity Available<span>via</span>
+                </li>
+                <li>
+                  Number of Product <span>Honda123 Model</span>
+                </li>
+                <li>
+                  Quantity
+                  <input type="text" name="" id="" class="form-control" />
+                </li>
+                <li>
+                  Category: <span>Honda123 Model</span>
+                </li>
+              </ul>
+            </div>
+            <button class="common-btn mt-4">Submit</button>
+          </div>
+          <div class="col-lg-8 col-md-12">
+            <div class="table-responsive-md table-container ">
+              <div class="form-title">Purchase History</div>
+              <div class="table-wrap">
+                <table class="table table-hover">
+                  <thead class="bg-theme">
+                    <tr>
+                      <th scope="col">Product name</th>
+                      <th scope="col">Model</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>ABC Company</td>
+                      <td>District 1</td>
+                      <td>B2</td>
+                      <td>1234</td>
+                      <td>
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>ABC Company</td>
+                      <td>District 1</td>
+                      <td>B2</td>
+                      <td>1234</td>
+                      <td>
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash"></i>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>ABC Company</td>
+                      <td>District 1</td>
+                      <td>B2</td>
+                      <td>1234</td>
+                      <td>
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash"></i>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* <div className="pad-top container custom"> */}
+        {/* {data? data.map((data) => (
                   <h2 className="text-center">{data.C_name}</h2>
                 )):  <h2></h2>} */}
-          <hr className="dashuser-hr" />
+        {/* <hr className="dashuser-hr" />
         </div>
         <div className="row">
           <div className="col-md-12 col-12 d-flex">
@@ -232,7 +316,7 @@ export default function Addproduct() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

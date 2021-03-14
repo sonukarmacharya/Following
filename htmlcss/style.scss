@@ -20,7 +20,7 @@ a {
 }
 p {
   font-size: 16px;
-  color: $textcolor;
+  color: $text-color;
 }
 .pad-0 {
   padding: 0;
@@ -305,7 +305,6 @@ input::-webkit-input-placeholder {
 .diag-info {
   background: #fff;
   padding: 30px;
-  margin: 20px 0;
   border: 2px solid rgba(0, 0, 0, 0.1);
   // border:2px solid black;
   .message-danger {
@@ -441,9 +440,28 @@ input::-webkit-input-placeholder {
 // details content
 .details-item-list {
   li {
-    padding: 5px 0;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 500;
     span {
       margin-left: 20px;
+      font-weight: 400;
     }
   }
+}
+.report-card {
+  border: 2px solid $primaryLight;
+  background: $white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  .number {
+    font-size: 24px;
+    font-weight: 500;
+    color: $primaryColor;
+  }
+}
+
+.report-row {
+  margin: 0;
 }

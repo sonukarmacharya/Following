@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import HeaderUser from "../../layouts/HeaderUser";
+import Header from "../../layouts/HeadSales";
 import Calender from "../../layouts/Calender";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
@@ -90,18 +90,130 @@ export default function DasUser() {
 
   return (
     <div>
-      <HeaderUser />
-      <Link to="/customersUser">
+      <Header />
+      <div className="welcome-container">
+        <div class="path">
+          <span>
+            <b> Customer details</b>
+          </span>
+        </div>
+        <div class="row" style={{ paddingTop: "20px" }}>
+          <div class="d-flex col-lg-14 col-md-12">
+            <div
+              class="col-lg-6 col-md-4"
+              //style={{ backgroundColor: "#f5f6f8" }}
+            >
+              <div class="form-title">Details</div>
+              <ul class="item-list">
+                <li>
+                  Industry Name: <span>abc industry</span>
+                </li>
+                <li>
+                  Contact Person Name: <span>John</span>
+                </li>
+                <li>
+                  Phone Number: <span>99826734521</span>
+                </li>
+                <li>
+                  Department: <span>IT</span>
+                </li>
+              </ul>
+              <button type="submit" class="common-btn mt-3">
+                <Link to={`/addproducts/2/2`} style={{ color: "white" }}>
+                  Add Product +
+                </Link>
+              </button>
+            </div>
+
+            <div class="form-container col-lg-6 col-md-6 ">
+              <div class="form-title">Write a review</div>
+              <small>Note: Both the field must be selected</small>
+              <div class="form-row mt-4">
+                <div class="form-group col-md-5">
+                  <small>Select Categoty*</small>
+                  <select class="form-control">
+                    <option>Product 1</option>
+                    <option>Product 2</option>
+                    <option>Product 3</option>
+                    <option>Product 4</option>
+                    <option>Product 5</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-5">
+                  <small>Select Review*</small>
+                  <select class="form-control">
+                    <option>Excellent</option>
+                    <option>Product 2</option>
+                    <option>Product 3</option>
+                    <option>Product 4</option>
+                    <option>Poor</option>
+                  </select>
+                </div>
+                <button
+                  class="common-btn col-md-2"
+                  style={{ marginTop: "27px" }}
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="review-section col-lg-12 col-md-12 ">
+            <div class="form-title">Review History</div>
+            <div class="review-container row">
+              <div class="col-md-12 col-lg-6 review-card">
+                <div class="title bg-theme text-center">Sonu Karmachraya</div>
+                <ul class="item-list">
+                  <li>
+                    Industry: <span>via</span>
+                  </li>
+                  <li>
+                    Category: <span>Honda123 Model</span>
+                  </li>
+                  <li>Good</li>
+                  <li>
+                    10:00 AM<span> 3rd July, 2021</span>
+                  </li>
+                  <li>
+                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-trash"></i>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6 col-md-12 review-card">
+                <div class="title bg-theme text-center">Sonu Karmachraya</div>
+                <ul class="item-list">
+                  <li>
+                    Industry: <span>via</span>
+                  </li>
+                  <li>
+                    Category: <span>Honda123 Model</span>
+                  </li>
+                  <li>Good</li>
+                  <li>
+                    10:00 AM<span> 3rd July, 2021</span>
+                  </li>
+                  <li>
+                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-trash"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <Link to="/customersUser">
         <i className="back icon-left"></i>
-      </Link>
-      <div className="container custom">
-        <div className="pad-top container custom">
-          {/* {data ? (
+      </Link> */}
+      {/* <div className="container custom">
+        <div className="pad-top container custom"> */}
+      {/* {data ? (
             data.map((data) => <h2 className="text-center">{data.Co_Name}</h2>)
           ) : (
             <h2>here</h2>
           )} */}
-          <hr className="dashuser-hr" />
+      {/* <hr className="dashuser-hr" />
         </div>
         <div className="dashuser-priority">
           {priorityComp
@@ -155,9 +267,9 @@ export default function DasUser() {
                     <button
                       className="btn btn-primary"
                       onClick={() => {
-                        console.log("DD",id.cid,id.siid)
+                        console.log("DD", id.cid, id.siid);
                         axios.delete(`/auth/priority/${id.cid}/${id.siid}`);
-                       window.location.reload()
+                        window.location.reload();
                         setmodalIsOpen(false);
                       }}
                     >
@@ -297,9 +409,10 @@ export default function DasUser() {
                     ? review.map((r, key) => (
                         <div className="bg-light p-4">
                           <p className="dashuser-bottom-right-down-review-p">
-                            {r.Date} 
+                            {r.Date}
                           </p>
-                            <p>inquiry via:{r.Inquiry_via}</p><p>Industry:{r.Si_Name}</p>
+                          <p>inquiry via:{r.Inquiry_via}</p>
+                          <p>Industry:{r.Si_Name}</p>
                           <div className="d-flex">
                             {editreview === key ? (
                               <input
@@ -371,7 +484,7 @@ export default function DasUser() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

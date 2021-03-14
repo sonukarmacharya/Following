@@ -33,6 +33,7 @@ const SalesPerson = () => {
   }, [search, salesperson]);
 
   useEffect(() => {
+    console.log("sort", sortState);
     if (!sortState) {
       let de = srt.descSales(salesperson);
       setFilteredSales(de);
@@ -56,8 +57,7 @@ const SalesPerson = () => {
     setEditreview(null);
     console.log("edit", val);
     axios.post(`/auth/updatesalesperson/${id}`, val).then(() => {
-      // alert("edited");
-      // window.location.reload();
+      window.location.reload();
     });
   };
   let handleDelete = (id) => {
@@ -82,7 +82,7 @@ const SalesPerson = () => {
                 type="search"
                 name=""
                 id=""
-                placeholder="Search products"
+                placeholder="Search salespersons"
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
@@ -162,108 +162,41 @@ const SalesPerson = () => {
                           </>
                         ) : (
                           <>
-                            <td scope="row" onClick={() => handleTable(s.S_ID)}>
-                              {s.S_Username}
-                            </td>
-                            <td onClick={() => handleTable(s.S_ID)}>
-                              {s.S_Address}
-                            </td>
-                            <td onClick={() => handleTable(s.S_ID)}>
-                              {s.S_Email}
-                            </td>
-
-                            <td>
-                              <i
-                                class="fas fa-edit"
-                                onClick={(e) => {
-                                  setEditreview(key);
-                                }}
-                              ></i>
-                              <i
-                                class="fas fa-trash"
-                                onClick={() => {
-                                  handleDelete(s.S_ID);
-                                }}
-                              ></i>
-                            </td>
-                            {/* <i
-                                id={s.S_ID}
-                                className="icon-edit"
-                                onClick={(e) => {
-                                  setEditreview(key);
-                                }}
-                              ></i>
-                              <i
-                                className="icon-delete"
-                                onClick={() => {
-                                  setid(s.S_ID);
-                                  setmodalIsOpen(true);
-                                }}
-                              ></i> */}
-                            {/* <Modal
-                                    className=""
-                                    isOpen={modalIsOpen}
-                                    style={{
-                                      overlay: {},
-                                      content: {
-                                        top: "100px",
-                                        left: "400px",
-                                        width: "300px",
-                                        height: "200px",
-                                      },
+                            {s.S_Username === "excel" ? null : (
+                              <>
+                                <td
+                                  scope="row"
+                                  onClick={() => handleTable(s.S_ID)}
+                                >
+                                  {s.S_Username}
+                                </td>
+                                <td onClick={() => handleTable(s.S_ID)}>
+                                  {s.S_Address}
+                                </td>
+                                <td onClick={() => handleTable(s.S_ID)}>
+                                  {s.S_Email}
+                                </td>
+                                <td>
+                                  <i
+                                    class="fas fa-edit"
+                                    onClick={(e) => {
+                                      setEditreview(key);
                                     }}
-                                  >
-                                    Are you sure you want to delete??
-                                    <br />
-                                    <button
-                                      className="btn btn-primary"
-                                      onClick={() => {
-                                        console.log(s.S_ID);
-                                        handleDelete(id);
-                                        setmodalIsOpen(false);
-                                      }}
-                                    >
-                                      ok
-                                    </button>
-                                    <button
-                                      className="btn btn-primary"
-                                      onClick={() => setmodalIsOpen(false)}
-                                    >
-                                      cancel
-                                    </button>
-                                  </Modal> */}
+                                  ></i>
+                                  <i
+                                    class="fas fa-trash"
+                                    onClick={() => {
+                                      handleDelete(s.S_ID);
+                                    }}
+                                  ></i>
+                                </td>
+                              </>
+                            )}
                           </>
                         )}
                       </tr>
                     ))
                   : null}
-                {/* <tr>
-                  <td>Sonu Karmachraya</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash"></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Sonu Karmachraya</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash"></i>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Sonu Karmachraya</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash"></i>
-                  </td>
-                </tr> */}
               </tbody>
             </table>
           </div>

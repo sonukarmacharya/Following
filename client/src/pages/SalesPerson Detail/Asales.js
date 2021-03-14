@@ -81,11 +81,127 @@ const Asales = () => {
       <div>
         <Header />
         <div>
-          <Link to="/salesperson">
-            <i className="back icon-left"></i>
-          </Link>
-          <Welcome title="Salesperson" />
-          <div className="container custom">
+          <div class="main-content">
+            <div
+              class="path"
+              // style="width:100%"
+            >
+              <span>
+                <b>Sales person Details</b>
+              </span>
+              <a href="/report" class="float-right text-success">
+                View report
+              </a>
+            </div>
+            <div class="row white-bg gutter-top-md">
+              <div class="col-md-8 col-lg-3 pad-0">
+                <div class="form-container">
+                  <div class="form-title">Add Task</div>
+                  <div class="form-group">
+                    <small>Company name*</small>
+                    <select
+                      name="category"
+                      id="category"
+                      className="form-control"
+                      name="coid"
+                      onChange={handleChange}
+                    >
+                      <option name="coid" value=""></option>
+                      {company ? (
+                        company.map((ct) => (
+                          <option name="coid" value={ct.Co_ID}>
+                            {ct.Co_Name}
+                          </option>
+                        ))
+                      ) : (
+                        <option name="coid" value=""></option>
+                      )}
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <small>Project name*</small>
+                    <select
+                      name="category"
+                      id="category"
+                      className="form-control"
+                      name="prjid"
+                      onChange={handle}
+                    >
+                      <option name="prjid" value=""></option>
+                      {project ? (
+                        project.map((ct) => (
+                          <option name="prjid" value={ct.Prj_ID}>
+                            {ct.Prj_Name}
+                          </option>
+                        ))
+                      ) : (
+                        <option name="prjid" value=""></option>
+                      )}
+                    </select>
+                  </div>
+                  <button
+                    type="submit"
+                    class="common-btn float-right"
+                    onClick={handleSubmit}
+                  >
+                    Add Task
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="table-responsive-md  table-container">
+                  <div class="table-top">
+                    <div class="search-container">
+                      <i class="fas fa-search"></i>
+                      <input
+                        type="search"
+                        name=""
+                        id=""
+                        placeholder="Search products"
+                      />
+                    </div>
+                    <div class="sort">
+                      <i class="fas fa-sort-alpha-down"></i>
+                    </div>
+                  </div>
+                  <div class="table-wrap">
+                    <table class="table table-hover">
+                      <thead class="bg-theme">
+                        <tr>
+                          <th scope="col">Company name</th>
+                          <th scope="col">Contact No</th>
+                          <th scope="col">Project Name</th>
+                          <th scope="col">Amount</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Nccs College</td>
+                          <td>9864123456</td>
+                          <td>Project one</td>
+                          <td>10000</td>
+                          <td>
+                            <i class="fas fa-trash"></i>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Nccs College</td>
+                          <td>9864123456</td>
+                          <td>Project one</td>
+                          <td>10000</td>
+                          <td>
+                            <i class="fas fa-trash"></i>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* <div className="container custom">
             <div className="row">
               <div className="col-md-4 col-6  mr-5">
                 <div className="bg-light p-5 mb-3">
@@ -182,7 +298,7 @@ const Asales = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     )
