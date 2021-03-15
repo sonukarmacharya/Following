@@ -298,11 +298,10 @@ module.exports = {
     try {
       db.query(
         `SELECT company.Co_ID,company.Co_Name,company.Co_Landline,project.Prj_ID,
-          project.Prj_Name,project.Prj_Amt,master_db.Si_ID FROM admin_assign_customers
+          project.Prj_Name,project.Prj_Amt FROM admin_assign_customers
           INNER JOIN company ON company.Co_ID=admin_assign_customers.Co_ID
           INNER JOIN project ON project.Prj_ID=admin_assign_customers.Prj_ID
-          INNER JOIN master_db ON master_db.Co_ID=admin_assign_customers.Co_ID AND
-          master_db.Prj_Name=project.Prj_Name WHERE admin_assign_customers.S_ID='${req.params.id}'`,
+           WHERE admin_assign_customers.S_ID='${req.params.id}'`,
         (err, result) => {
           if (err) {
             res.json({

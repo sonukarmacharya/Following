@@ -29,7 +29,7 @@ const Asales = () => {
     //const sales = await axios(`/auth/DisplaysalespersonId/${id.id}`);
     const asgcomp = await axios(`/auth/gettask/${id.id}`);
     const asgpro = await axios(`/auth/DisplayTaskProject/${id.id}`);
-    console.log("ss", comp.data.data);
+    console.log("::", asgcomp);
     setCompany(comp.data.data);
     //setSalesPerson(sales.data.data);
     setAsgCompany(asgcomp.data.data);
@@ -37,7 +37,7 @@ const Asales = () => {
   }, []);
 
   useEffect(() => {
-    console.log(asgcompany);
+    console.log(">>", asgcompany);
   }, [asgcompany]);
 
   let handleChange = (e) => {
@@ -176,26 +176,24 @@ const Asales = () => {
                         </tr>
                       </thead>
                       <tbody>
-                      {asgcompany
-                        ? asgcompany.map((t) => (
-                            <tr key={t.Co_ID}>
-                              <td>
-                                {t.Co_Name}mmmm{t.Co_ID}n{t.Si_ID}
-                              </td>
-                              <td>{t.Co_Landline}</td>
-                              <td>{t.Prj_Name}</td>
-                              <td>{t.Prj_Amt}</td>
-                              <td>
-                                <i
-                                  className="reviewhistory-icondelete icon-delete"
-                                  onClick={() => {
-                                    handleDelete(t.Co_ID, t.Prj_ID);
-                                  }}
-                                ></i>
-                              </td>
-                            </tr>
-                          ))
-                        : null}
+                        {asgcompany
+                          ? asgcompany.map((t) => (
+                              <tr key={t.Co_ID}>
+                                <td>{t.Co_Name}</td>
+                                <td>{t.Co_Landline}</td>
+                                <td>{t.Prj_Name}</td>
+                                <td>{t.Prj_Amt}</td>
+                                <td>
+                                  <i
+                                    class="fas fa-trash"
+                                    onClick={() => {
+                                      handleDelete(t.Co_ID, t.Prj_ID);
+                                    }}
+                                  ></i>
+                                </td>
+                              </tr>
+                            ))
+                          : null}
                       </tbody>
                     </table>
                   </div>
