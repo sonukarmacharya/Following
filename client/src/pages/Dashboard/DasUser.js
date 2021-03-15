@@ -93,7 +93,7 @@ export default function DasUser() {
       <Header />
       <div className="welcome-container">
         <div class="path">
-          
+
           <span>
             <b> Customer details</b>
           </span>
@@ -102,30 +102,30 @@ export default function DasUser() {
           <div class="d-flex col-lg-14 col-md-12">
             <div
               class="col-lg-6 col-md-4"
-              //style={{ backgroundColor: "#f5f6f8" }}
+            //style={{ backgroundColor: "#f5f6f8" }}
             >
               <div class="form-title">Details</div>
               {contact
                 ? contact.map((c) => (
-              <ul class="item-list">    
-                <li>
-                  Industry Name: <span>{c.Si_Name}</span>
-                </li>
-                 <li>
-                  Contact Person Name: <span>{c.CpI_Name}</span>
-                </li>
-                <li>
-                  Phone Number: <span>{c.CpI_Number}</span>
-                </li>
-                <li>
-                  Department: <span>{c.Department_Name}</span>
-                </li>
-                </ul>
-                    ))
-                  : null }
-                      
-               
-               
+                  <ul class="item-list">
+                    <li>
+                      Industry Name: <span>{c.Si_Name}</span>
+                    </li>
+                    <li>
+                      Contact Person Name: <span>{c.CpI_Name}</span>
+                    </li>
+                    <li>
+                      Phone Number: <span>{c.CpI_Number}</span>
+                    </li>
+                    <li>
+                      Department: <span>{c.Department_Name}</span>
+                    </li>
+                  </ul>
+                ))
+                : null}
+
+
+
               <button type="submit" class="common-btn mt-3">
                 <Link to={`/addproducts/2/2`} style={{ color: "white" }}>
                   Add Product +
@@ -170,42 +170,31 @@ export default function DasUser() {
             <div class="form-title">Review History</div>
             <div class="review-container row">
               <div class="col-md-12 col-lg-6 review-card">
-                <div class="title bg-theme text-center">Sonu Karmachraya</div>
+                {review
+                  ? review.map((rv, key) => (  
+                    <>
+                      <div class="title bg-theme text-center">
+                      Industry:{rv.Si_Name}
+                        </div>
                 <ul class="item-list">
                   <li>
-                    Industry: <span>via</span>
+                        Industry: <span>{rv.Si_Name}</span>
                   </li>
                   <li>
-                    Category: <span>Honda123 Model</span>
+                        Category: <span>Honda123 Model</span>
                   </li>
                   <li>Good</li>
-                  <li>
-                    10:00 AM<span> 3rd July, 2021</span>
+                  <li className="date">
+                        <span> {rv.Date}</span>
                   </li>
                   <li>
                     <i class="fas fa-edit"></i>
                     <i class="fas fa-trash"></i>
                   </li>
                 </ul>
-              </div>
-              <div class="col-lg-6 col-md-12 review-card">
-                <div class="title bg-theme text-center">Sonu Karmachraya</div>
-                <ul class="item-list">
-                  <li>
-                    Industry: <span>via</span>
-                  </li>
-                  <li>
-                    Category: <span>Honda123 Model</span>
-                  </li>
-                  <li>Good</li>
-                  <li>
-                    10:00 AM<span> 3rd July, 2021</span>
-                  </li>
-                  <li>
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash"></i>
-                  </li>
-                </ul>
+                </>
+                  ))
+                  : null}
               </div>
             </div>
           </div>
