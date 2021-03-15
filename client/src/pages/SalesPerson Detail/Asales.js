@@ -176,24 +176,26 @@ const Asales = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Nccs College</td>
-                          <td>9864123456</td>
-                          <td>Project one</td>
-                          <td>10000</td>
-                          <td>
-                            <i class="fas fa-trash"></i>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Nccs College</td>
-                          <td>9864123456</td>
-                          <td>Project one</td>
-                          <td>10000</td>
-                          <td>
-                            <i class="fas fa-trash"></i>
-                          </td>
-                        </tr>
+                      {asgcompany
+                        ? asgcompany.map((t) => (
+                            <tr key={t.Co_ID}>
+                              <td>
+                                {t.Co_Name}mmmm{t.Co_ID}n{t.Si_ID}
+                              </td>
+                              <td>{t.Co_Landline}</td>
+                              <td>{t.Prj_Name}</td>
+                              <td>{t.Prj_Amt}</td>
+                              <td>
+                                <i
+                                  className="reviewhistory-icondelete icon-delete"
+                                  onClick={() => {
+                                    handleDelete(t.Co_ID, t.Prj_ID);
+                                  }}
+                                ></i>
+                              </td>
+                            </tr>
+                          ))
+                        : null}
                       </tbody>
                     </table>
                   </div>
