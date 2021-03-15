@@ -4,6 +4,7 @@ import Welcome from "../../layouts/Welcome";
 import { Link, useParams } from "react-router-dom";
 import "../../assets/sass/app.css";
 import axios from "axios";
+import srch from "../search";
 
 const Asales = () => {
   const id = useParams();
@@ -23,6 +24,8 @@ const Asales = () => {
   const [modalIsOpen, setmodalIsOpen] = useState(false);
   const [editreview, setEditreview] = useState(null);
   const [val, setval] = useState("");
+  const [search, setSearch] = useState("");
+  const [filteredCust, setFilteredCust] = useState([]);
 
   useEffect(async () => {
     const comp = await axios(`/auth/company`);
@@ -39,6 +42,11 @@ const Asales = () => {
   useEffect(() => {
     console.log(">>", asgcompany);
   }, [asgcompany]);
+
+  useEffect(() => {
+    let se = srch.searchCustomer(asgcompany, search);
+    setFilteredCust(se);
+  }, [search, asgcompany]);
 
   let handleChange = (e) => {
     e.preventDefault();
@@ -158,11 +166,12 @@ const Asales = () => {
                         name=""
                         id=""
                         placeholder="Search products"
+                        onChange={(e) => setSearch(e.target.value)}
                       />
                     </div>
-                    <div class="sort">
+                    {/* <div class="sort">
                       <i class="fas fa-sort-alpha-down"></i>
-                    </div>
+                    </div> */}
                   </div>
                   <div class="table-wrap">
                     <table class="table table-hover">
@@ -176,8 +185,8 @@ const Asales = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {asgcompany
-                          ? asgcompany.map((t) => (
+                        {filteredCust
+                          ? filteredCust.map((t) => (
                               <tr key={t.Co_ID}>
                                 <td>{t.Co_Name}</td>
                                 <td>{t.Co_Landline}</td>
