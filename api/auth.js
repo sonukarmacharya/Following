@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.post("/Insertadminassign", admin.postTask);
 router.get("/DisplayadminassignCompany/:id", admin.getTaskCompany);
- router.get("/gettask/:id", admin.getTask);
+router.get("/gettask/:id", admin.getTask);
 router.get("/DisplayadminassignCustomerIn/:id", admin.getTaskCustomerIn);
 router.get("/DisplayTaskCompany/:id", admin.getTaskCompany);
 router.get("/DisplayTaskProject/:id", admin.getTaskProject);
@@ -76,7 +76,7 @@ router.get("/Displaypriority", priority.getPriority);
 router.get("/priorityColor/:coid/:siid", priority.getPriorityComp);
 
 router.post("/Insertsalesperson", salesperson.postSalesperson);
-router.post("/updatesalesperson/:id", salesperson.updateSalesperson);
+router.post("/updatesalesperson/:sid/:aid", salesperson.updateSalesperson);
 router.delete("/Deletesalesperson/:id", salesperson.deleteSalesperson);
 router.get("/Countsalesperson", salesperson.countSalesperson);
 router.get("/Displaysalesperson", salesperson.getSalesperson);
