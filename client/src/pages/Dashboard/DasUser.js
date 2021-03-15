@@ -93,6 +93,7 @@ export default function DasUser() {
       <Header />
       <div className="welcome-container">
         <div class="path">
+          
           <span>
             <b> Customer details</b>
           </span>
@@ -104,20 +105,27 @@ export default function DasUser() {
               //style={{ backgroundColor: "#f5f6f8" }}
             >
               <div class="form-title">Details</div>
-              <ul class="item-list">
+              {contact
+                ? contact.map((c) => (
+              <ul class="item-list">    
                 <li>
-                  Industry Name: <span>abc industry</span>
+                  Industry Name: <span>{c.Si_Name}</span>
+                </li>
+                 <li>
+                  Contact Person Name: <span>{c.CpI_Name}</span>
                 </li>
                 <li>
-                  Contact Person Name: <span>John</span>
+                  Phone Number: <span>{c.CpI_Number}</span>
                 </li>
                 <li>
-                  Phone Number: <span>99826734521</span>
+                  Department: <span>{c.Department_Name}</span>
                 </li>
-                <li>
-                  Department: <span>IT</span>
-                </li>
-              </ul>
+                </ul>
+                    ))
+                  : null }
+                      
+               
+               
               <button type="submit" class="common-btn mt-3">
                 <Link to={`/addproducts/2/2`} style={{ color: "white" }}>
                   Add Product +
@@ -318,7 +326,7 @@ export default function DasUser() {
             <div className="bg-light">
               {contact
                 ? contact.map((c) => (
-                    <div>
+                    
                       <h2 className="font-weight-bold">Industry Name</h2>
                       <p>{c.Si_Name}</p>
                       <h2 className="font-weight-bold">Contact Person Name</h2>

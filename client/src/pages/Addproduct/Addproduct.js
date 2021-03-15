@@ -92,21 +92,32 @@ export default function Addproduct() {
                   </select>
                 </li>
                 <li>
-                  Total Quantity Available<span>via</span>
+                  Total Quantity Available<span>{qty ? (
+                  qty.map((q) => <p>{q.P_Quantity}</p>)
+                ) : (
+                  <p>No product</p>
+                )}</span>
                 </li>
-                <li>
+                {/* <li>
                   Number of Product <span>Honda123 Model</span>
-                </li>
+                </li> */}
                 <li>
                   Quantity
-                  <input type="text" name="" id="" class="form-control" />
+                  <input type="text" name="quantity" id="" class="form-control" onChange={handleChange}/>
                 </li>
                 <li>
-                  Category: <span>Honda123 Model</span>
+                  Category: <span> <select className="form-control">
+                  <option value=""> </option>
+                  {qty ? (
+                    qty.map((p) => <option value={p.P_ID}>{p.P_Model}</option>)
+                  ) : (
+                    <option value="" name="product"></option>
+                  )}
+                </select></span>
                 </li>
               </ul>
             </div>
-            <button class="common-btn mt-4">Submit</button>
+            <button class="common-btn mt-4" onClick={handleSubmit}>Submit</button>
           </div>
           <div class="col-lg-8 col-md-12">
             <div class="table-responsive-md table-container ">
@@ -123,8 +134,64 @@ export default function Addproduct() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>ABC Company</td>
+                    {history &&
+                          history.map((history) => (
+                            <tr>
+                              <td className="table-body-cell">
+                                {history.P_Name}
+                              </td>
+                              <td className="table-body-cell">
+                                {history.P_Model}
+                              </td>
+                              <td className="table-body-cell">
+                                {history.Quantity}
+                              </td>
+                              <td className="table-body-cell">
+                                {history.Price}
+                              </td>
+                              <td>
+                                <i
+                                  className="reviewhistory-icondelete icon-delete"
+                                  onClick={() => {
+                                    axios.delete(
+                                      `/auth/DeletePurchase/${history.Mp_ID}`
+                                    );
+                                    window.location.reload();
+                                  }}
+                                ></i>
+                                <Modal
+                                  isOpen={modalIsOpen}
+                                  style={{
+                                    content: {
+                                      top: "100px",
+                                      left: "400px",
+                                      width: "300px",
+                                      height: "200px",
+                                    },
+                                  }}
+                                >
+                                  Are you sure you want to delete??
+                                  <br />
+                                  <button
+                                    onClick={() => {
+                                      console.log(history.Mp_ID);
+                                      axios.delete(
+                                        `/auth/DeletePurchase/${history.Mp_ID}`
+                                      );
+                                      window.location.reload();
+                                      setmodalIsOpen(false);
+                                    }}
+                                  >
+                                    ok
+                                  </button>
+                                  <button onClick={() => setmodalIsOpen(false)}>
+                                    cancel
+                                  </button>
+                                </Modal>
+                              </td>
+                            </tr>
+                          ))}
+                      {/* <td>ABC Company</td>
                       <td>District 1</td>
                       <td>B2</td>
                       <td>1234</td>
@@ -152,7 +219,7 @@ export default function Addproduct() {
                         <i class="fas fa-edit"></i>
                         <i class="fas fa-trash"></i>
                       </td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </table>
               </div>
