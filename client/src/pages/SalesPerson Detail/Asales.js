@@ -42,7 +42,7 @@ const Asales = () => {
 
   let handleChange = (e) => {
     e.preventDefault();
-    console.log([e.target.value]);
+    console.log("ff", [e.target.value]);
     setcoid([e.target.value]);
     axios(`/auth/companyProjectId/${[e.target.value]}`).then((data) =>
       setProject(data.data.data)
