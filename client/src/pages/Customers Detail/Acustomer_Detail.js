@@ -37,7 +37,7 @@ const Acustomer_Detail = () => {
     const prj = await axios.get(`/auth/Displaycountproject/${id}/${ids.siid}`);
     const ph = await axios(`/auth/getmasterproduct/${coid}/${siid}`);
     const col = await axios(`/auth/priorityColor/${coid}/${siid}`);
-    console.log(ph);
+    console.log("ff", ph);
     setColor(col.data.data);
     setHistory(ph.data.data);
     setContact(cont.data.data);
@@ -73,7 +73,6 @@ const Acustomer_Detail = () => {
     e.preventDefault();
     console.log(sendForm);
     axios.post(`/auth/InsertCustomer`, sendForm).then((data) => {
-      alert("inserted successfully");
       window.location.reload();
     });
   };
@@ -89,7 +88,7 @@ const Acustomer_Detail = () => {
     console.log(id);
     setEditreview(null);
     axios.post(`/auth/reviewupdate/${id}`, val);
-    alert("edited");
+    window.location.reload();
   };
 
   return (
@@ -104,29 +103,39 @@ const Acustomer_Detail = () => {
         <div class="row">
           <div class="col-md-8 col-lg-4">
             <div class="form-container pad-0">
-              <div class="form-title">Details</div>
-              <ul class="details-item-list">
-                <li>
-                  Industry: <span>via</span>
-                </li>
-                <li>
-                  Category: <span>Honda123 Model</span>
-                </li>
-                <li>
-                  Category: <span>Honda123 Model</span>
-                </li>
-                <li>
-                  Category: <span>Honda123 Model</span>
-                </li>
-                <li>
-                  Category: <span>Honda123 Model</span>
-                </li>
-              </ul>
+              {detail
+                ? detail.map((de) => (
+                    <>
+                      <div class="form-title"> {de.Co_Name}</div>
+                      <ul class="details-item-list">
+                        <li>
+                          Address: <span>{de.Co_Address}</span>
+                        </li>
+                        <li>
+                          District: <span>{de.Co_District}</span>
+                        </li>
+                        <li>
+                          Phone Number: <span>{de.Co_Landline}</span>
+                        </li>
+                        <li>
+                          Number of Project:{" "}
+                          <span>
+                            {project ? (
+                              project.map((p) => <span>{p.total}</span>)
+                            ) : (
+                              <p>No projects</p>
+                            )}
+                          </span>
+                        </li>
+                      </ul>
+                    </>
+                  ))
+                : null}
             </div>
             <div class="form-container gutter-top-md">
-              <div class="form-title">Industry</div>
+              <div class="form-title">Contact Detail</div>
               <div class="form-group">
-                <small>Company name*</small>
+                <small>Industry*</small>
                 <select
                   className="form-control"
                   name="siid"
@@ -163,7 +172,6 @@ const Acustomer_Detail = () => {
                   onChange={handelChange}
                 />
               </div>
-              <hr />
               <div class="form-group">
                 <small>Number</small>
                 <input
@@ -174,6 +182,7 @@ const Acustomer_Detail = () => {
                   onChange={handelChange}
                 />
               </div>
+              <hr />
               <div class="form-group">
                 <small>Depaartment</small>
                 <input
@@ -189,6 +198,16 @@ const Acustomer_Detail = () => {
                 <input
                   type="text"
                   name="name"
+                  id=""
+                  class="form-control"
+                  onChange={handelChange}
+                />
+              </div>
+              <div class="form-group">
+                <small>Number </small>
+                <input
+                  type="text"
+                  name="number"
                   id=""
                   class="form-control"
                   onChange={handelChange}
@@ -227,7 +246,6 @@ const Acustomer_Detail = () => {
                       <th scope="col">Model</th>
                       <th scope="col">Quantity</th>
                       <th scope="col">Price</th>
-                      <th scope="col">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -238,10 +256,6 @@ const Acustomer_Detail = () => {
                           <td>{history.P_Model}</td>
                           <td>{history.Quantity}</td>
                           <td>{history.Price}</td>
-                          <td>
-                            <i class="fas fa-edit"></i>
-                            <i class="fas fa-trash"></i>
-                          </td>
                         </tr>
                       ))
                     ) : (
@@ -257,10 +271,10 @@ const Acustomer_Detail = () => {
             <div class="review-section">
               <div class="form-title">Review History</div>
               <div class="review-container row">
-                <div class="col-md-12 col-lg-6 review-card">
-                  {review
-                    ? review.map((rv, key) => (
-                        <>
+                {review
+                  ? review.map((rv, key) => (
+                      <>
+                        <div class="col-md-12 col-lg-6 review-card">
                           <div class="title bg-theme text-center">
                             Industry:{rv.Si_Name}
                           </div>
@@ -317,10 +331,58 @@ const Acustomer_Detail = () => {
                               ></i>
                             </li>
                           </ul>
-                        </>
-                      ))
-                    : null}
-                </div>
+                        </div>
+                      </>
+                    ))
+                  : null}
+              </div>
+            </div>
+            <div class="review-section">
+              <div class="form-title">Contact Detail</div>
+              <div class="review-container row">
+                {contact
+                  ? contact.map((c, key) => (
+                      <>
+                        <div class="col-md-12 col-lg-6 review-card">
+                          <ul class="item-list">
+                            <li>
+                              <b>Industry:</b>
+                              {c.Si_Name}
+                            </li>
+                            <li>
+                              <b>Contact Person Name:</b>
+                              {c.CpI_Name}
+                            </li>
+                            <li className="date">
+                              <b>Phone Number:</b>
+                              {c.CpI_Number}
+                            </li>
+                            <li className="date">
+                              <b>Department:</b>
+                              {c.Department_Name}
+                            </li>
+                            <li className="date">
+                              <b>Contact Person Name:</b>
+                              {c.Cp_Name}
+                            </li>
+                            <li className="date">
+                              <b>Number:</b>
+                              {c.CpI_Number}
+                            </li>
+                            <li>
+                              <i
+                                class="fas fa-trash"
+                                onClick={() => {
+                                  axios.delete(`/auth/contact/${coid}/${siid}`);
+                                  window.location.reload();
+                                }}
+                              ></i>
+                            </li>
+                          </ul>
+                        </div>
+                      </>
+                    ))
+                  : null}
               </div>
             </div>
           </div>

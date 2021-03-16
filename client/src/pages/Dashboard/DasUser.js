@@ -93,20 +93,22 @@ export default function DasUser() {
       <Header />
       <div className="welcome-container">
         <div class="path">
-
           <span>
             <b> Customer details</b>
           </span>
         </div>
+        <div class="text-right mr-5">
+          <a>View Report</a>
+        </div>
         <div class="row" style={{ paddingTop: "20px" }}>
-          <div class="d-flex col-lg-14 col-md-12">
-            <div
-              class="col-lg-6 col-md-4"
+          <div
+            class="col-lg-3 col-md-4 bg-white pr-3 ml-5"
             //style={{ backgroundColor: "#f5f6f8" }}
-            >
-              <div class="form-title">Details</div>
-              {contact
-                ? contact.map((c) => (
+          >
+            <div class="form-title">Details</div>
+            vvsdgfeg
+            {contact
+              ? contact.map((c) => (
                   <ul class="item-list">
                     <li>
                       Industry Name: <span>{c.Si_Name}</span>
@@ -122,78 +124,75 @@ export default function DasUser() {
                     </li>
                   </ul>
                 ))
-                : null}
+              : null}
+            <button type="submit" class="common-btn mt-3">
+              <Link to={`/addproducts/2/2`} style={{ color: "white" }}>
+                Add Product +
+              </Link>
+            </button>
+          </div>
 
+          <div class="form-container col-lg-8 offset-lg-1 ml-4 ">
+            <div class="form-title">Write a review</div>
 
-
-              <button type="submit" class="common-btn mt-3">
-                <Link to={`/addproducts/2/2`} style={{ color: "white" }}>
-                  Add Product +
-                </Link>
-              </button>
-            </div>
-
-            <div class="form-container col-lg-6 col-md-6 ">
-              <div class="form-title">Write a review</div>
-              <small>Note: Both the field must be selected</small>
-              <div class="form-row mt-4">
-                <div class="form-group col-md-5">
-                  <small>Select Categoty*</small>
-                  <select class="form-control">
-                    <option>Product 1</option>
-                    <option>Product 2</option>
-                    <option>Product 3</option>
-                    <option>Product 4</option>
-                    <option>Product 5</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-5">
-                  <small>Select Review*</small>
-                  <select class="form-control">
-                    <option>Excellent</option>
-                    <option>Product 2</option>
-                    <option>Product 3</option>
-                    <option>Product 4</option>
-                    <option>Poor</option>
-                  </select>
-                </div>
-                <button
-                  class="common-btn col-md-2"
-                  style={{ marginTop: "27px" }}
-                >
-                  Submit
-                </button>
+            <small>Note: Both the field must be selected</small>
+            <div class="form-row mt-4">
+              <div class="form-group col-md-6">
+                <small>Select Categoty*</small>
+                <select class="form-control">
+                  <option>Product 1</option>
+                  <option>Product 2</option>
+                  <option>Product 3</option>
+                  <option>Product 4</option>
+                  <option>Product 5</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <small>Select Review*</small>
+                <select class="form-control">
+                  <option>Excellent</option>
+                  <option>Product 2</option>
+                  <option>Product 3</option>
+                  <option>Product 4</option>
+                  <option>Poor</option>
+                </select>
               </div>
             </div>
+            <div class="form-group">
+              <small>Write Review</small>
+              <textarea rows="3" class="form-control col-md-12"></textarea>
+            </div>
+            <button class="common-btn mt-3">Submit</button>
           </div>
+
           <div class="review-section col-lg-12 col-md-12 ">
             <div class="form-title">Review History</div>
             <div class="review-container row">
               <div class="col-md-12 col-lg-6 review-card">
                 {review
-                  ? review.map((rv, key) => (  
-                    <>
-                      <div class="title bg-theme text-center">
-                      Industry:{rv.Si_Name}
+                  ? review.map((rv, key) => (
+                      <>
+                        <div class="title bg-theme text-center">
+                          Industry:{rv.Si_Name}
                         </div>
-                <ul class="item-list">
-                  <li>
-                        Industry: <span>{rv.Si_Name}</span>
-                  </li>
-                  <li>
-                        Category: <span>Honda123 Model</span>
-                  </li>
-                  <li>Good</li>
-                  <li className="date">
-                        <span> {rv.Date}</span>
-                  </li>
-                  <li>
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash"></i>
-                  </li>
-                </ul>
-                </>
-                  ))
+                        <ul class="item-list">
+                          <li>
+                            Industry: <span>{rv.Si_Name}</span>
+                          </li>
+                          <li>
+                            Category: <span>Honda123 Model</span>
+                          </li>
+                          <li>Good</li>
+                          <li className="date">
+                            <span> {rv.Date}</span>
+                          </li>
+                          <li>
+                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-trash"></i>
+                          </li>
+                        </ul>
+                      </>
+                    ))
                   : null}
               </div>
             </div>
