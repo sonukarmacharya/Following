@@ -225,7 +225,7 @@ const Acustomer_Detail = () => {
           <div class="col-lg-8 col-md-12">
             <div class="table-responsive-md table-container ">
               <div class="table-top">
-                <div class="search-container">
+                {/* <div class="search-container">
                   <i class="fas fa-search"></i>
                   <input
                     type="search"
@@ -233,10 +233,10 @@ const Acustomer_Detail = () => {
                     id=""
                     placeholder="Search products"
                   />
-                </div>
-                <div class="sort">
+                </div> */}
+                {/* <div class="sort">
                   <i class="fas fa-sort-alpha-down"></i>
-                </div>
+                </div> */}
               </div>
               <div class="table-wrap">
                 <table class="table table-hover">
