@@ -104,7 +104,6 @@ const Customers = () => {
                 <i
                   class="fas fa-sort-alpha-down"
                   onClick={(e) => {
-                    console.log("click");
                     setSortState(!sortState);
                   }}
                 ></i>

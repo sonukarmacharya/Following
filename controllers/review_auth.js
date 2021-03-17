@@ -126,24 +126,28 @@ module.exports = {
   getReviewComp: (req, res, next) => {
     const COID = req.params.coid;
     const SID = req.params.siid;
-    console.log("sid",SID)
+    console.log("sid", SID, "coid", COID);
     try {
-      db.query(`SELECT review.*,sectorwise_industry.Si_Name FROM review
-      INNER JOIN sectorwise_industry ON sectorwise_industry.Si_ID=review.Si_ID WHERE review.Si_ID='${SID}' AND review.Co_ID=${COID}`, (err, result) => {
-        if (err) {
-          res.json({
-            status: 200,
-            message: "Error",
-            error: err,
-          });
-        } else {
-          res.json({
-            status: 200,
-            message: "success",
-            data: result,
-          });
+      db.query(
+        `SELECT review.*,sectorwise_industry.Si_Name FROM review
+      INNER JOIN sectorwise_industry ON sectorwise_industry.Si_ID=review.Si_ID 
+      WHERE review.Si_ID='${SID}' AND review.Co_ID=${COID}`,
+        (err, result) => {
+          if (err) {
+            res.json({
+              status: 200,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "success",
+              data: result,
+            });
+          }
         }
-      });
+      );
     } catch (e) {
       res.json({
         status: 400,
@@ -152,6 +156,4 @@ module.exports = {
       });
     }
   },
-
-
 };

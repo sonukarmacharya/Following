@@ -4,6 +4,7 @@ import Welcome from "../../layouts/Welcome";
 import { Link, useParams } from "react-router-dom";
 import "../../assets/sass/app.css";
 import axios from "axios";
+import srch from "../search";
 
 const Asales = () => {
   const id = useParams();
@@ -23,13 +24,15 @@ const Asales = () => {
   const [modalIsOpen, setmodalIsOpen] = useState(false);
   const [editreview, setEditreview] = useState(null);
   const [val, setval] = useState("");
+  const [search, setSearch] = useState("");
+  const [filteredCust, setFilteredCust] = useState([]);
 
   useEffect(async () => {
     const comp = await axios(`/auth/company`);
     //const sales = await axios(`/auth/DisplaysalespersonId/${id.id}`);
     const asgcomp = await axios(`/auth/gettask/${id.id}`);
     const asgpro = await axios(`/auth/DisplayTaskProject/${id.id}`);
-    console.log("ss", comp.data.data);
+    console.log("::", asgcomp);
     setCompany(comp.data.data);
     //setSalesPerson(sales.data.data);
     setAsgCompany(asgcomp.data.data);
@@ -37,12 +40,17 @@ const Asales = () => {
   }, []);
 
   useEffect(() => {
-    console.log(asgcompany);
+    console.log(">>", asgcompany);
   }, [asgcompany]);
+
+  useEffect(() => {
+    let se = srch.searchCustomer(asgcompany, search);
+    setFilteredCust(se);
+  }, [search, asgcompany]);
 
   let handleChange = (e) => {
     e.preventDefault();
-    console.log([e.target.value]);
+    console.log("ff", [e.target.value]);
     setcoid([e.target.value]);
     axios(`/auth/companyProjectId/${[e.target.value]}`).then((data) =>
       setProject(data.data.data)
@@ -158,11 +166,12 @@ const Asales = () => {
                         name=""
                         id=""
                         placeholder="Search products"
+                        onChange={(e) => setSearch(e.target.value)}
                       />
                     </div>
-                    <div class="sort">
+                    {/* <div class="sort">
                       <i class="fas fa-sort-alpha-down"></i>
-                    </div>
+                    </div> */}
                   </div>
                   <div class="table-wrap">
                     <table class="table table-hover">
@@ -176,26 +185,24 @@ const Asales = () => {
                         </tr>
                       </thead>
                       <tbody>
-                      {asgcompany
-                        ? asgcompany.map((t) => (
-                            <tr key={t.Co_ID}>
-                              <td>
-                                {t.Co_Name}mmmm{t.Co_ID}n{t.Si_ID}
-                              </td>
-                              <td>{t.Co_Landline}</td>
-                              <td>{t.Prj_Name}</td>
-                              <td>{t.Prj_Amt}</td>
-                              <td>
-                                <i
-                                  className="reviewhistory-icondelete icon-delete"
-                                  onClick={() => {
-                                    handleDelete(t.Co_ID, t.Prj_ID);
-                                  }}
-                                ></i>
-                              </td>
-                            </tr>
-                          ))
-                        : null}
+                        {filteredCust
+                          ? filteredCust.map((t) => (
+                              <tr key={t.Co_ID}>
+                                <td>{t.Co_Name}</td>
+                                <td>{t.Co_Landline}</td>
+                                <td>{t.Prj_Name}</td>
+                                <td>{t.Prj_Amt}</td>
+                                <td>
+                                  <i
+                                    class="fas fa-trash"
+                                    onClick={() => {
+                                      handleDelete(t.Co_ID, t.Prj_ID);
+                                    }}
+                                  ></i>
+                                </td>
+                              </tr>
+                            ))
+                          : null}
                       </tbody>
                     </table>
                   </div>

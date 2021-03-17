@@ -11,6 +11,7 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 const SalesPerson = () => {
+  const userid = localStorage.getItem("user");
   const [salesperson, setSalesperson] = useState([]);
   const [search, setSearch] = useState("");
   const [filteredSales, setFilteredSales] = useState([]);
@@ -49,14 +50,18 @@ const SalesPerson = () => {
 
   let handleEdit = (e, name, key) => {
     const { value } = e.target;
-    setval({ ...val, [e.target.name]: e.target.value });
+    setval({
+      ...val,
+      [e.target.name]: e.target.value,
+      aid: localStorage.getItem("user"),
+    });
     console.log("vv", val);
   };
 
   let handleEnter = async (id) => {
     setEditreview(null);
     console.log("edit", val);
-    axios.post(`/auth/updatesalesperson/${id}`, val).then(() => {
+    axios.post(`/auth/updatesalesperson/${id}/${userid}`, val).then(() => {
       window.location.reload();
     });
   };

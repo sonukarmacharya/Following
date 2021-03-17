@@ -33,18 +33,22 @@ const HeadSales = (props) => {
             <span class="logo-title">Construction Pvt Ltd</span>
           </div>
 
-          <div class="profile">
+          <div class="profile" style={{ display: "-webkit-box" }}>
             {/* <i class="fas fa-user"></i>
             <span>Sujata khadka</span> */}
             {!image ? (
-              <img
-                className="img-container"
-                src="http://localhost:5000/Admin/image-1606199832232.jpg"
-              />
-            ) : (
               <i className="fas fa-user"></i>
+            ) : (
+              <div className="img-container">
+                <img
+                  src="http://localhost:5000/Admin/image-1606199832232.jpg"
+                  height="30px"
+                  width="30px"
+                />
+                <span>{username}</span>
+              </div>
             )}
-            <span>{username}</span>
+
             <NavLink
               className="menu-btn p-3 ml-3"
               style={{ color: "white" }}

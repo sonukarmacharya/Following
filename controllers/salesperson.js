@@ -174,11 +174,11 @@ module.exports = {
 
   updateSalesperson: (req, res, next) => {
     const data = req.body;
-    console.log("edit", data, req.params.id);
+    console.log("edit", data, req.params.sid, req.params.aid);
     try {
       db.query(
-        `UPDATE salesperson SET S_Username='${data.username}',S_Address='${data.address}',S_Email='${data.email}',A_ID='${data.aid}' 
-      WHERE S_ID='${req.params.id}'`,
+        `UPDATE salesperson SET S_Username='${data.username}',S_Address='${data.address}',S_Email='${data.email}',A_ID='${req.params.aid}' 
+      WHERE S_ID='${req.params.sid}'`,
         (err, result) => {
           if (err) {
             res.json({
