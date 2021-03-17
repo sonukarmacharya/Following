@@ -61,7 +61,7 @@ function App() {
             path="/customersUser"
             component={CustomersUser}
           />
-          <ProtectedRoute exact path="/report" component={Tender} />
+          <ProtectedRoute exact path="/report/:id" component={Tender} />
           <Route path="*" component={() => "404 NOT FOUND"} />
         </Switch>
       </BrowserRouter>

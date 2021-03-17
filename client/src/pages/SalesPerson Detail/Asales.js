@@ -97,9 +97,12 @@ const Asales = () => {
               <span>
                 <b>Sales person Details</b>
               </span>
-              <a href="/report" class="float-right text-success">
+              <Link
+                to={`/report/${id.id}`}
+                className="float-right text-success"
+              >
                 View report
-              </a>
+              </Link>
             </div>
             <div class="row white-bg gutter-top-md">
               <div class="col-md-8 col-lg-3 pad-0">

@@ -156,4 +156,34 @@ module.exports = {
       });
     }
   },
+
+  countReview: (req, res, next) => {
+    try {
+      db.query(
+        `SELECT COUNT(*),Date FROM review WHERE S_id=${req.params.id} GROUP BY Date`,
+        (err, result) => {
+          console.log("rv", result);
+          if (err) {
+            res.json({
+              status: 200,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "success",
+              data: result,
+            });
+          }
+        }
+      );
+    } catch (error) {
+      res.json({
+        status: 400,
+        message: "Error",
+        error: e,
+      });
+    }
+  },
 };
