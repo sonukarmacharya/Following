@@ -12,7 +12,6 @@ import Tender from "./pages/Tender/tender";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import CustomersUser_detail from "./pages/Customers Detail/CustomerUser_detail";
 import Addproduct from "./pages/Addproduct/Addproduct";
-import Report from "./pages/ReportDetail/ReportDetail";
 import { ProtectedRoute } from "./pages/portected.route";
 
 function App() {
