@@ -7,7 +7,9 @@ import { Scrollbars } from "rc-scrollbars";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
-export default function DasUser() {
+export default function 
+
+DasUser() {
   const id = useParams();
   const [review, setreview] = useState([]);
   const [dataform, setdataform] = useState({});
@@ -98,7 +100,9 @@ export default function DasUser() {
           </span>
         </div>
         <div class="text-right mr-5">
-          <a>View Report</a>
+        <Link to={`/report/${id.cid}`}>
+               View report
+              </Link>
         </div>
         <div class="row" style={{ paddingTop: "20px" }}>
           <div
@@ -106,7 +110,7 @@ export default function DasUser() {
             //style={{ backgroundColor: "#f5f6f8" }}
           >
             <div class="form-title">Details</div>
-            vvsdgfeg
+           
             {contact
               ? contact.map((c) => (
                   <ul class="item-list">
@@ -126,7 +130,7 @@ export default function DasUser() {
                 ))
               : null}
             <button type="submit" class="common-btn mt-3">
-              <Link to={`/addproducts/2/2`} style={{ color: "white" }}>
+            <Link to={`/addproducts/${id.cid}/${id.siid}`} style={{ color: "white" }}>
                 Add Product +
               </Link>
             </button>
@@ -139,30 +143,41 @@ export default function DasUser() {
             <div class="form-row mt-4">
               <div class="form-group col-md-6">
                 <small>Select Categoty*</small>
-                <select class="form-control">
-                  <option>Product 1</option>
-                  <option>Product 2</option>
-                  <option>Product 3</option>
-                  <option>Product 4</option>
-                  <option>Product 5</option>
+                <select class="form-control" name="siid"
+                  onChange={handleChange}>
+                   <option value="" name="siid"></option>
+                  {ind
+                    ? ind.map((i) => (
+                        <option value={i.Si_ID} name="siid">
+                          {i.Si_Name}
+                        </option>
+                      ))
+                    : null}
                 </select>
               </div>
               <div class="form-group col-md-6">
                 <small>Select Review*</small>
-                <select class="form-control">
-                  <option>Excellent</option>
-                  <option>Product 2</option>
-                  <option>Product 3</option>
-                  <option>Product 4</option>
-                  <option>Poor</option>
+                <select class="form-control" name="inquiry"
+                  onChange={handleChange}>
+                   <option name="inquiry" value=""></option>
+                  <option name="inquiry" value="call">
+                    call
+                  </option>
+                  <option name="inquiry" value="walk">
+                    walk
+                  </option>
+                  <option name="inquiry" value="pending">
+                    pending
+                  </option>
                 </select>
               </div>
             </div>
             <div class="form-group">
               <small>Write Review</small>
-              <textarea rows="3" class="form-control col-md-12"></textarea>
+              <textarea rows="3" class="form-control col-md-12"  onChange={handleChange}
+                  name="review"/>
             </div>
-            <button class="common-btn mt-3">Submit</button>
+            <button class="common-btn mt-3" onClick={handleSubmit}>Submit</button>
           </div>
 
           <div class="review-section col-lg-12 col-md-12 ">
@@ -187,8 +202,8 @@ export default function DasUser() {
                             <span> {rv.Date}</span>
                           </li>
                           <li>
-                            <i class="fas fa-edit"></i>
-                            <i class="fas fa-trash"></i>
+                            <i class="fas fa-edit" onClick={handleEdit}></i>
+                            <i class="fas fa-trash"onClick={handleDelete}></i>
                           </li>
                         </ul>
                       </>

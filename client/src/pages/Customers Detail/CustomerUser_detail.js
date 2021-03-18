@@ -14,6 +14,7 @@ const CustomersUser = () => {
   const [asgcompany, setAsgCompany] = useState([]);
   const history = useHistory();
 
+
   useEffect(async () => {
     const inq = await axios.get(`/auth/Displaytodaytask/${id}`);
     setinquiry(inq.data.data);
