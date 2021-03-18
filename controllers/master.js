@@ -385,4 +385,62 @@ module.exports = {
       });
     }
   },
+
+  countProductsTable: (req, res, next) => {
+    try {
+      db.query(
+        `SELECT COUNT(*) AS TOTAL,Date FROM master_product WHERE S_ID='${req.params.id}' GROUP BY Date`,
+        (err, result) => {
+          if (err) {
+            res.json({
+              status: 400,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "Success",
+              data: result,
+            });
+          }
+        }
+      );
+    } catch (error) {
+      res.json({
+        status: 400,
+        message: "Error",
+        error: error,
+      });
+    }
+  },
+
+  countProducts: (req, res, next) => {
+    try {
+      db.query(
+        `SELECT COUNT(*) AS TOTAL FROM master_product WHERE S_ID='${req.params.id}'`,
+        (err, result) => {
+          if (err) {
+            res.json({
+              status: 400,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "Success",
+              data: result,
+            });
+          }
+        }
+      );
+    } catch (error) {
+      res.json({
+        status: 400,
+        message: "Error",
+        error: error,
+      });
+    }
+  },
 };

@@ -22,6 +22,8 @@ router.get("/DisplayTaskCompany/:id", admin.getTaskCompany);
 router.get("/DisplayTaskProject/:id", admin.getTaskProject);
 router.get("/DisplayadminassignCustomerDept/:id", admin.getTaskCustomerDept);
 router.get("/Displaytodaytask/:id", admin.getTodayTask);
+router.get("/counttasktable/:id", admin.countAsgTable); //new
+router.get("/counttask/:id", admin.countAsg); //new
 router.delete("/DeleteAsg/:sid/:coid/:prjid", admin.deleteAsgTask);
 
 router.get("/cutomerDepartment", customers.getCustomerByDepartment);
@@ -61,6 +63,8 @@ router.get("/DisplaymasterCustDept/:id", master.getMasterCustDept);
 router.get("/DisplaymasterCustIn/:id", master.getMasterCustIn);
 router.get("/DisplaymasterProduct/:id", master.getMasterProduct);
 router.get("/Displaycountproject/:coid/:siid", master.getProjectCount);
+router.get("/countProductsTable/:id", master.countProductsTable); //new
+router.get("/countProducts/:id", master.countProducts); //new
 router.delete("/DeletePurchase/:id", master.deletePurchaseHistory);
 
 router.post("/Insertproduct", product.postProducts);
@@ -94,6 +98,8 @@ router.post("/admin", user_aut.postAdmin);
 router.post("/reviewinsert", review_auth.reviewInsert);
 router.get("/review/:id", review_auth.getReview);
 router.get("/review/:coid/:siid", review_auth.getReviewComp);
+router.get("/countreviewTable/:id", review_auth.countReviewTable); //new
+router.get("/countreview/:id", review_auth.countReview); //new
 router.post("/reviewupdate/:id", review_auth.reviewUpdate);
 router.delete("/reviewdelete/:id", review_auth.reviewDelete);
 

@@ -357,4 +357,63 @@ module.exports = {
       });
     }
   },
+
+  countAsgTable: (req, res, next) => {
+    try {
+      db.query(
+        `SELECT COUNT(*) AS TOTAL,Date FROM admin_assign_customers WHERE S_id=${req.params.id} GROUP BY Date`,
+        (err, result) => {
+          console.log("rv", result);
+          if (err) {
+            res.json({
+              status: 200,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "success",
+              data: result,
+            });
+          }
+        }
+      );
+    } catch (error) {
+      res.json({
+        status: 400,
+        message: "Error",
+        error: e,
+      });
+    }
+  },
+  countAsg: (req, res, next) => {
+    try {
+      db.query(
+        `SELECT COUNT(*) AS TOTAL FROM admin_assign_customers WHERE S_id=${req.params.id} `,
+        (err, result) => {
+          console.log("rv", result);
+          if (err) {
+            res.json({
+              status: 200,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "success",
+              data: result,
+            });
+          }
+        }
+      );
+    } catch (error) {
+      res.json({
+        status: 400,
+        message: "Error",
+        error: e,
+      });
+    }
+  },
 };

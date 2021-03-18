@@ -28,7 +28,7 @@ const CustomersUser = () => {
   }, [search, asgcompany]);
 
   useEffect(() => {
-    console.log(asgcompany);
+    console.log(asgcompany, id);
   }, [asgcompany]);
 
   let handleTable = (cid, siid) => {
@@ -60,7 +60,7 @@ const CustomersUser = () => {
                 id=""
                 placeholder="Search products"
                 onChange={(e) => setSearch(e.target.value)}
-                />
+              />
             </div>
             <div class="sort">
               <i class="fas fa-sort-alpha-down"></i>
@@ -70,13 +70,13 @@ const CustomersUser = () => {
             <div class="col-lg-2">
               <div class="overview">
                 <div class="number">
-                {inquiry
-                ? inquiry.map((i) => (
-                    <div className="cust-left-below">
-                      <h1 className="cust-left-below-p">{i.total}</h1>
-                    </div>
-                  ))
-                : null}
+                  {inquiry
+                    ? inquiry.map((i) => (
+                        <div className="cust-left-below">
+                          <h1 className="cust-left-below-p">{i.total}</h1>
+                        </div>
+                      ))
+                    : null}
                 </div>
               </div>
             </div>
@@ -93,24 +93,24 @@ const CustomersUser = () => {
                     </tr>
                   </thead>
                   <tbody>
-                  {filteredCust.map((comp) => (
-                  <tr
-                    className="table-tr"
-                    key={comp.Co_ID}
-                    onClick={() => handleTable(comp.Co_ID, comp.Si_ID)}
-                  >
-                    <th scope="row">
-                      <p> {comp.Co_Name}</p>
-                    </th>
-                    <td> {comp.Co_Landline}</td>
-                    <td> {comp.Prj_Name}</td>
-                    <td> {comp.Prj_Amt}</td>
-                    <td>
-                        <i class="fas fa-edit"></i>
-                        <i class="fas fa-trash"></i>
-                      </td>
-                    </tr>
-                ))}
+                    {filteredCust.map((comp) => (
+                      <tr
+                        className="table-tr"
+                        key={comp.Co_ID}
+                        onClick={() => handleTable(comp.Co_ID, comp.Si_ID)}
+                      >
+                        <td>
+                          <p> {comp.Co_Name}</p>
+                        </td>
+                        <td> {comp.Co_Landline}</td>
+                        <td> {comp.Prj_Name}</td>
+                        <td> {comp.Prj_Amt}</td>
+                        <td>
+                          <i class="fas fa-edit"></i>
+                          <i class="fas fa-trash"></i>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

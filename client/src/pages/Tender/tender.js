@@ -6,8 +6,7 @@ import "../../assets/sass/app.css";
 import axios from "axios";
 import { Scrollbars } from "rc-scrollbars";
 import piepic from "../../assets/images/pie.png";
-import Modal from "react-modal";
-Modal.setAppElement("#root");
+import { Bar } from "react-chartjs-2";
 
 const Tender = () => {
   const [ind, setInd] = useState();
@@ -21,7 +20,52 @@ const Tender = () => {
   const [modalIsOpen, setmodalIsOpen] = useState(false);
   const [deptfalg, setdeptfalg] = useState(false);
   const [prjfalg, setprjfalg] = useState(false);
-  const [id, setid] = useState();
+  const id = useParams();
+  const [countCustAsgTable, setcountCustAsgTable] = useState();
+  const [countCustAsg, setcountCustAsg] = useState();
+  const [countProductTable, setcountProductTable] = useState();
+  const [countProduct, setcountProduct] = useState();
+  const [countReviewTable, setcountReviewTable] = useState();
+  const [countReview, setcountReview] = useState();
+
+  const data = {
+    labels: ["1"],
+    datasets: [
+      {
+        label: "Total No Of Reviews",
+        data: [countReview],
+        backgroundColor: "rgb(255, 99, 132)",
+      },
+      {
+        label: "Total No Of Products Assigned",
+        data: [countProduct],
+        backgroundColor: "rgb(54, 162, 235)",
+      },
+      {
+        label: "Total No Of Customers Assigned",
+        data: [countCustAsg],
+        backgroundColor: "rgb(75, 192, 192)",
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          stacked: true,
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+      xAxes: [
+        {
+          stacked: true,
+        },
+      ],
+    },
+  };
 
   useEffect(async () => {
     await axios.get(`/auth/company`).then((data) => {
@@ -33,71 +77,42 @@ const Tender = () => {
       console.log("ttt", data.data.data);
       setTableOne(data.data.data);
     });
+    await axios
+      .get(`/auth/counttasktable/${id.id}`)
+      .then((result) => setcountCustAsgTable(result.data.data));
+
+    await axios.get(`/auth/counttask/${id.id}`).then((result) => {
+      let datas = result.data.data[0]["TOTAL"];
+      setcountCustAsg(datas);
+    });
+
+    await axios
+      .get(`/auth/countProductsTable/${id.id}`)
+      .then((result) => setcountProductTable(result.data.data));
+
+    await axios.get(`/auth/countProducts/${id.id}`).then((result) => {
+      let datas = result.data.data[0]["TOTAL"];
+      setcountProduct(datas);
+    });
+
+    await axios
+      .get(`/auth/countreviewTable/${id.id}`)
+      .then((result) => setcountReviewTable(result.data.data));
+
+    await axios.get(`/auth/countreview/${id.id}`).then((result) => {
+      let datas = result.data.data[0]["TOTAL"];
+      setcountReview(datas);
+    });
   }, []);
 
-  let handelChange = (e) => {
-    if ([e.target.name] == "coid") {
-      const id = [e.target.value];
-      setCoi(id);
-      axios(`/auth/companyIndustryId/${id}`).then((data) =>
-        setInd(data.data.data)
-      );
-    } else if ([e.target.name] == "sid") {
-      const id = [e.target.value];
-      console.log("Sid", id);
-      setSi(id);
-      axios(`/auth/department/${id}/${coi}`).then((data) =>
-        setDept(data.data.data)
-      );
-      axios(`/auth/Dispayproject/${id}/${coi}`).then((data) => {
-        console.log(">>", data);
-        setPrj(data.data.data);
-      });
-    } else if ([e.target.name] == "depname") {
-      setdeptfalg(true);
-    } else if ([e.target.name] == "project") {
-      setprjfalg(true);
-      console.log("prjname", [e.target.value]);
-      let prjname = [e.target.value];
-      setTender({ ...tender, prjname });
-    }
-    setdata();
-  };
-  let setdata = () => {};
-
   useEffect(() => {
-    setTender({ coid: coi, sid: si });
-    console.log("pp", si);
-  }, [coi, si]);
-
-  let handle = (e) => {
-    e.preventDefault();
-    console.log("t", tender);
-    if (
-      tender.coid === undefined ||
-      tender.sid === undefined ||
-      deptfalg === false ||
-      prjfalg === false
-    ) {
-      alert("Box is empty");
-    } else {
-      axios.post(`/auth/tender`, tender).then((res) => alert("success"));
-      window.location.reload();
-    }
-  };
-  let handleDelete = (id) => {
-    axios
-      .delete(`/auth/deletetender/${id}`)
-      .then(() => window.location.reload());
-  };
+    console.log(countCustAsgTable);
+  }, [countCustAsgTable]);
   return (
     <div>
       <Header />
       <div className="main-content">
-        <div
-          class="path"
-          // style={"width:100%"}
-        >
+        <div class="path">
           <span>
             <b>Report</b>
           </span>
@@ -105,39 +120,103 @@ const Tender = () => {
         <div class="row">
           <div class="col-md-3 col-lg-2 mb-4">
             <div class="report-card">
-              <small>Total Review</small>
-              <div class="number">60</div>
+              <small>Total Customers Assigned</small>
+              <div class="number">{countCustAsg}</div>
+            </div>
+          </div>
+          <div class="col-md-3 col-lg-2">
+            <div class="report-card">
+              <small>Total Products Assigned</small>
+              <div class="number">{countProduct}</div>
             </div>
           </div>
           <div class="col-md-3 col-lg-2">
             <div class="report-card">
               <small>Total Review</small>
-              <div class="number">60</div>
-            </div>
-          </div>
-          <div class="col-md-3 col-lg-2">
-            <div class="report-card">
-              <small>Total Review</small>
-              <div class="number">60</div>
+              <div class="number">{countReview}</div>
             </div>
           </div>
         </div>
         <div class="row report-row">
           <div class="col-md-6 diag-info">
             <div class="pie-container img-container">
-              <img src={piepic} alt="" class="img-fitted" />
+              <Bar data={data} options={options} />
             </div>
           </div>
-          <div class="col-md-6 diag-info">
-            <div class="pie-container img-container">
-              <img src={piepic} alt="" class="img-fitted" />
-            </div>
-          </div>
-          <div class="col-md-6 diag-info">
-            <div class="pie-container img-container">
-              <img src={piepic} alt="" class="img-fitted" />
-            </div>
-          </div>
+        </div>
+        <div class="d-flex table-wrap">
+          <table class="mr-3 table table-hover">
+            <thead class="bg-theme">
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Number of Review</th>
+              </tr>
+            </thead>
+            <tbody>
+              {countReviewTable ? (
+                countReviewTable.map((c) => (
+                  <tr>
+                    <td scope="row">{c.Date}</td>
+                    <td>{c.TOTAL}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+          <table class="mr-3 table table-hover">
+            <thead class="bg-theme">
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Number of Products Assigned</th>
+              </tr>
+            </thead>
+            <tbody>
+              {countProductTable ? (
+                countProductTable.map((c) => (
+                  <tr>
+                    <td scope="row">{c.Date}</td>
+                    <td>{c.TOTAL}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+          <table class="mr-3 table table-hover">
+            <thead class="bg-theme">
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Number of Customers Assigned</th>
+              </tr>
+            </thead>
+            <tbody>
+              {countCustAsgTable ? (
+                countCustAsgTable.map((c) => (
+                  <tr>
+                    <td scope="row">{c.Date}</td>
+                    <td>{c.TOTAL}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
