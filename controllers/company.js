@@ -386,6 +386,34 @@ module.exports = {
     }
   },
 
+  getIndustryByCID: (req, res, next) => {
+    try {
+      db.query(
+        `SELECT * FROM sectorwise_industry WHERE Co_ID='${req.params.id}'`,
+        (err, result) => {
+          if (err) {
+            res.json({
+              status: 400,
+              message: "Error",
+              error: err,
+            });
+          } else {
+            res.json({
+              status: 200,
+              message: "Sucess",
+              data: result,
+            });
+          }
+        }
+      );
+    } catch (error) {
+      res.json({
+        status: 400,
+        message: "Error",
+        error: error,
+      });
+    }
+  },
   updateCompany: (req, res, next) => {
     const data = req.body;
     try {

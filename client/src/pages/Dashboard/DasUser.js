@@ -28,9 +28,9 @@ export default function DasUser() {
     console.log("prioritycomp", pcomp, "priority", prio);
     const cont = await axios.get(`/auth/Customer/${id.cid}/${id.siid}`);
     setContact(cont.data.data);
-    axios(`/auth/industry/${id.cid}`).then((data) => {
+    axios(`/auth/industryCoid/${id.cid}`).then((data) => {
       setInd(data.data.data);
-      console.log("ff", data);
+      console.log("ff", id.siid);
     });
     axios.get(`/auth/review/${id.cid}/${id.siid}`).then((data) => {
       setreview(data.data.data);

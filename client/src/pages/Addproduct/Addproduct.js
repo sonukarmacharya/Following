@@ -25,7 +25,7 @@ export default function Addproduct() {
     const siid = id.siid;
     const coid = id.cid;
     const prod = await axios(`/auth/Displayproduct`);
-    const ph = await axios(`/auth/getmasterproduct/${coid}/${siid}`);
+    const ph = await axios(`/auth/getmasterproduct/${coid}`);
     console.log("p>>", ph.data.data);
     setProduct(prod.data.data);
     setHistory(ph.data.data);

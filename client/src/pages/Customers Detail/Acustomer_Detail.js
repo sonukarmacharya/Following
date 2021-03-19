@@ -35,7 +35,7 @@ const Acustomer_Detail = () => {
     // const custde = await axios.get(`/auth/DisplaymasterCustDept/${id}`);
     const cont = await axios.get(`/auth/Customer/${id}/${ids.siid}`);
     const prj = await axios.get(`/auth/Displaycountproject/${id}/${ids.siid}`);
-    const ph = await axios(`/auth/getmasterproduct/${coid}/${siid}`);
+    const ph = await axios(`/auth/getmasterproduct/${coid}`);
     const col = await axios(`/auth/priorityColor/${coid}/${siid}`);
     console.log("ff", ph);
     setColor(col.data.data);

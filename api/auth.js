@@ -51,11 +51,12 @@ router.get("/priority/:siid/:cid", company.getPriority);
 router.delete("/priority/:cid/:siid", company.deletePriority);
 router.get("/department/:sid/:coid", company.getDepartment);
 router.get("/industry/:id", company.getIndustryBySID);
+router.get("/industryCoid/:id", company.getIndustryByCID);
 
 router.post("/Insertmaster", master.postMaster);
 router.post("/Insertmasterproduct", master.postMaster);
 router.post("/postmasterproduct", master.postMasterProuct);
-router.get("/getmasterproduct/:coid/:siid", master.getPurchaseHistory);
+router.get("/getmasterproduct/:coid", master.getPurchaseHistory);
 router.get("/Displaymaster", master.getMaster);
 router.get("/Dispayproject/:sid/:coid", master.getProject);
 router.get("/DisplaymasterProject/:id", master.getMasterProject);

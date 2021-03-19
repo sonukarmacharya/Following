@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../layouts/HeadSales";
-import Welcome from "../../layouts/Welcome";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../../assets/sass/app.css";
 import axios from "axios";
-import { Scrollbars } from "rc-scrollbars";
-import piepic from "../../assets/images/pie.png";
 import { Bar } from "react-chartjs-2";
 
 const Report = () => {
-  const [ind, setInd] = useState();
-  const [dept, setDept] = useState(null);
-  const [prj, setPrj] = useState(null);
-  const [coi, setCoi] = useState();
-  const [si, setSi] = useState();
-  const [tableone, setTableOne] = useState();
-  const [modalIsOpen, setmodalIsOpen] = useState(false);
-  const [deptfalg, setdeptfalg] = useState(false);
-  const [prjfalg, setprjfalg] = useState(false);
+  // const [ind, setInd] = useState();
+  // const [company, setCompany] = useState();
+  // const [dept, setDept] = useState(null);
+  // const [prj, setPrj] = useState(null);
+  // const [coi, setCoi] = useState();
+  // const [si, setSi] = useState();
+  // const [tender, setTender] = useState();
+  // const [tableone, setTableOne] = useState();
+  // const [modalIsOpen, setmodalIsOpen] = useState(false);
+  // const [deptfalg, setdeptfalg] = useState(false);
+  // const [prjfalg, setprjfalg] = useState(false);
   const id = useParams();
   const [countCustAsgTable, setcountCustAsgTable] = useState();
   const [countCustAsg, setcountCustAsg] = useState();
@@ -72,7 +71,7 @@ const Report = () => {
 
     await axios.get(`/auth/counttask/${id.id}`).then((result) => {
       let datas = result.data.data[0]["TOTAL"];
-      setcountCustAsg(result);
+      setcountCustAsg(datas);
     });
 
     await axios
@@ -80,27 +79,27 @@ const Report = () => {
       .then((result) => setcountProductTable(result.data.data));
 
     await axios.get(`/auth/countProducts/${id.id}`).then((result) => {
-      // let datas = result.data.data[0]["TOTAL"];
-      // setcountProduct(datas);
+      let datas = result.data.data[0]["TOTAL"];
+      setcountProduct(datas);
     });
 
-    await axios
-      .get(`/auth/countreviewTable/${id.id}`)
-      .then((result) => setcountReviewTable(result.data.data));
+    await axios.get(`/auth/countreviewTable/${id.id}`).then((result) => {
+      setcountReviewTable(result.data.data);
+    });
 
     await axios.get(`/auth/countreview/${id.id}`).then((result) => {
-      // let datas = result.data.data[0]["TOTAL"];
-      // setcountReview(datas);
+      let datas = result.data.data[0]["TOTAL"];
+      setcountReview(datas);
     });
   }, []);
 
   useEffect(() => {
-    console.log(countCustAsg, id.id);
-  }, [countCustAsg]);
+    console.log(countCustAsg);
+  }, [countCustAsgTable]);
   return (
     <div>
       <Header />
-      <div className="main-content">
+      <div className="container pad-top">
         <div class="path">
           <span>
             <b>Report</b>

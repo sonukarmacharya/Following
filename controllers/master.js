@@ -330,7 +330,7 @@ module.exports = {
       db.query(
         `SELECT master_product.Mp_ID,product.P_ID,product.P_Name,product.P_Model,master_product.Quantity,master_product.Price FROM master_product
        INNER JOIN product ON product.P_ID=master_product.P_ID
-      WHERE master_product.Co_ID='${req.params.coid}' AND master_product.Si_ID='${req.params.siid}'`,
+      WHERE master_product.Co_ID='${req.params.coid}' `,
         (err, result) => {
           if (err) {
             res.json({
