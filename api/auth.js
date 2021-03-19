@@ -40,7 +40,7 @@ router.delete("/contact/:coid/:siid", customers.deleteContact);
 router.post("/Insertcompany", company.postCompany);
 router.get("/company", company.getCompany);
 router.post("/Updatecompany/:id", company.updateCompany);
-router.delete("/company/:id", company.deleteCompany);
+router.delete("/company/:cid/:sid", company.deleteCompany);
 router.get("/companybymaster", company.getCompanyByMaster);
 router.get("/companyId/:id", company.getCompanyByID);
 router.get("/companyIndustryId/:id", company.getIndustryByID);
@@ -50,7 +50,7 @@ router.post("/priority/:siid/:cid", company.postPriority);
 router.get("/priority/:siid/:cid", company.getPriority);
 router.delete("/priority/:cid/:siid", company.deletePriority);
 router.get("/department/:sid/:coid", company.getDepartment);
-router.get("/industry/:siid", company.getIndustryBySID);
+router.get("/industry/:id", company.getIndustryBySID);
 
 router.post("/Insertmaster", master.postMaster);
 router.post("/Insertmasterproduct", master.postMaster);

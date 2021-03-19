@@ -136,7 +136,8 @@ const Dashboard = () => {
               Object.keys(form).map((data, key) => {
                 formData.append(`${data}`, form[data]);
               });
-              axios.post(`/auth/Insertsalesperson`, formData).then((res) => {
+              console.log("here");
+              axios.post(`/auth/Insertsalesperson`, form).then((res) => {
                 alert(res.data.message);
                 setForm();
                 window.location.reload();
@@ -156,7 +157,7 @@ const Dashboard = () => {
       } else {
         axios.post(`/auth/Insertmaster`, form).then((res) => {
           alert(res.data.message);
-          // window.location.reload();
+          window.location.reload();
         });
       }
     } else if (dropdown == "priority") {
@@ -223,7 +224,7 @@ const Dashboard = () => {
             <p>Manage product, sales person, customer details</p>
           </div> */}
           <div class="row">
-            <div class="col-md-6 diag-info">
+            <div class="col-md-12 col-lg-6 diag-info">
               <div>
                 {low ? (
                   <div class="message-danger">
@@ -244,7 +245,7 @@ const Dashboard = () => {
                 />
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8 col-lg-6">
               <div class=" form-container">
                 <h4 class="form-title">Category Option</h4>
                 <form action="">
@@ -259,7 +260,7 @@ const Dashboard = () => {
                     >
                       <option value="product">Product</option>
                       <option value="salesperson">Salesperson</option>
-                      <option value="priority">Priority</option>
+
                       <option value="company">Company</option>
                       <option value="project">Project</option>
                     </select>
@@ -334,41 +335,7 @@ const Dashboard = () => {
                           {error.empty ? <p>{error.empty}</p> : null}
                           <button
                             type="submit"
-                            class="common-btn float-right"
-                            onClick={handleSubmit}
-                          >
-                            Submit
-                          </button>
-                        </div>
-                      ) : dropdown == "priority" ? (
-                        <div>
-                          <small>Priority Name</small>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="name"
-                            onChange={handelChange}
-                          />
-                          {error.empty ? <p>{error.empty}</p> : null}
-                          <small>Priority Color</small>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="color"
-                            onChange={handelChange}
-                          />
-                          {error.empty ? <p>{error.empty}</p> : null}
-                          <small>Priority Dyas</small>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="days"
-                            onChange={handelChange}
-                          />
-                          {error.empty ? <p>{error.empty}</p> : null}
-                          <button
-                            type="submit"
-                            class="common-btn float-right"
+                            class="common-btn gutter-top-md"
                             onClick={handleSubmit}
                           >
                             Submit
@@ -435,14 +402,12 @@ const Dashboard = () => {
                       ) : dropdown == "salesperson" ? (
                         <div>
                           <small>salesperson username</small>
-
                           <input
                             type="text"
                             className="form-control"
                             name="username"
                             onChange={handelChange}
                           />
-
                           {error.name || error.empty ? (
                             <p>
                               {error.name}
@@ -450,58 +415,39 @@ const Dashboard = () => {
                             </p>
                           ) : null}
                           <small>password</small>
-
                           <input
                             type="password"
                             className="form-control"
                             name="password"
                             onChange={handelChange}
                           />
-
                           {error.password || error.empty ? (
                             <p>
                               {error.password} {error.empty}
                             </p>
                           ) : null}
                           <small>Address</small>
-
                           <input
                             type="text"
                             className="form-control"
                             name="address"
                             onChange={handelChange}
                           />
-
                           {error.empty ? <p>{error.empty}</p> : null}
                           <small>Email</small>
-
                           <input
                             type="email"
                             className="form-control"
                             name="email"
                             onChange={handelChange}
                           />
-
                           {error.email || error.empty ? (
                             <p>
                               {error.email}
                               {error.empty}
                             </p>
                           ) : null}
-                          <small>Image</small>
 
-                          <input
-                            type="file"
-                            className="pt-4"
-                            name="image"
-                            onChange={handelImage}
-                          />
-                          {error.image || error.image ? (
-                            <p>
-                              {error.image}
-                              {error.empty}
-                            </p>
-                          ) : null}
                           <button
                             type="submit"
                             class="common-btn float-right"

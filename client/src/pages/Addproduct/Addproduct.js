@@ -69,55 +69,103 @@ export default function Addproduct() {
     });
   };
 
+  useEffect(() => {
+    console.log(history);
+  }, [history]);
   return (
     <div>
       <Header />
-      {/* <Link to={`/customersUser`}>
-        <i className="back icon-left"></i>
-      </Link> */}
-      <div className="container custom" style={{ paddingTop: "90px" }}>
+
+      <div className="container custom pad-top mt-5">
         <div class="row">
           <div class="col-md-8 col-lg-4">
             <div class="form-container pad-0">
               <div class="form-title mb-4">Add product</div>
               <ul class="details-item-list">
                 <li>
-                  Company Name
-                  <select class="form-control">
-                    <option>ABC Company</option>
-                    <option>Product 2</option>
-                    <option>Product 3</option>
-                    <option>Product 4</option>
-                    <option>Product 5</option>
+                  Product Name
+                  <select
+                    name="pid"
+                    className="form-control"
+                    onChange={handleChange}
+                  >
+                    <option value="" name="pid"></option>
+                    {product ? (
+                      product.map((p) => (
+                        <option
+                          value={p.P_ID}
+                          name="pid"
+                          onChange={handleChange}
+                        >
+                          {p.P_Name}
+                        </option>
+                      ))
+                    ) : (
+                      <option value="" name="pid"></option>
+                    )}
                   </select>
                 </li>
                 <li>
-                  Total Quantity Available<span>{qty ? (
-                  qty.map((q) => <p>{q.P_Quantity}</p>)
-                ) : (
-                  <p>No product</p>
-                )}</span>
+                  Total Quantity Available
+                  <span>
+                    {qty ? (
+                      qty.map((q) => <p>{q.P_Quantity}</p>)
+                    ) : (
+                      <p>No product</p>
+                    )}
+                  </span>
                 </li>
                 {/* <li>
                   Number of Product <span>Honda123 Model</span>
                 </li> */}
                 <li>
                   Quantity
-                  <input type="text" name="quantity" id="" class="form-control" onChange={handleChange}/>
+                  <input
+                    type="text"
+                    name="quantity"
+                    id=""
+                    class="form-control"
+                    onChange={handleChange}
+                  />
                 </li>
                 <li>
-                  Category: <span> <select className="form-control">
-                  <option value=""> </option>
-                  {qty ? (
-                    qty.map((p) => <option value={p.P_ID}>{p.P_Model}</option>)
-                  ) : (
-                    <option value="" name="product"></option>
-                  )}
-                </select></span>
+                  Price:
+                  <span>
+                    {qty ? (
+                      qty.map((q) => (
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="price"
+                          value={q.P_Price * qt}
+                          onChange={handleChange}
+                        />
+                      ))
+                    ) : (
+                      <p>No product</p>
+                    )}
+                  </span>
+                </li>
+                <li>
+                  Model:
+                  <span>
+                    <select className="form-control">
+                      <option value=""> </option>
+                      {qty ? (
+                        qty.map((p) => (
+                          <option value={p.P_ID}>{p.P_Model}</option>
+                        ))
+                      ) : (
+                        <option value="" name="product"></option>
+                      )}
+                    </select>
+                  </span>
                 </li>
               </ul>
             </div>
-            <button class="common-btn mt-4" onClick={handleSubmit}>Submit</button>
+            <button class="common-btn mt-4" onClick={handleSubmit}>
+              Submit
+            </button>
           </div>
           <div class="col-lg-8 col-md-12">
             <div class="table-responsive-md table-container ">
@@ -135,63 +183,28 @@ export default function Addproduct() {
                   </thead>
                   <tbody>
                     {history &&
-                          history.map((history) => (
-                            <tr>
-                              <td className="table-body-cell">
-                                {history.P_Name}
-                              </td>
-                              <td className="table-body-cell">
-                                {history.P_Model}
-                              </td>
-                              <td className="table-body-cell">
-                                {history.Quantity}
-                              </td>
-                              <td className="table-body-cell">
-                                {history.Price}
-                              </td>
-                              <td>
-                                <i
-                                  className="reviewhistory-icondelete icon-delete"
-                                  onClick={() => {
-                                    axios.delete(
-                                      `/auth/DeletePurchase/${history.Mp_ID}`
-                                    );
-                                    window.location.reload();
-                                  }}
-                                ></i>
-                                <Modal
-                                  isOpen={modalIsOpen}
-                                  style={{
-                                    content: {
-                                      top: "100px",
-                                      left: "400px",
-                                      width: "300px",
-                                      height: "200px",
-                                    },
-                                  }}
-                                >
-                                  Are you sure you want to delete??
-                                  <br />
-                                  <button
-                                    onClick={() => {
-                                      console.log(history.Mp_ID);
-                                      axios.delete(
-                                        `/auth/DeletePurchase/${history.Mp_ID}`
-                                      );
-                                      window.location.reload();
-                                      setmodalIsOpen(false);
-                                    }}
-                                  >
-                                    ok
-                                  </button>
-                                  <button onClick={() => setmodalIsOpen(false)}>
-                                    cancel
-                                  </button>
-                                </Modal>
-                              </td>
-                            </tr>
-                          ))}
-                      {/* <td>ABC Company</td>
+                      history.map((history) => (
+                        <tr>
+                          <td className="table-body-cell">{history.P_Name}</td>
+                          <td className="table-body-cell">{history.P_Model}</td>
+                          <td className="table-body-cell">
+                            {history.Quantity}
+                          </td>
+                          <td className="table-body-cell">{history.Price}</td>
+                          <td>
+                            <i
+                              class="fas fa-trash"
+                              onClick={() => {
+                                axios.delete(
+                                  `/auth/DeletePurchase/${history.Mp_ID}`
+                                );
+                                window.location.reload();
+                              }}
+                            ></i>
+                          </td>
+                        </tr>
+                      ))}
+                    {/* <td>ABC Company</td>
                       <td>District 1</td>
                       <td>B2</td>
                       <td>1234</td>

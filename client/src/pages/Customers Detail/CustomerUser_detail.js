@@ -27,8 +27,8 @@ const CustomersUser = () => {
   }, [search, asgcompany]);
 
   useEffect(() => {
-    console.log(asgcompany, id);
-  }, [asgcompany]);
+    console.log(filteredCust);
+  }, [filteredCust]);
 
   let handleTable = (cid, siid) => {
     history.push(`/dasuser/${cid}/${siid}`);
@@ -37,8 +37,7 @@ const CustomersUser = () => {
   return (
     <div>
       <Header />
-      {/* <HeaderUser /> */}
-      <div class="">
+      <div class="container pad-top">
         <div class="path">
           <span>SalesPerson Dashboard</span>
         </div>
@@ -88,7 +87,6 @@ const CustomersUser = () => {
                       <th scope="col">Landline</th>
                       <th scope="col">Project name</th>
                       <th scope="col">Project Amount</th>
-                      <th scope="col">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -96,7 +94,10 @@ const CustomersUser = () => {
                       <tr
                         className="table-tr"
                         key={comp.Co_ID}
-                        onClick={() => handleTable(comp.Co_ID, comp.Si_ID)}
+                        onClick={() => {
+                          console.log(comp.Co_ID, comp.S_ID);
+                          handleTable(comp.Co_ID, comp.S_ID);
+                        }}
                       >
                         <td>
                           <p> {comp.Co_Name}</p>
@@ -104,10 +105,6 @@ const CustomersUser = () => {
                         <td> {comp.Co_Landline}</td>
                         <td> {comp.Prj_Name}</td>
                         <td> {comp.Prj_Amt}</td>
-                        <td>
-                          <i class="fas fa-edit"></i>
-                          <i class="fas fa-trash"></i>
-                        </td>
                       </tr>
                     ))}
                   </tbody>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "../../layouts/Header";
+import Header from "../../layouts/HeadSales";
 import Welcome from "../../layouts/Welcome";
 import { Link, useParams } from "react-router-dom";
 import "../../assets/sass/app.css";
@@ -8,14 +8,12 @@ import { Scrollbars } from "rc-scrollbars";
 import piepic from "../../assets/images/pie.png";
 import { Bar } from "react-chartjs-2";
 
-const Tender = () => {
+const Report = () => {
   const [ind, setInd] = useState();
-  const [company, setCompany] = useState();
   const [dept, setDept] = useState(null);
   const [prj, setPrj] = useState(null);
   const [coi, setCoi] = useState();
   const [si, setSi] = useState();
-  const [tender, setTender] = useState();
   const [tableone, setTableOne] = useState();
   const [modalIsOpen, setmodalIsOpen] = useState(false);
   const [deptfalg, setdeptfalg] = useState(false);
@@ -68,22 +66,13 @@ const Tender = () => {
   };
 
   useEffect(async () => {
-    await axios.get(`/auth/company`).then((data) => {
-      let datas = data.data.data;
-      setCompany(datas);
-      console.log("comp", datas);
-    });
-    await axios.get(`/auth/tender`).then((data) => {
-      console.log("ttt", data.data.data);
-      setTableOne(data.data.data);
-    });
     await axios
       .get(`/auth/counttasktable/${id.id}`)
       .then((result) => setcountCustAsgTable(result.data.data));
 
     await axios.get(`/auth/counttask/${id.id}`).then((result) => {
       let datas = result.data.data[0]["TOTAL"];
-      setcountCustAsg(datas);
+      setcountCustAsg(result);
     });
 
     await axios
@@ -91,8 +80,8 @@ const Tender = () => {
       .then((result) => setcountProductTable(result.data.data));
 
     await axios.get(`/auth/countProducts/${id.id}`).then((result) => {
-      let datas = result.data.data[0]["TOTAL"];
-      setcountProduct(datas);
+      // let datas = result.data.data[0]["TOTAL"];
+      // setcountProduct(datas);
     });
 
     await axios
@@ -100,14 +89,14 @@ const Tender = () => {
       .then((result) => setcountReviewTable(result.data.data));
 
     await axios.get(`/auth/countreview/${id.id}`).then((result) => {
-      let datas = result.data.data[0]["TOTAL"];
-      setcountReview(datas);
+      // let datas = result.data.data[0]["TOTAL"];
+      // setcountReview(datas);
     });
   }, []);
 
   useEffect(() => {
-    console.log(countCustAsgTable);
-  }, [countCustAsgTable]);
+    console.log(countCustAsg, id.id);
+  }, [countCustAsg]);
   return (
     <div>
       <Header />
@@ -223,4 +212,4 @@ const Tender = () => {
   );
 };
 
-export default Tender;
+export default Report;

@@ -17,7 +17,7 @@ const Header = (props) => {
     const Id = localStorage.getItem("user");
     let user = await axios.get(`/auth/admin/${Id}`);
     console.log(Id);
-    setimage(user.data.data[0].A_Image);
+    // setimage(user.data.data[0].A_Image);
     setusername(user.data.data[0].A_Username);
   }, []);
 

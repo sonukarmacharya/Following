@@ -298,7 +298,7 @@ module.exports = {
     let date = dateObj.toISOString().split("T")[0];
     try {
       db.query(
-        `INSERT INTO master_product(P_ID,Co_ID,Si_ID,Quantity,Price,S_ID,Date) VALUES ('${body.pid}','${body.coid}','${body.siid}','${body.quantity}','${body.price}','${body.sid}','${date}')`,
+        `INSERT INTO master_product(P_ID,Co_ID,Si_ID,Quantity,Price,S_ID,Date) VALUES ('${req.body.pid}','${req.body.coid}','${body.siid}','${body.quantity}','${body.price}','${body.sid}','${date}')`,
         (err, result) => {
           if (err) {
             res.json({

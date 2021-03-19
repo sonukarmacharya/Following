@@ -42,10 +42,10 @@ const Acustomer_Detail = () => {
     setHistory(ph.data.data);
     setContact(cont.data.data);
     setproject(prj.data.data);
-    axios(`/auth/industry/${ids.siid}`).then((data) => {
+    axios(`/auth/industry/${siid}`).then((data) => {
       setInd(data.data.data);
     });
-    axios(`/auth/review/${id}/${ids.siid}`).then((data) => {
+    axios(`/auth/review/${coid}`).then((data) => {
       console.log("R>>>", data);
       setreview(data.data.data);
     });
@@ -56,8 +56,8 @@ const Acustomer_Detail = () => {
     Color.map((Color) => setc(Color.Pr_Color));
   }, [Color]);
   useEffect(() => {
-    console.log(review);
-  }, [review]);
+    console.log(ind, siid);
+  }, [ind]);
 
   let handelChange = (e) => {
     setSendForm({
@@ -218,7 +218,7 @@ const Acustomer_Detail = () => {
                 class="common-btn float-right"
                 onClick={handleSubmitform}
               >
-                Add Task
+                Add Contact
               </button>
             </div>
           </div>

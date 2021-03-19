@@ -46,80 +46,41 @@ module.exports = {
 
   postSalesperson: (req, res, next) => {
     const data = req.body;
-    var storage = multer.diskStorage({
-      destination: function (req, file, cb) {
-        cb(null, __basedir + "/public/Sales/");
-      },
-      filename: function (req, file, cb) {
-        cb(
-          null,
-          file.fieldname +
-            "-" +
-            "" +
-            Date.now() +
-            "" +
-            path.extname(file.originalname)
-        );
-      },
-    });
-
-    var upload = multer({
-      storage: storage,
-      fileFilter: (req, file, cb) => {
-        const filetype = /jpeg|jpg|png|gif|zip|pdf/;
-        const extname = filetype.test(
-          path.extname(file.originalname).toLowerCase()
-        );
-        if (extname) {
-          return cb(null, true);
+    db.query(
+      `SELECT * FROM salesperson WHERE S_username="${data.username}" `,
+      (err, resultAdmin) => {
+        console.log(">>>");
+        if (resultAdmin == "") {
+          bcrypt.hash(data.password, 10, (err, hash) => {
+            console.log("pp", req.file);
+            db.query(
+              `INSERT INTO salesperson(S_Username,S_Password,S_Address,S_Email,A_ID) VALUES("${data.username}","${hash}","${data.address}","${data.email}","${data.aid}")`,
+              (err, result) => {
+                if (err) {
+                  res.json({
+                    status: 400,
+                    message: "error inserrting",
+                    error: err,
+                  });
+                } else {
+                  res.json({
+                    status: 200,
+                    message: "Inserted successfully",
+                    data: result,
+                  });
+                }
+              }
+            );
+          });
         } else {
-          cb("Error:Images or zip or pdf files only");
+          res.json({
+            status: 200,
+            message: "Username exist",
+            data: resultAdmin,
+          });
         }
-      },
-    }).single("image");
-    upload(req, res, (err) => {
-      if (err) {
-        console.log("in");
-        res.json({ status: 400, message: err });
-      } else {
-        const data = req.body;
-        db.query(
-          `SELECT * FROM salesperson WHERE S_username="${data.username}" `,
-          (err, resultAdmin) => {
-            console.log(">>>");
-            if (resultAdmin == "") {
-              bcrypt.hash(data.password, 10, (err, hash) => {
-                console.log("pp", req.file);
-                db.query(
-                  `INSERT INTO salesperson(S_Image,S_Username,S_Password,S_Address,S_Email,A_ID) VALUES("${req.file.filename}","${data.username}","${hash}","${data.address}","${data.email}","${data.aid}")`,
-                  (err, result) => {
-                    if (err) {
-                      res.json({
-                        status: 400,
-                        message: "error inserrting",
-                        error: err,
-                      });
-                    } else {
-                      res.json({
-                        status: 200,
-                        message: "Inserted successfully",
-                        data: result,
-                      });
-                    }
-                  }
-                );
-              });
-            } else {
-              res.json({
-                status: 200,
-                message: "Username exist",
-                data: resultAdmin,
-              });
-            }
-          }
-        );
       }
-    });
+    );
   },
 
   deleteSalesperson: (req, res, next) => {

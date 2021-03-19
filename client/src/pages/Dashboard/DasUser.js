@@ -28,9 +28,9 @@ export default function DasUser() {
     console.log("prioritycomp", pcomp, "priority", prio);
     const cont = await axios.get(`/auth/Customer/${id.cid}/${id.siid}`);
     setContact(cont.data.data);
-    axios(`/auth/industry/${id.siid}`).then((data) => {
+    axios(`/auth/industry/${id.cid}`).then((data) => {
       setInd(data.data.data);
-      console.log(data);
+      console.log("ff", data);
     });
     axios.get(`/auth/review/${id.cid}/${id.siid}`).then((data) => {
       setreview(data.data.data);
@@ -64,7 +64,7 @@ export default function DasUser() {
     console.log(dataform);
     axios.post(`/auth/reviewinsert`, dataform).then(() => {
       alert("success");
-      //window.location.reload();
+      window.location.reload();
     });
   };
 
@@ -89,112 +89,175 @@ export default function DasUser() {
   };
 
   return (
-    <div>
+    <div className=" bg-light">
       <Header />
-      <div className="welcome-container">
+      <div className="container pad-top">
         <div class="path">
           <span>
             <b> Customer details</b>
           </span>
         </div>
-        <div class="text-right mr-5">
-          <a>View Report</a>
+        <div class="text-right">
+          <Link to={`/reportSales/${userid}`}>View Report</Link>
         </div>
         <div class="row" style={{ paddingTop: "20px" }}>
-          <div
-            class="col-lg-3 col-md-4 bg-white pr-3 ml-5"
-            //style={{ backgroundColor: "#f5f6f8" }}
-          >
-            <div class="form-title">Details</div>
-            vvsdgfeg
-            {contact
-              ? contact.map((c) => (
-                  <ul class="item-list">
-                    <li>
-                      Industry Name: <span>{c.Si_Name}</span>
-                    </li>
-                    <li>
-                      Contact Person Name: <span>{c.CpI_Name}</span>
-                    </li>
-                    <li>
-                      Phone Number: <span>{c.CpI_Number}</span>
-                    </li>
-                    <li>
-                      Department: <span>{c.Department_Name}</span>
-                    </li>
-                  </ul>
-                ))
-              : null}
+          <div class="col-lg-3 col-md-4 bg-white">
+            <div class="form-title mt-5 mb-4">Details</div>
+
+            {contact ? (
+              contact.map((c) => (
+                <ul class="item-list">
+                  <li>
+                    <b>Industry Name</b>
+                    <br />
+                    <span>{c.Si_Name}</span>
+                  </li>
+                  <li>
+                    <b>Contact Person Name</b>
+                    <br />
+                    <span>{c.CpI_Name}</span>
+                  </li>
+                  <li>
+                    <b>Phone Number</b>
+                    <br />
+                    <span>{c.CpI_Number}</span>
+                  </li>
+                  <li>
+                    <b>Department</b>
+                    <br />
+                    <span>{c.Department_Name}</span>
+                  </li>
+                </ul>
+              ))
+            ) : (
+              <>No detail of contact person</>
+            )}
+            <hr />
             <button type="submit" class="common-btn mt-3">
-              <Link to={`/addproducts/2/2`} style={{ color: "white" }}>
+              <Link
+                to={`/addproducts/${id.cid}/${id.siid}`}
+                style={{ color: "white" }}
+              >
                 Add Product +
               </Link>
             </button>
           </div>
 
-          <div class="form-container col-lg-8 offset-lg-1 ml-4 ">
+          <div class="form-container col-lg-9  ">
             <div class="form-title">Write a review</div>
 
             <small>Note: Both the field must be selected</small>
             <div class="form-row mt-4">
               <div class="form-group col-md-6">
-                <small>Select Categoty*</small>
-                <select class="form-control">
-                  <option>Product 1</option>
-                  <option>Product 2</option>
-                  <option>Product 3</option>
-                  <option>Product 4</option>
-                  <option>Product 5</option>
+                <small>Industry*</small>
+                <select
+                  className="form-control"
+                  name="siid"
+                  onChange={handleChange}
+                >
+                  <option value="" name="siid"></option>
+                  {ind
+                    ? ind.map((i) => (
+                        <option value={i.Si_ID} name="siid">
+                          {i.Si_Name}
+                        </option>
+                      ))
+                    : null}
                 </select>
               </div>
               <div class="form-group col-md-6">
-                <small>Select Review*</small>
-                <select class="form-control">
-                  <option>Excellent</option>
-                  <option>Product 2</option>
-                  <option>Product 3</option>
-                  <option>Product 4</option>
-                  <option>Poor</option>
+                <small>Inquiry*</small>
+                <select
+                  className="form-control"
+                  name="inquiry"
+                  onChange={handleChange}
+                >
+                  <option name="inquiry" value=""></option>
+                  <option name="inquiry" value="call">
+                    call
+                  </option>
+                  <option name="inquiry" value="walk">
+                    meet
+                  </option>
+                  <option name="inquiry" value="pending">
+                    pending
+                  </option>
                 </select>
               </div>
             </div>
             <div class="form-group">
               <small>Write Review</small>
-              <textarea rows="3" class="form-control col-md-12"></textarea>
+              <textarea
+                rows="3"
+                class="form-control col-md-12"
+                name="review"
+                onChange={handleChange}
+              ></textarea>
             </div>
-            <button class="common-btn mt-3">Submit</button>
+            <button class="common-btn mt-3" onClick={handleSubmit}>
+              Submit
+            </button>
           </div>
 
           <div class="review-section col-lg-12 col-md-12 ">
             <div class="form-title">Review History</div>
             <div class="review-container row">
-              <div class="col-md-12 col-lg-6 review-card">
-                {review
-                  ? review.map((rv, key) => (
-                      <>
+              {review
+                ? review.map((rv, key) => (
+                    <>
+                      <div class="col-md-12 col-lg-6 review-card gutter-top-sm">
                         <div class="title bg-theme text-center">
                           Industry:{rv.Si_Name}
                         </div>
                         <ul class="item-list">
                           <li>
-                            Industry: <span>{rv.Si_Name}</span>
+                            <b> Review via:</b>
+                            <span>{rv.INquiry_via}</span>
                           </li>
                           <li>
-                            Category: <span>Honda123 Model</span>
+                            <b> Review :</b>
+                            {editreview === key ? (
+                              <input
+                                id={rv.R_ID}
+                                type="text"
+                                name="body"
+                                className="reviewhistory-h1"
+                                onChange={(e) => {
+                                  handleEdit(e, rv.R_Review, key);
+                                }}
+                                onKeyPress={(e) => {
+                                  if (e.key === "Enter") {
+                                    console.log("id", rv.R_ID);
+                                    handleEnter(rv.R_ID);
+                                  }
+                                }}
+                              />
+                            ) : (
+                              <span>{rv.R_Review}</span>
+                            )}
                           </li>
-                          <li>Good</li>
                           <li className="date">
                             <span> {rv.Date}</span>
                           </li>
                           <li>
-                            <i class="fas fa-edit"></i>
-                            <i class="fas fa-trash"></i>
+                            <i
+                              class="fas fa-edit"
+                              onClick={(e) => {
+                                setEditreview(key);
+                              }}
+                            ></i>
+                            <i
+                              class="fas fa-trash"
+                              onClick={() => {
+                                handleDelete(rv.R_ID);
+                              }}
+                            ></i>
                           </li>
                         </ul>
-                      </>
-                    ))
-                  : null}
-              </div>
+                      </div>
+                    </>
+                  ))
+                : null}
             </div>
           </div>
         </div>

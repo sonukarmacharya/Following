@@ -33,6 +33,7 @@ const Customers = () => {
         axios.spread((priority, company) => {
           setPriority(priority.data.data);
           setComp(company.data.data);
+          console.log(company.data.data);
         })
       )
       .catch((err) => alert("ERROR", err));
@@ -74,9 +75,11 @@ const Customers = () => {
       window.location.reload();
     });
   };
-  let handleDelete = (id) => {
+  let handleDelete = (cid, sid) => {
     console.log("del", id);
-    axios.delete(`/auth/company/${id}`).then(() => window.location.reload());
+    axios
+      .delete(`/auth/company/${cid}/${sid}`)
+      .then(() => window.location.reload());
   };
   return (
     (error && <h1>Error</h1>) || (
@@ -251,7 +254,7 @@ const Customers = () => {
                               class="fas fa-trash"
                               onClick={() => {
                                 console.log(id);
-                                handleDelete(comp.Co_ID);
+                                handleDelete(comp.Co_ID, comp.Si_ID);
                                 setmodalIsOpen(false);
                               }}
                             ></i>

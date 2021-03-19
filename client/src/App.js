@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Login from "./pages/login/login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import DasUser from "./pages/Dashboard/DasUser";
@@ -9,7 +9,8 @@ import Products from "./pages/Products Detail/Products_detail";
 import SalesPerson from "./pages/SalesPerson Detail/Salespersons_detail";
 import Asales from "./pages/SalesPerson Detail/Asales";
 import Tender from "./pages/Tender/tender";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import Report from "./pages/ReportDetail/Report";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import CustomersUser_detail from "./pages/Customers Detail/CustomerUser_detail";
 import Addproduct from "./pages/Addproduct/Addproduct";
 import { ProtectedRoute } from "./pages/portected.route";
@@ -61,6 +62,7 @@ function App() {
             component={CustomersUser}
           />
           <ProtectedRoute exact path="/report/:id" component={Tender} />
+          <ProtectedRoute exact path="/reportSales/:id" component={Report} />
           <Route path="*" component={() => "404 NOT FOUND"} />
         </Switch>
       </BrowserRouter>

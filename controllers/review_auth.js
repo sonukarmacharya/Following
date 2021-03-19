@@ -99,7 +99,7 @@ module.exports = {
   getReview: (req, res, next) => {
     const SID = req.params.id;
     try {
-      db.query(`SELECT * FROM review WHERE S_ID=${SID}`, (err, result) => {
+      db.query(`SELECT * FROM review WHERE Co_ID=${SID}`, (err, result) => {
         if (err) {
           res.json({
             status: 200,
@@ -131,7 +131,7 @@ module.exports = {
       db.query(
         `SELECT review.*,sectorwise_industry.Si_Name FROM review
       INNER JOIN sectorwise_industry ON sectorwise_industry.Si_ID=review.Si_ID 
-      WHERE review.Si_ID='${SID}' AND review.Co_ID=${COID}`,
+      WHERE review.S_ID='${SID}' AND review.Co_ID=${COID}`,
         (err, result) => {
           if (err) {
             res.json({

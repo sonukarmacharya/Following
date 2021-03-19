@@ -25,9 +25,6 @@ const HeadSales = (props) => {
     <div>
       <header class="header">
         <div class="header-menu">
-          <div class="sidebar-btn">
-            <i class="fas fa-bars"></i>
-          </div>
           <div class="logo">
             <img src={logo} alt="" />
             <span class="logo-title">Construction Pvt Ltd</span>

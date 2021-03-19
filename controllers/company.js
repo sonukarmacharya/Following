@@ -360,7 +360,7 @@ module.exports = {
   getIndustryBySID: (req, res, next) => {
     try {
       db.query(
-        `SELECT * FROM sectorwise_industry WHERE Si_ID='${req.params.siid}'`,
+        `SELECT * FROM sectorwise_industry WHERE Si_ID='${req.params.id}'`,
         (err, result) => {
           if (err) {
             res.json({
@@ -434,7 +434,7 @@ module.exports = {
     console.log(req.params.id);
     try {
       db.query(
-        `DELETE FROM company WHERE Co_ID='${req.params.id}'`,
+        `DELETE FROM sectorwise_industry WHERE Si_ID='${req.params.sid}'`,
         (err, result) => {
           if (err) {
             res.json({
@@ -444,7 +444,7 @@ module.exports = {
             });
           } else {
             db.query(
-              `DELETE FROM sectorwise_industry WHERE Co_ID='${req.params.id}'`,
+              `DELETE FROM company WHERE Co_ID='${req.params.cid}'`,
               (err, result) => {
                 if (err) {
                   res.json({

@@ -298,7 +298,7 @@ module.exports = {
     try {
       db.query(
         `SELECT company.Co_ID,company.Co_Name,company.Co_Landline,project.Prj_ID,
-          project.Prj_Name,project.Prj_Amt FROM admin_assign_customers
+          project.Prj_Name,project.Prj_Amt,admin_assign_customers.S_ID FROM admin_assign_customers
           INNER JOIN company ON company.Co_ID=admin_assign_customers.Co_ID
           INNER JOIN project ON project.Prj_ID=admin_assign_customers.Prj_ID
            WHERE admin_assign_customers.S_ID='${req.params.id}'`,
